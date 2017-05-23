@@ -1,0 +1,24 @@
+<div class="ws-datatable-container">
+  <div *ngIf="!tableConfiguration" class="ws-datatable-loader">
+    Loading...
+  </div>
+  <div *ngIf="tableConfiguration && showPagination" class="ws-datatable-header">
+    <div class="pull-left">
+
+    </div>
+    <div class="pull-right">
+      <ws-pagination (pageChanged)="onPageClick($event)" [currentPage]="apiResponse.current_page" [lastPage]="apiResponse.last_page" [count]="apiResponse.count" [pageSize]="apiResponse.page_size"></ws-pagination>
+    </div>
+  </div>
+  <div *ngIf="tableConfiguration" [class.ws-datatable-margins]="!disableMargins" class="ws-datatable-inner-container">
+    <!--<ngx-datatable class="material" [columns]="columns" [rows]="rows" [columnMode]="columnMode" (activate)="onActivate($event)" [selectionType]="enableSelect ? selectionType : false" (select)="enableSelect && onSelect($event)" [class.clickable]="enableSelect" [limit]="limit" [footerHeight]="paginationEnabled ? footerHeight : 0" [externalSorting]="true" (sort)="onSort($event)"></ngx-datatable>-->
+  </div>
+  <div *ngIf="tableConfiguration && showPagination" class="ws-datatable-footer">
+    <div class="pull-left">
+
+    </div>
+    <div class="pull-right">
+      <ws-pagination (pageChanged)="onPageClick($event)" [currentPage]="apiResponse.current_page" [lastPage]="apiResponse.last_page" [count]="apiResponse.count" [pageSize]="apiResponse.page_size"></ws-pagination>
+    </div>
+  </div>
+</div>

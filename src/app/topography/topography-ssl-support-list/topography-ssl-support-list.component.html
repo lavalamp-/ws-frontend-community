@@ -1,0 +1,23 @@
+<div class="row">
+  <h2>Summary</h2>
+</div>
+<div class="row">
+  <div class="col-md-6 column-container">
+    <ws-donut-chart-card [dataPoints]="sslSupportAnalytics?.cert_issuer_organization" (dataClicked)="onIssuerOrgClicked($event)" [title]="'Issuing Organizations'"></ws-donut-chart-card>
+  </div>
+  <div class="col-md-6 column-container">
+    <ws-donut-chart-card [dataPoints]="sslSupportAnalytics?.is_vulnerable" (dataClicked)="onVulnerableClicked($event)" [title]="'Is Vulnerable'"></ws-donut-chart-card>
+  </div>
+  <div class="col-md-6 column-container">
+    <ws-donut-chart-card [dataPoints]="sslSupportAnalytics?.cert_expired" (dataClicked)="onIsExpiredClicked($event)" [title]="'Certificate Expired'"></ws-donut-chart-card>
+  </div>
+  <div class="col-md-6 column-container">
+    <ws-donut-chart-card [dataPoints]="sslSupportAnalytics?.cert_is_valid" (dataClicked)="onIsValidClicked($event)" [title]="'Certificate Validity'"></ws-donut-chart-card>
+  </div>
+</div>
+<div class="row">
+  <h2>Details</h2>
+</div>
+<ws-ssl-support-list [apiResponse]="sslSupportApiResponse" (searchChanged)="onSearchTermChanged($event)" (pageChanged)="onPageChanged($event)" (exportClicked)="onExportClicked()" [sslSupportAnalytics]="sslSupportAnalytics" (filterCreated)="onFilterCreated($event)" (orderingChanged)="onQueryOrderingChanged($event)" [searchTerm]="searchTerm" [queryOrdering]="queryOrdering"></ws-ssl-support-list>
+<ws-filter-panel *ngIf="queryFilters.length > 0" [queryFilters]="queryFilters" (queryFiltersChanged)="onQueryFiltersChanged($event)"></ws-filter-panel>
+<div [class.filters-showing]="queryFilters.length > 0"></div>

@@ -1,0 +1,8 @@
+<ws-table-header [apiResponse]="apiResponse" (pageChanged)="onPageChanged($event)" (searchChanged)="onSearchChanged($event)" (exportClicked)="onExportClicked()" [analytics]="sslSupportAnalytics" (filterCreated)="onFilterCreated($event)" (orderingChanged)="onOrderingChanged($event)" [searchTerm]="searchTerm" [queryOrdering]="queryOrdering"></ws-table-header>
+<md-card class="display-card">
+  <div class="no-results" *ngIf="!apiResponse || apiResponse.count == 0">
+    No results were found for your query.
+  </div>
+  <ws-ssl-support-summary-row *ngFor="let support of apiResponse?.results" [sslSupport]="support" class="rowable" (filterCreated)="onFilterCreated($event)"></ws-ssl-support-summary-row>
+</md-card>
+<ws-table-footer [apiResponse]="apiResponse" (pageChanged)="onPageChanged($event)"></ws-table-footer>

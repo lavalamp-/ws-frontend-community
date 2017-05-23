@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-md-9 column-container">
+    <ws-ul-panel [title]="networksTitle" [rows]="order?.networks"></ws-ul-panel>
+  </div>
+  <div class="col-md-9 column-container">
+    <ws-ul-panel [title]="domainsTitle" [rows]="order?.domain_names"></ws-ul-panel>
+  </div>
+  <div class="col-md-6 column-container">
+    <div class="checkout-container">
+      <h2 class="first-header">Scan Scope</h2>
+      <div class="scan-scope">
+        <ul class="list-group">
+          <li class="list-group-item">
+            <span class="badge">{{order?.scoped_endpoints_count | number}} ({{order?.scoped_endpoints_size | number}} endpoints)</span>
+            Networks
+          </li>
+          <li class="list-group-item">
+            <span class="badge">{{order?.scoped_domains_count | number}}</span>
+            Domain Names
+          </li>
+        </ul>
+      </div>
+      <h2>Scan Cost</h2>
+      <div class="scan-cost">
+        <ul class="list-group">
+          <li class="list-group-item">
+            <span class="badge">{{order?.order_tier_name}}</span>
+            Pricing Tier
+          </li>
+          <li class="list-group-item">
+            <span class="badge">{{order?.order_tier_price / 100 | currency:'USD':true}}</span>
+            Price
+          </li>
+        </ul>
+      </div>
+      <h2>Payment Method</h2>
+      <div class="payment-method">
+        <ul class="list-group">
+          <li class="list-group-item payment-list-item">{{order?.paymentDescription}}</li>
+        </ul>
+      </div>
+      <div class="place-order">
+        <div class="place-comment">
+          <i>Everything look good? If so, click the button below to start your scan!</i>
+        </div>
+        <ws-button [text]="'Start Scan'" [disabled]="orderBeingPlaced" [asBlock]="true" (buttonClicked)="onPlaceOrderClicked()"></ws-button>
+      </div>
+    </div>
+  </div>
+</div>

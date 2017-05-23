@@ -1,0 +1,11 @@
+<div class="detail-item-list">
+  <div class="row" *ngFor="let detailItem of detailItems">
+    <div class="col-xs-12"><b>{{detailItem.title}}</b></div>
+    <div class="col-xs-12 item-description" [style.word-break]="wordBreak">
+      {{detailItem.description}}
+      <div class="description-filter" *ngIf="detailItem.filterKey && showFilters">
+        <i class="fa fa-icon fa-filter clickable" (click)="onFilterClicked(detailItem.filterKey, detailItem.description, detailItem.filterLabel, detailItem.filterValue)"></i>
+      </div>
+    </div>
+  </div>
+</div>

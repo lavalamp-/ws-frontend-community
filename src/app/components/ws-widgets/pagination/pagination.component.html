@@ -1,0 +1,18 @@
+<div class="pagination-container">
+  <div class="pagination-left">
+    <div *ngIf="includeSummary" class="pagination-summary">
+      <small>viewing {{firstItemIndex}}-{{lastItemIndex}} of {{count}}</small>
+    </div>
+  </div>
+  <div class="pagination-right">
+    <nav>
+      <ul class="pagination">
+        <li [class.disabled]="currentPage == 1" [class.clickable]="currentPage != 1" (click)="onPageClick(1)"><span>&laquo;</span></li>
+        <li *ngFor="let pageNumber of pageNumbers" [class.active]="pageNumber == currentPage" [class.clickable]="pageNumber != currentPage && pageNumber >= 1 && pageNumber <= lastPage" [class.disabled]="pageNumber < 1 || pageNumber > lastPage" (click)="onPageClick(pageNumber)">
+          <span>{{pageNumber < 1 || pageNumber > lastPage ? '&nbsp;' : pageNumber}}</span>
+        </li>
+        <li [class.disabled]="currentPage == lastPage" [class.clickable]="currentPage != lastPage" (click)="onPageClick(lastPage)"><span>&raquo;</span></li>
+      </ul>
+    </nav>
+  </div>
+</div>

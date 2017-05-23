@@ -1,0 +1,127 @@
+@import '~@angular/material/core/theming/all-theme';
+// Plus imports for other components in your app.
+
+@import 'custom-variables';
+
+// Include the base styles for Angular Material core. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+@include md-core();
+
+$brand-accent: #007991;
+$brand-red: $brand-danger;
+
+$ws-blues: (
+  50: lighten($brand-primary, 25%),
+  100: lighten($brand-primary, 20%),
+  200: lighten($brand-primary, 15%),
+  300: lighten($brand-primary, 10%),
+  400: lighten($brand-primary, 5%),
+  500: $brand-primary,
+  600: darken($brand-primary, 5%),
+  700: darken($brand-primary, 10%),
+  800: darken($brand-primary, 15%),
+  900: darken($brand-primary, 20%),
+  A100: lighten($brand-primary, 25%),
+  A200: lighten($brand-primary, 10%),
+  A400: darken($brand-primary, 10%),
+  A700: darken($brand-primary, 25%),
+  contrast: (
+    50: $brand-info,
+    100: $brand-info,
+    200: $brand-info,
+    300: $brand-info,
+    400: $brand-info,
+    500: $brand-info,
+    600: $brand-info,
+    700: $brand-info,
+    800: white,
+    900: white,
+    A100: $brand-info,
+    A200: $brand-info,
+    A400: $brand-info,
+    A700: $brand-info,
+  )
+);
+
+$ws-accent: (
+  50: lighten($brand-accent, 25%),
+  100: lighten($brand-accent, 20%),
+  200: lighten($brand-accent, 15%),
+  300: lighten($brand-accent, 10%),
+  400: lighten($brand-accent, 5%),
+  500: $brand-accent,
+  600: darken($brand-accent, 5%),
+  700: darken($brand-accent, 10%),
+  800: darken($brand-accent, 15%),
+  900: darken($brand-accent, 20%),
+  A100: lighten($brand-accent, 25%),
+  A200: lighten($brand-accent, 10%),
+  A400: darken($brand-accent, 10%),
+  A700: darken($brand-accent, 25%),
+  contrast: (
+    50: white,
+    100: white,
+    200: white,
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: white,
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+$ws-reds: (
+  50: lighten($brand-red, 25%),
+  100: lighten($brand-red, 20%),
+  200: lighten($brand-red, 15%),
+  300: lighten($brand-red, 10%),
+  400: lighten($brand-red, 5%),
+  500: $brand-red,
+  600: darken($brand-red, 5%),
+  700: darken($brand-red, 10%),
+  800: darken($brand-red, 15%),
+  900: darken($brand-red, 20%),
+  A100: lighten($brand-red, 25%),
+  A200: lighten($brand-red, 10%),
+  A400: darken($brand-red, 10%),
+  A700: darken($brand-red, 25%),
+  contrast: (
+    50: white,
+    100: white,
+    200: white,
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: white,
+    A200: white,
+    A400: white,
+    A700: white,
+  )
+);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue.
+$ws-app-primary: md-palette($ws-blues);
+$ws-app-accent:  md-palette($ws-accent);
+
+// The warn palette is optional (defaults to red).
+$ws-app-warn:    md-palette($ws-reds);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$ws-app-theme: md-light-theme($ws-app-primary, $ws-app-accent, $ws-app-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($ws-app-theme);

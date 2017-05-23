@@ -1,0 +1,12 @@
+<md-tab-group class="ws-filters-tab">
+  <md-tab label="Servers">
+    <div class="tab-container">
+      <ws-count-badge *ngFor="let entry of filterList['servers']" [term]="entry['label']" [count]="webServiceAnalytics ? webServiceAnalytics[entry['accessor']] : 0" [active]="isSelected(entry['accessor'])" (clicked)="onBadgeClicked(entry['accessor'], entry['label'])"></ws-count-badge>
+    </div>
+  </md-tab>
+  <md-tab label="App Frameworks">
+    <div class="tab-container">
+      <ws-count-badge *ngFor="let entry of filterList['frameworks']" [term]="entry['label']" [count]="webServiceAnalytics ? webServiceAnalytics[entry['accessor']] : 0" [active]="isSelected(entry['accessor'])" (clicked)="onBadgeClicked(entry['accessor'], entry['label'])"></ws-count-badge>
+    </div>
+  </md-tab>
+</md-tab-group>

@@ -1,0 +1,13 @@
+<md-card class="chart-card">
+  <md-card-title>
+    Networks
+  </md-card-title>
+  <md-card-content>
+    <div *ngIf="!pieDataSet" class="chart-loading">
+      Loading...
+    </div>
+    <div *ngIf="pieDataSet" class="chart-loaded">
+      <ws-donut-chart (dataClicked)="onNetworkClicked($event)" [pieDataset]="pieDataSet"></ws-donut-chart>
+    </div>
+  </md-card-content>
+</md-card>

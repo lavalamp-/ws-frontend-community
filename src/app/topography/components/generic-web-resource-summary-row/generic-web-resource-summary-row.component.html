@@ -1,0 +1,24 @@
+<div class="row generic-web-resource-summary-row column-container">
+  <div class="row">
+    <div class="summary-header">
+      <div class="summary-title">
+        <h3>
+          {{titleText}}
+          <small class="small-description">({{resource.createdDescription}})</small>
+        </h3>
+      </div>
+      <div class="summary-chips">
+      </div>
+      <div class="navigation-container" *ngIf="showDetailsButton">
+        <button md-fab md-tooltip="More Info" color="primary" mdTooltipShowDelay="1000" mdTooltipPosition="below" (click)="onDetailsClicked()">
+          <i class="fa fa-icon fa-info fa-2x"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-24 protocol-details">
+      <ws-detail-list-panel [detailItems]="summaryDetails" [title]="'Summary'" (filterCreated)="onFilterCreated($event)"></ws-detail-list-panel>
+    </div>
+  </div>
+</div>

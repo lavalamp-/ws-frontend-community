@@ -1,0 +1,8 @@
+<ws-table-header [apiResponse]="apiResponse" (pageChanged)="onPageChanged($event)" (searchChanged)="onSearchChanged($event)" (exportClicked)="onExportClicked()" (filterCreated)="onFilterCreated($event)" (orderingChanged)="onOrderingChanged($event)" [searchTerm]="searchTerm" [queryOrdering]="queryOrdering"></ws-table-header>
+<md-card class="display-card" [style.margin-left]="marginString" [style.margin-right]="marginString">
+  <div class="no-results" *ngIf="!apiResponse || apiResponse.count == 0">
+    You have not defined any networks yet.
+  </div>
+  <ws-networks-summary-row *ngFor="let network of apiResponse?.results" [canUserWrite]="canUserWrite" [network]="network" class="rowable" (networkToggled)="onNetworkIncludeToggled($event)" (deleteClicked)="onDeleteNetworkClicked($event)"></ws-networks-summary-row>
+</md-card>
+<ws-table-footer [apiResponse]="apiResponse" (pageChanged)="onPageChanged($event)"></ws-table-footer>

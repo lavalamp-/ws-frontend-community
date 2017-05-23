@@ -1,0 +1,109 @@
+<form [formGroup]="formGroup" (keydown)="onKeyDown($event)">
+  <!-- Old -->
+  <!--<table>-->
+    <!--<tr>-->
+      <!--<td>-->
+        <!--<md-input-container>-->
+          <!--<input md-input type="text" placeholder="Network Name" formControlName="name" required>-->
+        <!--</md-input-container>-->
+      <!--</td>-->
+      <!--<td>-->
+        <!--<md-input-container>-->
+          <!--<input md-input type="text" placeholder="Network Address" formControlName="address" required>-->
+        <!--</md-input-container>-->
+      <!--</td>-->
+      <!--<td>-->
+        <!--<md-input-container>-->
+          <!--<input md-input type="text" placeholder="Mask Length (16-32)" formControlName="mask_length" required>-->
+        <!--</md-input-container>-->
+      <!--</td>-->
+    <!--</tr>-->
+    <!--<tr *ngIf="formErrors">-->
+      <!--<td>-->
+        <!--<ws-input-hint [messages]="formErrors['error_fields']['name']"></ws-input-hint>-->
+      <!--</td>-->
+      <!--<td>-->
+        <!--<ws-input-hint [messages]="formErrors['error_fields']['address']"></ws-input-hint>-->
+      <!--</td>-->
+      <!--<td>-->
+        <!--<ws-input-hint [messages]="formErrors['error_fields']['mask_length']"></ws-input-hint>-->
+      <!--</td>-->
+    <!--</tr>-->
+  <!--</table>-->
+
+  <!-- Desktop form -->
+  <div class="visible-sm visible-md visible-lg">
+    <div class="row">
+      <div class="col-sm-8">
+        <md-input-container>
+          <input md-input type="text" placeholder="Network Name" formControlName="name" required>
+        </md-input-container>
+        <div *ngIf="formErrors">
+          <ws-input-hint [messages]="formErrors['error_fields']['name']"></ws-input-hint>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <md-input-container>
+          <input md-input type="text" placeholder="Network Address" formControlName="address" required>
+        </md-input-container>
+        <div *ngIf="formErrors">
+          <ws-input-hint [messages]="formErrors['error_fields']['address']"></ws-input-hint>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <md-input-container>
+          <input md-input type="text" placeholder="Mask Length (16-32)" formControlName="mask_length" required>
+        </md-input-container>
+        <div *ngIf="formErrors">
+          <ws-input-hint [messages]="formErrors['error_fields']['mask_length']"></ws-input-hint>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Mobile form -->
+  <div class="visible-xs">
+    <div class="row">
+      <div class="col-xs-24">
+        <md-input-container>
+          <input md-input type="text" placeholder="Network Name" formControlName="name" required>
+        </md-input-container>
+        <div *ngIf="formErrors">
+          <ws-input-hint [messages]="formErrors['error_fields']['name']"></ws-input-hint>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-24">
+        <md-input-container>
+          <input md-input type="text" placeholder="Network Address" formControlName="address" required>
+        </md-input-container>
+        <div *ngIf="formErrors">
+          <ws-input-hint [messages]="formErrors['error_fields']['address']"></ws-input-hint>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-24">
+        <md-input-container>
+          <input md-input type="text" placeholder="Mask Length (16-32)" formControlName="mask_length" required>
+        </md-input-container>
+        <div *ngIf="formErrors">
+          <ws-input-hint [messages]="formErrors['error_fields']['mask_length']"></ws-input-hint>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Figure out how to show generic errors only without field errors -->
+  <div *ngIf="formErrors &&
+      formErrors['message'] &&
+      formErrors['error_fields'] &&
+      formErrors['error_fields']['non_field_errors'] &&
+      formErrors['error_fields']['non_field_errors'].length > 0">
+    <ws-input-hint [messages]="formErrors['error_fields']['non_field_errors']"></ws-input-hint>
+  </div>
+</form>

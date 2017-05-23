@@ -1,0 +1,29 @@
+<div class="row network-summary-row column-container">
+  <div class="name-container item-container">
+    <span *ngIf="network.name">
+    {{network.name}}
+    </span>
+    <span *ngIf="!network.name">
+    <i>No Name Specified</i>
+    </span>
+  </div>
+  <div class="cidr-container item-container">
+    {{network.cidr_range}} ({{network.endpointsCountDescription}})
+  </div>
+  <div class="added-container item-container">
+    <i>{{network.createdDescription}}</i>
+  </div>
+  <div class="scan-description item-container">
+    <i>{{network.scanDescription}}</i>
+  </div>
+  <div class="toggle-container item-container" *ngIf="canUserWrite">
+    <md-slide-toggle [checked]="network.scanning_enabled" (change)="onIncludeToggled()">
+      {{network.scanning_enabled ? 'Included' : 'Excluded'}}
+    </md-slide-toggle>
+  </div>
+  <div class="delete-container item-container" *ngIf="canUserWrite">
+    <button md-mini-fab color="warn" (click)="onDeleteClicked()">
+      <i class="fa fa-icon fa-trash"></i>
+    </button>
+  </div>
+</div>

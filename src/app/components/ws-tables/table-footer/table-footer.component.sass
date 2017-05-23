@@ -1,0 +1,19 @@
+@import "../../../../assets/ws-variables"
+
+$margin-distance: $default-padding * $table-footer-multiplier
+
+.table-footer-row
+  display: flex
+  align-items: center
+  margin-top: $margin-distance
+
+  .footer-row-left
+    flex: 0 0 auto
+    margin-right: $pagination-dimension * 0.5
+
+  .footer-row-middle
+    flex: 1 0 auto
+
+  .footer-row-right
+    flex: 0 0 auto
+    margin-left: $pagination-dimension * 0.5

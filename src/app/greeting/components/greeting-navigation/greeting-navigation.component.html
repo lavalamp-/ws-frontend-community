@@ -1,0 +1,13 @@
+<div class="div-center alert greeting-options">
+  <ul class="list-inline">
+    <li *ngIf="router.url != '/greeting/log-in'">
+      <small><a routerLink="/greeting/log-in">Log In</a></small>
+    </li>
+    <li *ngIf="router.url != '/greeting/forgot-password'">
+      <small><a routerLink="/greeting/forgot-password">Forgot Password</a></small>
+    </li>
+    <li *ngIf="router.url != '/greeting/sign-up'">
+      <small><a routerLink="/greeting/sign-up">Sign up</a></small>
+    </li>
+  </ul>
+</div>

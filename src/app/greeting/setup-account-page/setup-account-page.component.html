@@ -1,0 +1,15 @@
+<div class="form-container form-center greeting-form">
+  <div class="alert" [hidden]="!formSubmitted" [class.alert-success]="formSubmitted && success" [class.alert-danger]="formSubmitted && !success">
+    {{response}}
+  </div>
+  <ws-setup-account-form [showLabels]="false" (setupAccountFormChange)="onSetupAccountFormChanged($event)" (enterPressed)="onEnterPressed()"></ws-setup-account-form>
+  <div class="row">
+    <div class="col-md-12 column-container">
+      <ws-password-complexity-card [minLength]="8" [minUpperCase]="1" [minSpecial]="1" [password]="setupAccountForm.value.password" [passwordRepeated]="setupAccountForm.value.passwordRepeat"></ws-password-complexity-card>
+    </div>
+    <div class="col-md-12 column-container">
+      <re-captcha (captchaResponse)="handleCorrectCaptcha($event)" site_key="6LfneCYTAAAAAGGc_9MGNQmZuMTm9rILlStC05yS"></re-captcha>
+    </div>
+  </div>
+  <button class="btn btn-primary btn-block" [disabled]="!setupAccountForm.valid || !recaptchaValidated" (click)="onSetupAccountClicked()">Setup Account</button>
+</div>

@@ -1,0 +1,26 @@
+<form [formGroup]="domainNameUploadForm" >
+  <h4>Upload Domain Name(s)</h4>
+  <div class="row">
+    <div class="col-lg-10">
+      <label class="btn btn-default">
+        <input style="cursor: pointer; left:-10px; position: relative" name="file" type="file" ng2FileSelect [uploader]="uploader" required>
+      </label>
+      <p class="help-block">Supported File Types: csv</p>
+    </div>
+    <div class="col-lg-10">
+      <div class="pull-right">
+        <button class="btn btn-lg btn-success" (click)="onClickUpload()" >Upload</button>
+      </div>
+    </div>
+  </div>
+</form>
+<hr>
+
+<div class="row text-center">
+  <p>Example Domain Name File</p>
+  <a href="assets/example-domain-name.csv">
+    <button class="btn btn-primary btn-lg">Download <i class="fa fa-download"></i></button>
+  </a>
+</div>
+
+

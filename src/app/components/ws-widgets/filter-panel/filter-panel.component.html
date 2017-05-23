@@ -1,0 +1,8 @@
+<div class="filter-panel">
+  <div class="row">
+    <h4>Filters</h4>
+  </div>
+  <div class="row">
+    <ws-query-filter-badge *ngFor="let queryFilter of queryFilters; let index = i" [queryFilter]="queryFilter" (removeClicked)="onBadgeRemoved(index)" (filterChanged)="onFilterChanged(index, $event);"></ws-query-filter-badge>
+  </div>
+</div>

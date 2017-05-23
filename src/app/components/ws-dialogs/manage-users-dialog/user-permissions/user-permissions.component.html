@@ -1,0 +1,44 @@
+<md-card class="display-card" [style.margin-left]="marginString" [style.margin-right]="marginString">
+  <div class="user-permissions-list-container" *ngIf="userPermissions">
+    <div class="user-permissions-row-header row">
+      <div class="user-permissions-row-remove col-xs-2">
+
+      </div>
+      <div class="user-permissions-row-name col-xs-7">
+        User
+      </div>
+      <div class="user-permissions-row-range col-xs-15">
+        Permissions
+      </div>
+    </div>
+    <div class="user-permissions-row row" *ngFor="let permission of userPermissions">
+      <div class="user-permissions-row-remove col-xs-2">
+        <button color="warn" (click)="onRemoveUserClicked(permission)" md-mini-fab>
+          <i class="fa fa-remove"></i>
+        </button>
+      </div>
+      <div class="user-permissions-row-name col-xs-7">
+        {{permission.user_name}}
+      </div>
+      <div class="user-permissions-row-range col-xs-15">
+        <ws-permissions-toggle [userPermission]="permission" (permissionChanged)="onPermissionsChanged([permission, $event])"></ws-permissions-toggle>
+      </div>
+    </div>
+    <div class="user-permissions-row row">
+      <div class="user-permissions-row-remove col-xs-2">
+        <button md-tooltip="Add User" color="primary" (click)="onAddUserClicked()" [disabled]="newUserForm.pristine || !newUserForm.valid" md-mini-fab>
+          <i class="fa fa-plus"></i>
+        </button>
+      </div>
+      <div class="user-permissions-row-name col-xs-7">
+        <form [formGroup]="newUserForm" (keydown)="onNewUserKeyDown($event)">
+          <md-input-container>
+            <input md-input type="email" placeholder="New User Email" formControlName="email" required>
+          </md-input-container>
+        </form>
+      </div>
+      <div class="user-permissions-row-range col-xs-15">
+      </div>
+    </div>
+  </div>
+</md-card>

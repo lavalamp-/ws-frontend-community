@@ -1,0 +1,16 @@
+<div class="row form-row">
+  <div class="row">
+    <div class="col-sm-23 col-xs-20">
+      <ws-new-organization-form [(formGroup)]="organizationForm" (enterPressed)="onOrganizationEnterPressed()" [formErrors]="organizationFormErrors"></ws-new-organization-form>
+    </div>
+    <div class="col-sm-1 col-xs-4">
+      <button class="pull-right"  md-tooltip="Add Organization" [disabled]="!organizationForm || !organizationForm.valid" (click)="onNewOrganizationClicked()" md-mini-fab>
+        <i class="fa fa-plus"></i>
+      </button>
+    </div>
+  </div>
+
+</div>
+<div class="row">
+
+</div>

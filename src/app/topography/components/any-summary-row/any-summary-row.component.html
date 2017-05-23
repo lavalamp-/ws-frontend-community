@@ -1,0 +1,6 @@
+<div class="any-row-container">
+  <ws-ssl-support-summary-row *ngIf="isSslSupport" (filterCreated)="onFilterCreated($event)" [sslSupport]="rowObject" [titlePrelude]="'SSL Support For'"></ws-ssl-support-summary-row>
+  <ws-web-app-summary-row *ngIf="isWebService" (filterCreated)="onFilterCreated($event)" [webApp]="rowObject" [titlePrelude]="'Web App At'"></ws-web-app-summary-row>
+  <ws-generic-web-resource-summary-row *ngIf="isGenericWebResource" (filterCreated)="onFilterCreated($event)" [resource]="rowObject" [showDetailsButton]="false"></ws-generic-web-resource-summary-row>
+  <ws-html-web-resource-summary-row *ngIf="isHtmlWebResource" (filterCreated)="onFilterCreated($event)" [resource]="rowObject" [showDetailsButton]="false"></ws-html-web-resource-summary-row>
+</div>

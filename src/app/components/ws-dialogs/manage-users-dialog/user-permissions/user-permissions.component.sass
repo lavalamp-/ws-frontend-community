@@ -1,0 +1,33 @@
+@import "../../../../../assets/ws-variables"
+
+.user-permissions-list-container
+
+  margin-left: -$dialog-default-padding
+  margin-right: -$dialog-default-padding
+  margin-bottom: $dialog-default-padding
+
+  .row
+    padding-left: $dialog-default-padding
+    padding-right: $dialog-default-padding
+
+  .user-permissions-row-header
+    font-weight: bold
+    padding-bottom: 10px
+    padding-top: 10px
+    margin-left: $default-padding
+    margin-right: $default-padding
+    border-bottom: 1px solid $gray-light
+
+  .user-permissions-row
+    display: flex
+    align-items: center
+    margin-left: $default-padding
+    margin-right: $default-padding
+    height: $table-row-height
+
+  .user-permissions-row:nth-child(even)
+    background-color: $brand-background
+
+  .actions-column
+    text-align: right
+    float: right

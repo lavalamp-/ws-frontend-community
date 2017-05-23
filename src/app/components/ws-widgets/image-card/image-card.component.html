@@ -1,0 +1,12 @@
+<md-card class="img-card">
+  <md-card-content>
+    <img class="clickable" (click)="onImageClicked()" [src]="currentImageUrl" src-fallback="{{ getPlaceholderUrl() }}" (error)="onImageError()">
+    <div *ngIf="showButton" class="card-footer">
+      <div class="pull-right">
+        <button (click)="onViewClicked()" md-tooltip="{{buttonTooltip}}" md-mini-fab>
+          <i class="fa fa-binoculars"></i>
+        </button>
+      </div>
+    </div>
+  </md-card-content>
+</md-card>

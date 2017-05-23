@@ -1,0 +1,63 @@
+@import "../../../../assets/custom-variables";
+
+$padding-amount: 12px;
+
+.networks-list-card {
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: $padding-amount;
+  padding-bottom: 0px;
+  color: $gray-base;
+  margin-bottom: $padding-amount;
+
+  .row {
+    padding-left: $padding-amount;
+    padding-right: $padding-amount;
+  }
+
+}
+
+.networks-list-card-mobile {
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  color: $gray-base;
+  margin-bottom: $padding-amount;
+
+  .row {
+    padding-left: $padding-amount;
+    padding-right: $padding-amount;
+  }
+}
+
+
+.networks-row-header {
+  font-weight: bold;
+  padding-bottom: 10px;
+  border-bottom: 1px solid $gray-light;
+}
+
+.networks-row {
+  display: flex;
+  align-items: center;
+}
+
+.networks-row:nth-child(even) {
+  background-color: $brand-background;
+}
+
+.networks-list-message {
+  margin-left: $padding-amount;
+  margin-right: $padding-amount;
+  padding-bottom: $padding-amount;
+}
+
+.networks-row-header-mobile {
+  padding-top: 10px;
+}
+
+.networks-row-mobile {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}

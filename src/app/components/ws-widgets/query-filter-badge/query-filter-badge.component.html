@@ -1,0 +1,7 @@
+<div class="btn-group query-filter-badge" role="group">
+  <button type="button" class="btn btn-primary badge-text">{{queryFilter.label}}</button>
+  <button type="button" class="btn badge-inclusion" (click)="onIncludeClicked()" [class.btn-success]="queryFilter.included" [class.btn-warning]="!queryFilter.included">{{inclusionText}}</button>
+  <button type="button" class="btn btn-primary badge-remove" (click)="onRemoveClicked()">
+    <i class="fa fa-icon fa-remove"></i>
+  </button>
+</div>

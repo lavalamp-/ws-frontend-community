@@ -1,0 +1,6 @@
+<div *ngIf="!backgroundColor" class="chip bg-primary">
+  {{text}}
+</div>
+<div *ngIf="backgroundColor" class="chip" [style.background-color]="backgroundColor">
+  {{text}}
+</div>

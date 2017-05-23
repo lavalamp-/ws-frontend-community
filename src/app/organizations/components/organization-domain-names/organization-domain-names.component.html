@@ -1,0 +1,45 @@
+<div *ngIf="showPagination" class="ws-datatable-header">
+  <div class="pull-right">
+    <ws-pagination (pageChanged)="onPageClicked($event)" [apiResponse]="domainsApiResponse"></ws-pagination>
+  </div>
+</div>
+<md-card class="domains-list-card">
+  <md-card-content>
+    <div class="domains-list-container" *ngIf="domainsApiResponse?.results.length > 0">
+      <div class="domains-row-header row">
+        <div class="domains-row-name col-xs-16">
+          Name
+        </div>
+        <div class="domains-row-enabled col-xs-4">
+          In Scope?
+        </div>
+        <div class="domains-row-actions col-xs-4">
+          Actions
+        </div>
+      </div>
+      <div class="domains-row row" *ngFor="let row of domainNamesTableConfiguration.dataTableRows">
+        <div class="domains-row-name col-xs-16">
+          {{row.name}}
+        </div>
+        <div class="domains-row-enabled col-xs-4">
+          <md-slide-toggle [checked]="row.scanning_enabled" (change)="onIncludeToggled(row.uuid, $event)">
+            {{row.scanning_enabled ? 'Included' : 'Excluded'}}
+          </md-slide-toggle>
+        </div>
+        <div class="domains-row-actions col-xs-4">
+          <button md-tooltip="Delete Domain Name" (click)="onDeleteClicked(row.uuid)" color="warn" md-mini-fab>
+            <i class="fa fa-trash"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="domains-list-message" *ngIf="!domainsApiResponse || domainsApiResponse.results.length == 0">
+      <i>You have not defined any domain names. Once you do, they will be listed here.</i>
+    </div>
+  </md-card-content>
+</md-card>
+<div *ngIf="showPagination" class="ws-datatable-footer">
+  <div class="pull-right">
+    <ws-pagination (pageChanged)="onPageClicked($event)" [apiResponse]="domainsApiResponse"></ws-pagination>
+  </div>
+</div>

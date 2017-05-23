@@ -1,0 +1,107 @@
+<div *ngIf="showPagination" class="ws-datatable-header">
+  <div class="pull-right">
+    <ws-pagination (pageChanged)="onPageClicked($event)" [apiResponse]="transactionsApiResponse"></ws-pagination>
+  </div>
+</div>
+<!-- Desktop table -->
+<md-card class="http-transactions-list-card visible-sm visible-md visible-lg">
+  <md-card-content>
+    <div class="http-transactions-list-container" *ngIf="transactionsApiResponse && transactionsApiResponse.results.length > 0">
+      <div class="http-transactions-row-header row">
+        <div class="http-transactions-row-name col-xs-10">
+          URL
+        </div>
+        <div class="http-transactions-row-range col-xs-3">
+          Size
+        </div>
+        <div class="http-transactions-row-range col-xs-3">
+          Request Method
+        </div>
+        <div class="http-transactions-row-enabled col-xs-4">
+          Type
+        </div>
+        <div class="http-transactions-row-actions col-xs-4">
+          Response Status
+        </div>
+      </div>
+      <div class="http-transactions-row row" *ngFor="let row of transactionsTableConfiguration.dataTableRows">
+        <div class="http-transactions-row-name col-xs-10">
+          {{row.url}}
+        </div>
+        <div class="http-transactions-row-range col-xs-3">
+          {{row.content_length | number}}
+        </div>
+        <div class="http-transactions-row-range col-xs-3">
+          {{row.request_method}}
+        </div>
+        <div class="http-transactions-row-enabled col-xs-4">
+          {{row.content_type}}
+        </div>
+        <div class="http-transactions-row-actions col-xs-4">
+          {{row.response_status}}
+        </div>
+      </div>
+    </div>
+    <div class="http-transactions-list-message" *ngIf="!transactionsApiResponse || transactionsApiResponse.results.length == 0">
+      <i>There were no resources found.</i>
+    </div>
+  </md-card-content>
+</md-card>
+
+<!-- Mobile Table -->
+<md-card class="http-transactions-list-card visible-xs">
+  <md-card-content>
+    <div class="http-transactions-list-container" *ngIf="transactionsApiResponse && transactionsApiResponse.results.length > 0">
+      <div class="http-transactions-row-header row text-center">
+        <div class="http-transactions-row-name col-xs-24">
+          URL
+        </div>
+        <div class="http-transactions-row-range col-xs-6">
+          Size
+        </div>
+        <div class="http-transactions-row-range col-xs-6">
+          Method
+        </div>
+        <div class="http-transactions-row-enabled col-xs-6">
+          Type
+        </div>
+        <div class="http-transactions-row-actions col-xs-6">
+          Status
+        </div>
+      </div>
+
+      <div class="http-transactions-row-mobile" *ngFor="let row of transactionsTableConfiguration.dataTableRows">
+        <div class="row text-center mobile-row">
+          <div class="http-transactions-row-name col-xs-24">
+            <a href="{{row.url}}" target="_blank">{{row.url}}</a>
+          </div>
+        </div>
+
+        <div class="row text-center mobile-row">
+          <div class="http-transactions-row-range col-xs-6">
+            {{row.content_length | number}}
+          </div>
+          <div class="http-transactions-row-range col-xs-6">
+            {{row.request_method}}
+          </div>
+          <div class="http-transactions-row-enabled col-xs-6">
+            {{row.content_type}}
+          </div>
+          <div class="http-transactions-row-actions col-xs-6">
+            {{row.response_status}}
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="http-transactions-list-message" *ngIf="!transactionsApiResponse || transactionsApiResponse.results.length == 0">
+      <i>There were no resources found.</i>
+    </div>
+  </md-card-content>
+</md-card>
+
+<div *ngIf="showPagination" class="ws-datatable-footer">
+  <div class="pull-right">
+    <ws-pagination (pageChanged)="onPageClicked($event)" [apiResponse]="transactionsApiResponse"></ws-pagination>
+  </div>
+</div>

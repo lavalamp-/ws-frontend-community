@@ -1,0 +1,11 @@
+<div class="ws-chart-container">
+  <div class="ws-chart-container-loader" *ngIf="!isReady">
+    Loading...
+  </div>
+  <div *ngIf="isReady && hasData" class="ws-chart-inner-container">
+    <canvas baseChart [chartType]="chartType" [data]="chartData" [colors]="chartColors" [labels]="chartLabels" (chartClick)="onChartClicked($event)"></canvas>
+  </div>
+  <div class="no-data" *ngIf="isReady && !hasData" [style.height.px]="chartWidth" [style.line-height.px]="chartWidth">
+    No Data Available
+  </div>
+</div>

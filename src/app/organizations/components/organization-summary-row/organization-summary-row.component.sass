@@ -1,0 +1,36 @@
+@import "../../../../assets/ws-variables"
+
+.org-summary-row
+
+  .left-column
+    padding-right: $default-padding * 0.5
+
+  .right-column
+    padding-left: $default-padding * 0.5
+
+  .summary-header
+    display: flex
+    align-items: center
+    margin-bottom: $default-padding * 0.5
+
+    .summary-title
+      flex: 1 0 auto
+      display: flex
+
+      h3
+        margin-top: 0
+        margin-bottom: 0
+
+        .small-description
+          margin-left: $default-padding * 0.5
+          color: lighten($font-default-color, 10%)
+
+    .summary-chips
+      flex: 0 0 auto
+
+    .summary-go-to
+      flex: 0 0 auto
+      margin-left: $default-padding
+
+    .navigation-container
+      margin-left: 0.5 * $default-padding

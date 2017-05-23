@@ -1,0 +1,9 @@
+<div class="panel panel-default preformatted-list-panel">
+  <div class="panel-heading">{{title}}</div>
+  <div class="panel-body">
+    <pre [style.font-size]="fontSizeStyle">
+      {{panelBody}}
+    </pre>
+    <ws-detail-list [horizontal]="horizontal" [detailItems]="detailItems" (filterCreated)="onFilterCreated($event)" [showFilters]="showFilters" [wordBreak]="wordBreak"></ws-detail-list>
+  </div>
+</div>

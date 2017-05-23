@@ -1,0 +1,31 @@
+<div class="row org-summary-row column-container">
+  <div class="row">
+    <div class="summary-header">
+      <div class="summary-title">
+        <h3>
+          {{titleText}}
+          <small class="small-description">({{organization.createdDescription}})</small>
+        </h3>
+      </div>
+      <div class="navigation-container">
+        <button md-fab color="primary" md-tooltip="View Collected Data" mdTooltipShowDelay="1000" mdTooltipPosition="below" (click)="onViewOrganizationClicked()">
+          <i class="fa fa-icon fa-eye fa-2x"></i>
+        </button>
+        <button md-fab color="primary" md-tooltip="Configure Organization" mdTooltipShowDelay="1000" mdTooltipPosition="below" (click)="onConfigureOrganizationClicked()">
+          <i class="fa fa-icon fa-gears fa-2x"></i>
+        </button>
+        <button md-fab md-tooltip="Delete Organization" mdTooltipShowDelay="1000" mdTooltipPosition="below" (click)="onDeleteOrganizationClicked()" color="warn">
+          <i class="fa fa-icon fa-trash fa-2x"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 left-column">
+      <ws-detail-list-panel [title]="'Configured Endpoints'" [detailItems]="endpointDetails"></ws-detail-list-panel>
+    </div>
+    <div class="col-md-12 right-column">
+      <ws-detail-list-panel [title]="'Scan History'" [detailItems]="scanDetails"></ws-detail-list-panel>
+    </div>
+  </div>
+</div>

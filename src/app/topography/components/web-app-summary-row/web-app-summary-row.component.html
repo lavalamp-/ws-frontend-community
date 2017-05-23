@@ -1,0 +1,43 @@
+<div class="row web-app-summary-row column-container">
+  <div class="row">
+    <div class="summary-header">
+      <div class="summary-title">
+        <h3>
+          {{webApp.titleDescription}}
+          <small class="small-description">({{webApp.timeSinceScan}})</small>
+        </h3>
+      </div>
+      <div class="summary-chips">
+        <ws-check-badge *ngFor="let chip of chips" [badgeText]="chip['badgeText']" [successful]="chip['successful']" [isSmall]="true"></ws-check-badge>
+      </div>
+      <div class="summary-go-to" *ngIf="webApp.resolved_ip_matches_hostname">
+        <a *ngIf="webApp.resolved_ip_matches_hostname" href="{{webApp.url}}" target="_blank">
+          <i class="fa fa-icon fa-share-square-o fa-2x">
+          </i>
+        </a>
+      </div>
+      <div class="navigation-container" *ngIf="showDetailsButton">
+        <button md-fab md-tooltip="More Info" mdTooltipShowDelay="1000" color="primary" mdTooltipPosition="below" (click)="onDetailsClicked()">
+          <i class="fa fa-icon fa-info fa-2x"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <img class="summary-image" [class.clickable]="webApp.hasScreenshot" (click)="onImageClicked()" [src]="imageUrl" src-fallback="{{placeholderUrl}}" (error)="onImageError()">
+    </div>
+    <div class="col-md-9 column-padded">
+      <ws-detail-list-panel [title]="'Summary'" [detailItems]="summaryDetails" (filterCreated)="onFilterCreated($event)"></ws-detail-list-panel>
+      <ws-detail-list-panel [title]="'Endpoint'" [detailItems]="endpointDetails" (filterCreated)="onFilterCreated($event)"></ws-detail-list-panel>
+      <div *ngIf="webApp.web_service_uses_ssl">
+        <ws-detail-list-panel [title]="'SSL Certificate'" [detailItems]="sslDetails" (filterCreated)="onFilterCreated($event)"></ws-detail-list-panel>
+      </div>
+    </div>
+    <div class="col-md-9 column-padded">
+      <ws-detail-list-panel [title]="'Site Size'" [detailItems]="sizeDetails" (filterCreated)="onFilterCreated($event)"></ws-detail-list-panel>
+      <ws-detail-list-panel [title]="'Response Status Codes'" [detailItems]="responseDetails" (filterCreated)="onFilterCreated($event)"></ws-detail-list-panel>
+      <ws-detail-list-panel [title]="'Content Types'" [detailItems]="contentTypeDetails" (filterCreated)="onFilterCreated($event)"></ws-detail-list-panel>
+    </div>
+  </div>
+</div>

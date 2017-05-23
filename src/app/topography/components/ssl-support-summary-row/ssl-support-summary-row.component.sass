@@ -1,0 +1,31 @@
+@import "../../../../assets/ws-variables"
+
+.ssl-support-summary-row
+
+  .summary-header
+    display: flex
+    align-items: center
+    margin-bottom: $default-padding * 0.5
+
+    .summary-title
+      flex: 1 0 auto
+
+      h3
+        margin-top: 0
+        margin-bottom: 0
+
+        .small-description
+          margin-left: $default-padding * 0.5
+          color: lighten($font-default-color, 10%)
+
+    .summary-chips
+      flex: 0 0 auto
+
+    .navigation-container
+      margin-left: 0.5 * $default-padding
+
+  .protocol-details
+    padding-right: 0.5 * $default-padding
+
+  .certificate-details
+    padding-left: 0.5 * $default-padding

@@ -1,0 +1,102 @@
+<div *ngIf="showPagination" class="ws-datatable-header">
+  <div class="pull-right">
+    <ws-pagination (pageChanged)="onPageClicked($event)" [apiResponse]="webAppsApiResponse"></ws-pagination>
+  </div>
+</div>
+
+<!-- Regular Table -->
+<md-card class="web-apps-list-card visible-sm visible-md visible-lg">
+  <md-card-content>
+    <div class="web-apps-list-container" *ngIf="webAppsApiResponse && webAppsApiResponse.results.length > 0">
+      <div class="web-apps-row-header row">
+        <div class="web-apps-row-name col-xs-4">
+          Location
+        </div>
+        <div class="web-apps-row-range col-xs-4">
+          Uses SSL
+        </div>
+        <div class="web-apps-row-enabled col-xs-12">
+          URL
+        </div>
+        <div class="web-apps-row-actions col-xs-4">
+          Actions
+        </div>
+      </div>
+      <div class="web-apps-row row" *ngFor="let row of webApplicationsTableConfiguration.dataTableRows">
+        <div class="web-apps-row-name col-xs-4">
+          {{row.ip_address}}:{{row.port | number}}
+        </div>
+        <div class="web-apps-row-range col-xs-4">
+          <ws-check [enabled]="row.sslEnabled"></ws-check>
+        </div>
+        <div class="web-apps-row-enabled col-xs-12">
+          {{row.url}}
+        </div>
+        <div class="web-apps-row-actions col-xs-4">
+          <button md-tooltip="View" (click)="onViewClicked(row.uuid)" md-mini-fab>
+            <i class="fa fa-binoculars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="web-apps-list-message" *ngIf="!webAppsApiResponse || webAppsApiResponse.results.length == 0">
+      <i>There were no web applications found.</i>
+    </div>
+  </md-card-content>
+</md-card>
+
+<!-- Mobile Table -->
+<md-card class="web-apps-list-card visible-xs">
+  <md-card-content>
+    <div class="web-apps-list-container" *ngIf="webAppsApiResponse && webAppsApiResponse.results.length > 0">
+      <div class="web-apps-row-header row text-center">
+        <div class="web-apps-inner-row-mobile">
+          <div class="web-apps-row-name col-xs-12">
+            Location
+          </div>
+          <div class="web-apps-row-range col-xs-12">
+            Uses SSL
+          </div>
+        </div>
+        <div class="web-apps-inner-row-mobile">
+          <div class="web-apps-row-enabled col-xs-12">
+            URL
+          </div>
+          <div class="web-apps-row-actions col-xs-12">
+            Actions
+          </div>
+        </div>
+      </div>
+      <div class="web-apps-row-mobile text-center" *ngFor="let row of webApplicationsTableConfiguration.dataTableRows">
+        <div class="row web-apps-inner-row-mobile">
+          <div class="web-apps-row-name col-xs-12">
+            {{row.ip_address}}:{{row.port | number}}
+          </div>
+          <div class="web-apps-row-range col-xs-12">
+            <ws-check [enabled]="row.sslEnabled"></ws-check>
+          </div>
+        </div>
+        <div class="row web-apps-inner-row-mobile">
+          <div class="web-apps-row-enabled col-xs-12">
+            <a href="{{row.url}}" target="_blank">{{row.url}}</a>
+          </div>
+          <div class="web-apps-row-actions col-xs-12">
+            <button md-tooltip="View" tooltip-position="before" (click)="onViewClicked(row.uuid)" md-mini-fab>
+              <i class="fa fa-binoculars"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="web-apps-list-message" *ngIf="!webAppsApiResponse || webAppsApiResponse.results.length == 0">
+      <i>There were no web applications found.</i>
+    </div>
+  </md-card-content>
+</md-card>
+
+
+<div *ngIf="showPagination" class="ws-datatable-footer">
+  <div class="pull-right">
+    <ws-pagination (pageChanged)="onPageClicked($event)" [apiResponse]="webAppsApiResponse"></ws-pagination>
+  </div>
+</div>

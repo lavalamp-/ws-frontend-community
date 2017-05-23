@@ -1,0 +1,13 @@
+<div [hidden]="emailVerified" class="row">
+  <div class="col-lg-2 col-sm-2">
+    <img  src="assets/spinner.gif" style="height: 100px" />
+  </div>
+  <div class="col-lg-10 col-sm-10 vertical-align text-center" style="height: 100px;font-size: x-large">
+    <p>Verifying your email...</p>
+  </div>
+</div>
+<div [hidden]="!emailVerified" class="text-center">
+  <div class="" style="font-size: x-large">
+    <p>Your email has been verified!</p>
+  </div>
+</div>

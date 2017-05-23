@@ -1,0 +1,19 @@
+<button [disableRipple]="!clickable" [disabled]="!enabled" (click)="enabled && clickable && onClick()" [class.badge-active]="active" [class.btn-block]="asBlock" [class.badge-inactive]="!active" [ngStyle]="{'margin': margin}" [class.unclickable]="!clickable" [class.badge-success]="isSuccess" [class.badge-warning]="isWarning" [class.badge-danger]="isDanger" [class.ws-badge-small]="isSmall" class="ws-badge" md-raised-button>
+  <div class="badge-content">
+    <div class="badge-left-icon" *ngIf="badgeIcon && iconSide == 'left'">
+      <i class="fa fa-icon {{badgeIcon}}"></i>
+    </div>
+    <div class="badge-left-text" *ngIf="leftText">
+      {{leftText}}
+    </div>
+    <div class="badge-center" [ngStyle]="mainTextStyle">
+      {{badgeText}}
+    </div>
+    <div class="badge-right-text" *ngIf="rightText">
+      {{rightText}}
+    </div>
+    <div class="badge-right-icon" *ngIf="badgeIcon && iconSide == 'right'">
+      <i class="fa fa-icon {{badgeIcon}}"></i>
+    </div>
+  </div>
+</button>

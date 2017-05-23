@@ -1,0 +1,73 @@
+<div id="ws-navbar" class="navbar navbar-fixed-top navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">
+        <img id="ws-navbar-logo" src="assets/logo_text_small.png" alt="Web Sight"/>
+      </a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+
+        <!-- Analysis Navigation -->
+
+        <li class="dropdown" *ngIf="authState?.isAuthenticated">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">{{selectedOrganization ? selectedOrganization.name : 'My Organizations'}}<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li *ngFor="let curOrg of shownSelectedOrgs" class="dropdown-link">
+              <a (click)="onSelectOrgClicked(curOrg)">{{curOrg.name}}</a>
+            </li>
+            <li role="separator" class="divider" *ngIf="shownSelectedOrgs.length > 0"></li>
+            <li><a routerLink="/organizations/mine" class="dropdown">Manage Organizations</a></li>
+          </ul>
+        </li>
+
+        <li routerLinkActive="active" class="dropdown" *ngIf="authState?.isAuthenticated && selectedOrganization">
+          <a style="cursor: pointer" (click)="onTopographyClicked()">Topography</a>
+        </li>
+
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right" >
+
+        <li class="chip-container" *ngIf="authState?.isEnterprise"><ws-chip [text]="'Enterprise User'"></ws-chip></li>
+
+        <!-- Settings Navigation !-->
+
+        <li *ngIf="authState?.isAuthenticated"><a routerLink="/account/home">Settings</a></li>
+
+        <!-- Admin Navigation -->
+
+        <li class="dropdown" *ngIf="authState?.isAuthenticated && authState?.isAdmin">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Admin <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li routerLinkActive="active"><a routerLink="/admin/manage-users" class="dropdown">Manage Users</a></li>
+          </ul>
+        </li>
+
+        <!-- Bug Tracking Navigation !-->
+
+        <li><a href="https://bitbucket.org/web-sight/web-sight.io/issues/new" target="_blank">Request Feature</a></li>
+        <li><a href="https://bitbucket.org/web-sight/web-sight.io/issues/new" target="_blank">Report Bug</a></li>
+
+        <!-- Authentication Navigation !-->
+
+        <li *ngIf="authState?.isAuthenticated" class="clickable-cursor"><a (click)="onLogOutClicked()">Log Out</a></li>
+
+        <li routerLinkActive="active" *ngIf="!authState || !authState.isAuthenticated"><a routerLink="/greeting/log-in">Log In</a></li>
+
+      </ul>
+
+    </div>
+    <div class="row">
+      <div class="progress-bar-container" [class.inactive]="!isOutstanding">
+        <md-progress-bar [mode]="isOutstanding ? 'query' : 'determinate'"></md-progress-bar>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<form [formGroup]="setupAccountForm" (keydown)="onKeyDown($event)">
+  <table>
+    <tr>
+      <td>
+        <md-input-container>
+          <input md-input type="text" placeholder="First Name" formControlName="firstName" required>
+        </md-input-container>
+      </td>
+      <td>
+        <md-input-container>
+          <input md-input type="text" placeholder="Last Name" formControlName="lastName" required>
+        </md-input-container>
+      </td>
+    </tr>
+  </table>
+  <table>
+    <tr>
+      <td>
+        <md-input-container>
+          <input md-input type="password" placeholder="Password" formControlName="password" required>
+        </md-input-container>
+      </td>
+      <td>
+        <md-input-container>
+          <input md-input type="password" placeholder="Password (Again)" formControlName="passwordRepeat" required>
+        </md-input-container>
+      </td>
+    </tr>
+  </table>
+</form>

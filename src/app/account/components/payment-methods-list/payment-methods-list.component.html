@@ -1,0 +1,40 @@
+<div class="payments-list-container">
+  <div class="payments-list-header row">
+    <div class="header-left col-xs-12">
+      <ws-button (buttonClicked)="onAddPaymentButtonClicked($event)" [text]="'Add New Payment Method'"></ws-button>
+    </div>
+    <div class="header-right col-xs-12">
+      <div class="summary-container">
+        <ws-many-response-summary [apiResponse]="paymentTokens"></ws-many-response-summary>
+      </div>
+      <div class="pagination-container">
+        <ws-paginator [apiResponse]="paymentTokens" (pageChanged)="onPageChanged($event)"></ws-paginator>
+      </div>
+    </div>
+  </div>
+  <div class="payments-list-body row">
+    <div class="col-xs-24" *ngIf="!paymentTokens || paymentTokens.results.length == 0">
+      <md-card>
+        <md-card-content class="no-results">
+          <i>You have not added any payment methods yet. Once you have, they will be listed here.</i>
+        </md-card-content>
+      </md-card>
+    </div>
+    <div class="col-sm-6 column-container" *ngFor="let paymentToken of paymentTokens?.results">
+      <ws-payment-method-card [paymentToken]="paymentToken" (deleteClicked)="onDeleteTokenClicked(paymentToken)"></ws-payment-method-card>
+    </div>
+  </div>
+  <div class="payments-list-footer row">
+    <div class="footer-left col-xs-12">
+
+    </div>
+    <div class="footer-right col-xs-12">
+      <div class="summary-container">
+        <ws-many-response-summary [apiResponse]="paymentTokens"></ws-many-response-summary>
+      </div>
+      <div class="pagination-container">
+        <ws-paginator [apiResponse]="paymentTokens" (pageChanged)="onPageChanged($event)"></ws-paginator>
+      </div>
+    </div>
+  </div>
+</div>

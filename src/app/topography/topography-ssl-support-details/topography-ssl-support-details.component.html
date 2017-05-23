@@ -1,0 +1,85 @@
+<md-tab-group [(selectedIndex)]="tabIndex">
+  <md-tab label="Summary">
+    <div class="row">
+      <h2>Endpoint</h2>
+    </div>
+    <div class="row">
+      <h2>SSL Support Summary</h2>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-lg-8 column-container">
+        <ws-detail-list-panel [detailItems]="protocolDetails" [title]="'SSL Protocol Support'" [showFilters]="false"></ws-detail-list-panel>
+      </div>
+      <div class="col-md-12 col-lg-8 column-container">
+        <ws-detail-list-panel [detailItems]="certValidityDetails" [title]="'Certificate Validity'" [showFilters]="false"></ws-detail-list-panel>
+      </div>
+      <div class="col-md-12 col-lg-8 column-container">
+        <ws-detail-list-panel [detailItems]="protocolDetails" [title]="'SSL Protocol Support'" [showFilters]="false"></ws-detail-list-panel>
+      </div>
+    </div>
+  </md-tab>
+  <md-tab label="SSL Certificate">
+    <div class="tab-content cert-content">
+      <div class="row">
+        <h2>Certificate Content</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-lg-8 column-container">
+          <ws-preformatted-list-panel [detailItems]="certFingerprintDetails" [panelBody]="sslSupport?.cert_content" [title]="'Certificate Body'" [wordBreak]="'break-all'"></ws-preformatted-list-panel>
+        </div>
+        <div class="col-md-12 col-lg-8 column-container">
+          <ws-detail-list-panel [detailItems]="certValidityDetails" [title]="'Certificate Validity'"></ws-detail-list-panel>
+          <ws-detail-list-panel [detailItems]="certIssuerDetails" [title]="'Certificate Issuer'" [showFilters]="false"></ws-detail-list-panel>
+          <ws-detail-list-panel [detailItems]="certSubjectDetails" [title]="'Certificate Subject'" [showFilters]="false"></ws-detail-list-panel>
+        </div>
+        <div class="col-md-12 col-lg-8 column-container">
+          <ws-preformatted-list-panel [detailItems]="certPublicKeyDetails" [panelBody]="sslSupport?.cert_public_key" [title]="'Public Key'" [wordBreak]="'break-all'"></ws-preformatted-list-panel>
+        </div>
+      </div>
+      <div class="row">
+        <h2>Certificate Extensions</h2>
+      </div>
+      <div class="row" *ngIf="!sslSupport || !sslSupport.cert_extensions || sslSupport.cert_extensions.length == 0">
+        <span class="no-extensions">
+          No extensions found within this SSL certificate.
+        </span>
+      </div>
+      <div class="row" *ngIf="sslSupport?.cert_extensions?.length > 0">
+        <div class="col-md-12 col-lg-8 column-container" *ngFor="let certExtension of sslSupport?.cert_extensions">
+          <ws-preformatted-panel [title]="certExtension.extension_name" [panelBody]="certExtension.extension_content"></ws-preformatted-panel>
+        </div>
+      </div>
+    </div>
+  </md-tab>
+  <md-tab label="Supported Protocols">
+    <div class="tab-content protocols-content">
+      <div class="col-md-12 column-container">
+        <ws-detail-list-panel [title]="'SSLv2 Support'" [detailItems]="sslv2ProtocolDetails"></ws-detail-list-panel>
+      </div>
+      <div class="col-md-12 column-container">
+        <ws-detail-list-panel [title]="'SSLv3 Support'" [detailItems]="sslv3ProtocolDetails"></ws-detail-list-panel>
+      </div>
+      <div class="col-md-12 column-container">
+        <ws-detail-list-panel [title]="'TLSv1 Support'" [detailItems]="tlsv1ProtocolDetails"></ws-detail-list-panel>
+      </div>
+      <div class="col-md-12 column-container">
+        <ws-detail-list-panel [title]="'TLSv1.1 Support'" [detailItems]="tlsv11ProtocolDetails"></ws-detail-list-panel>
+      </div>
+      <div class="col-md-12 column-container">
+        <ws-detail-list-panel [title]="'TLSv1.2 Support'" [detailItems]="tlsv12ProtocolDetails"></ws-detail-list-panel>
+      </div>
+    </div>
+  </md-tab>
+  <md-tab label="Certificate Locations">
+    <div class="tab-content locations-content">
+      <ws-ssl-support-list [apiResponse]="sslSupportLocations" (searchChanged)="onLocationsSearchTermChanged($event)" (pageChanged)="onLocationsPageChanged($event)" (exportClicked)="onLocationsExportClicked()" (filterCreated)="onLocationsFilterCreated($event)" (orderingChanged)="onLocationsOrderingChanged($event)"></ws-ssl-support-list>
+      <div [class.filters-showing]="locationsQueryFilters.length > 0"></div>
+    </div>
+  </md-tab>
+  <md-tab label="Related Services">
+    <div class="tab-content related-services-content">
+      <ws-any-list [apiResponse]="sslSupportRelated" (searchChanged)="onRelatedSearchTermChanged($event)" (pageChanged)="onRelatedPageChanged($event)" (exportClicked)="onRelatedExportClicked()" (filterCreated)="onRelatedFilterCreated($event)" (orderChanged)="onRelatedOrderingChanged($event)"></ws-any-list>
+    </div>
+  </md-tab>
+</md-tab-group>
+<ws-filter-panel *ngIf="visibleQueryFilters.length > 0" [queryFilters]="visibleQueryFilters" (queryFiltersChanged)="onQueryFiltersChanged($event)"></ws-filter-panel>

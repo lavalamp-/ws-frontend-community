@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-md-8">
+    <h3>Change Your Password</h3>
+    <div class="column-container">
+      <div class="alert" [hidden]="!submitted" [class.alert-success]="submitted && success" [class.alert-danger]="submitted && !success">
+        {{response}}
+      </div>
+      <ws-change-password-form [(formGroup)]="changePasswordForm" (enterPressed)="onChangePasswordEnterPressed()"></ws-change-password-form>
+      <ws-password-complexity-card [minLength]="8" [minUpperCase]="1" [minSpecial]="1" [password]="changePasswordForm.value.newPassword" [passwordRepeated]="changePasswordForm.value.newPasswordRepeat" (allMetChange)="onAllMetChanged($event)"></ws-password-complexity-card>
+      <button class="btn btn-block btn-primary change-password-button" [disabled]="!changePasswordEnabled" (click)="onChangePasswordClicked()">Change Password</button>
+    </div>
+  </div>
+  <!--<div class="col-lg-6 col-sm-6">-->
+    <!--<div class="form-container">-->
+      <!--<h3>Change your password</h3>-->
+      <!--<div class="alert" [hidden]="!submitted" [class.alert-success]="submitted && success" [class.alert-danger]="submitted && !success">-->
+        <!--{{response}}-->
+      <!--</div>-->
+      <!--<ws-change-password-form (changePasswordFormChange)="onChangePasswordFormChanged($event)"></ws-change-password-form>-->
+      <!--<button class="btn btn-primary btn-block" [disabled]="!changePasswordForm.valid" (click)="onChangePasswordClicked()">Change Password</button>-->
+    <!--</div>-->
+  <!--</div>-->
+</div>

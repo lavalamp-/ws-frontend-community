@@ -1,0 +1,32 @@
+<div class="row table-header-row top-row" *ngIf="requiresTwoRows">
+  <div class="header-row-left search-box">
+    <ws-debounce-input [value]="searchTerm" [placeholder]="'Search...'" (valueChanges)="onSearchChanged($event)"></ws-debounce-input>
+  </div>
+  <div class="header-row-middle">
+  </div>
+  <div class="header-row-right ordering-container">
+    <ws-ordering [apiResponse]="apiResponse" (orderingChanged)="onOrderingChanged($event)"></ws-ordering>
+  </div>
+</div>
+<div class="row table-header-row">
+  <div class="header-row-left search-box" *ngIf="showSearch && !requiresTwoRows">
+    <ws-debounce-input [value]="searchTerm" [placeholder]="'Search...'" (valueChanges)="onSearchChanged($event)"></ws-debounce-input>
+  </div>
+  <div class="header-row-left filter-box" *ngIf="showFilters">
+    <ws-filter-select (filterCreated)="onFilterCreated($event)" [apiResponse]="analytics"></ws-filter-select>
+  </div>
+  <div class="header-row-middle">
+  </div>
+  <div class="header-row-right ordering-container" *ngIf="showOrdering && !requiresTwoRows">
+    <ws-ordering [apiResponse]="apiResponse" (orderingChanged)="onOrderingChanged($event)"></ws-ordering>
+  </div>
+  <div class="header-row-right" *ngIf="showExport">
+    <ws-export-options (exportSelected)="onExportClicked()"></ws-export-options>
+  </div>
+  <div class="header-row-right">
+    <ws-many-response-summary [apiResponse]="apiResponse"></ws-many-response-summary>
+  </div>
+  <div class="header-row-right" *ngIf="showPagination">
+    <ws-paginator [apiResponse]="apiResponse" (pageChanged)="onPageChanged($event)"></ws-paginator>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+{
+  "project": {
+    "version": "1.0.0-beta.22-1",
+    "name": "ws-frontend"
+  },
+  "apps": [
+    {
+      "root": "src",
+      "outDir": "dist",
+      "assets": [
+        "assets",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.json",
+      "prefix": "ws",
+      "mobile": false,
+      "styles": [
+        "styles.css",
+        "assets/ws-theme.scss",
+        "assets/app.scss",
+        "assets/app.sass",
+        "assets/ws-variables.sass",
+        "../node_modules/font-awesome/css/font-awesome.css"
+      ],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.slim.js",
+        "../node_modules/bootstrap-sass/assets/javascripts/bootstrap.js",
+        "../node_modules/hammerjs/hammer.js",
+        "../node_modules/chart.js/dist/Chart.bundle.js",
+        "../node_modules/reflect-metadata/Reflect.ts",
+        "../node_modules/web-animations-js/web-animations.min.js"
+      ],
+      "environments": {
+        "source": "environments/environment.ts",
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    }
+  ],
+  "addons": [],
+  "packages": [],
+  "e2e": {
+    "protractor": {
+      "config": "./protractor.conf.js"
+    }
+  },
+  "test": {
+    "karma": {
+      "config": "./karma.conf.js"
+    }
+  },
+  "defaults": {
+    "styleExt": "css",
+    "prefixInterfaces": false,
+    "inline": {
+      "style": false,
+      "template": false
+    },
+    "spec": {
+      "class": false,
+      "component": true,
+      "directive": true,
+      "module": false,
+      "pipe": true,
+      "service": true
+    }
+  }
+}

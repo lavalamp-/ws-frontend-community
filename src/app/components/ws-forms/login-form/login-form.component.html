@@ -1,0 +1,8 @@
+<form [formGroup]="loginForm" (keydown)="onFormKeyDown($event)">
+  <md-input-container>
+    <input md-input type="email" formControlName="email" placeholder="Email Address" required>
+  </md-input-container>
+  <md-input-container>
+    <input md-input type="password" formControlName="password" placeholder="Enter Password" required>
+  </md-input-container>
+</form>

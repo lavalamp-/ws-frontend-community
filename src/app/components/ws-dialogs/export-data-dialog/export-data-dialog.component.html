@@ -1,0 +1,70 @@
+<div class="modal-container export-data-modal">
+  <div class="modal-middle">
+    <h3 class="first-title">File Name</h3>
+    <form [formGroup]="nameForm">
+      <div class="file-name-row">
+        <div class="file-name-container">
+          <md-input-container>
+            <input md-input type="text" placeholder="File Name" formControlName="fileName" required>
+          </md-input-container>
+        </div>
+        <div class="export-type-container">
+          <md-button-toggle-group (change)="onFileTypeChange($event)">
+            <md-button-toggle value="csv" [checked]="true">
+              CSV
+            </md-button-toggle>
+            <md-button-toggle value="xlsx">
+              Excel
+            </md-button-toggle>
+          </md-button-toggle-group>
+        </div>
+      </div>
+      <h3 class="filters-title">Filters</h3>
+      <div class="query-filters-options">
+        <md-slide-toggle class="include-filters-toggle" [checked]="filtersIncluded" (change)="onFiltersIncludedChange($event)">{{filtersIncluded ? 'Include Query Filters' : 'Don\'t Include Query Filters'}}</md-slide-toggle>
+        <md-input-container class="search-term-container">
+          <input md-input type="text" placeholder="Search Term" formControlName="searchTerm">
+        </md-input-container>
+      </div>
+    </form>
+    <div class="query-filters-row">
+      <i class="no-filters-message" *ngIf="!queryFilters || queryFilters.length == 0">No query filters provided</i>
+      <div class="filter-badge-container" *ngFor="let queryFilter of queryFilters; let i = index">
+        <ws-query-filter-badge [queryFilter]="queryFilter" (removeClicked)="onFilterRemoved(i)" (filterChanged)="onFilterChanged(i, $event)"></ws-query-filter-badge>
+      </div>
+    </div>
+    <div class="row">
+      <h3>Fields</h3>
+    </div>
+    <div class="fields-options-row">
+      <button (click)="onIncludeAllClicked()" md-raised-button>Include All</button>
+      <button (click)="onExcludeAllClicked()" md-raised-button>Exclude All</button>
+    </div>
+    <div class="fields-row row">
+      <div class="field-option col-xs-4" *ngFor="let field of displayFields; let i = index">
+        <button (click)="onFieldToggled(i)" class="field-button" md-raised-button [color]="field.enabled ? 'primary' : null">
+          <div class="button-content">
+            <div class="button-label text-ellipsis">
+              {{field.label}}
+            </div>
+            <div class="button-icon">
+              <i class="fa fa-icon" [class.fa-check-square-o]="field.enabled" [class.fa-square-o]="!field.enabled"></i>
+            </div>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="modal-bottom">
+    <div class="pull-left">
+      <button md-fab (click)="onExportClicked()" color="primary" [disabled]="!readyForExport">
+        <i class="fa fa-save fa-2x"></i>
+      </button>
+    </div>
+    <div class="pull-right">
+      <button color="warn" md-dialog-close md-fab>
+        <i class="fa fa-close fa-2x"></i>
+      </button>
+    </div>
+  </div>
+</div>

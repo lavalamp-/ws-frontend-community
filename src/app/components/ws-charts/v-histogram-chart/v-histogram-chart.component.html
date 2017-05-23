@@ -1,0 +1,8 @@
+<div class="ws-chart-container">
+  <div class="ws-chart-container-loader" *ngIf="!isReady()">
+    Loading...
+  </div>
+  <div *ngIf="isReady()" class="ws-chart-inner-container">
+    <canvas baseChart [chartType]="chartType" [options]="chartOptions" [datasets]="chartData" [labels]="chartLabels"></canvas>
+  </div>
+</div>

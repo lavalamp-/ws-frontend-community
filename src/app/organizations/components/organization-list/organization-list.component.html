@@ -1,0 +1,8 @@
+<ws-table-header [apiResponse]="apiResponse" (pageChanged)="onPageChanged($event)" (searchChanged)="onSearchChanged($event)" (exportClicked)="onExportClicked()" [analytics]="webAppsAnalytics" (filterCreated)="onFilterCreated($event)" (orderingChanged)="onOrderingChanged($event)" [searchTerm]="searchTerm" [queryOrdering]="queryOrdering"></ws-table-header>
+<md-card class="display-card">
+  <div class="no-results" *ngIf="!apiResponse || apiResponse.count == 0">
+    No results were found for your query.
+  </div>
+  <ws-organization-summary-row *ngFor="let organization of apiResponse?.results" [organization]="organization" class="rowable" (deleteClicked)="onDeleteOrganizationClicked(organization)"></ws-organization-summary-row>
+</md-card>
+<ws-table-footer [apiResponse]="apiResponse" (pageChanged)="onPageChanged($event)"></ws-table-footer>

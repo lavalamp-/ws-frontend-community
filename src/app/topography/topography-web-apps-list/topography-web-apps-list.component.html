@@ -1,0 +1,23 @@
+<div class="row">
+  <h2>Summary</h2>
+</div>
+<div class="row">
+  <div class="col-md-6 column-container">
+    <ws-donut-chart-card [dataPoints]="webAppsAnalytics?.network_service_port" (dataClicked)="onPortClicked($event)" [title]="'Service Ports'"></ws-donut-chart-card>
+  </div>
+  <div class="col-md-6 column-container">
+    <ws-donut-chart-card [dataPoints]="webAppsAnalytics?.web_service_uses_ssl" (dataClicked)="onSslSupportClicked($event)" [title]="'Uses SSL/TLS'"></ws-donut-chart-card>
+  </div>
+  <div class="col-md-6 column-container">
+    <ws-donut-chart-card [dataPoints]="webAppsAnalytics?.has_www_authenticate_headers" (dataClicked)="onAuthenticationHeadersClicked($event)" [title]="'Uses HTTP Authentication'"></ws-donut-chart-card>
+  </div>
+  <div class="col-md-6 column-container">
+    <ws-donut-chart-card [dataPoints]="webAppsAnalytics?.hostname_is_ip_address" (dataClicked)="onHostnameIsIpClicked($event)" [title]="'Hostname Is IP Address'"></ws-donut-chart-card>
+  </div>
+</div>
+<div class="row">
+  <h2>Details</h2>
+</div>
+<ws-web-app-list [apiResponse]="webAppsApiResponse" (searchChanged)="onSearchTermChanged($event)" (pageChanged)="onPageChanged($event)" (exportClicked)="onExportClicked()" [webAppsAnalytics]="webAppsAnalytics" (filterCreated)="onFilterCreated($event)" (orderingChanged)="onQueryOrderingChanged($event)" [searchTerm]="searchTerm" [queryOrdering]="queryOrdering"></ws-web-app-list>
+<ws-filter-panel *ngIf="queryFilters.length > 0" [queryFilters]="queryFilters" (queryFiltersChanged)="onQueryFiltersChanged($event)"></ws-filter-panel>
+<div [class.filters-showing]="queryFilters.length > 0"></div>

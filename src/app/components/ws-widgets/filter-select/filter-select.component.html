@@ -1,0 +1,18 @@
+<div class="filter-select-container row">
+  <div class="field-select container-left col-xs-11 select-padding first-box">
+    <ws-select [selectItems]="fieldSelectItems" placeholder="{{placeholder}}" (itemSelected)="onFilterFieldSelected($event)"></ws-select>
+  </div>
+  <div class="value-select container-left col-xs-11 select-padding second-box" *ngIf="hasValueSelectItems">
+    <ws-select class="select-padding" [selectItems]="valueSelectItems" placeholder="Select Value..." (itemSelected)="onFilterValueSelected($event)" [disabled]="!selectedField"></ws-select>
+  </div>
+  <div class="value-select container-left col-xs-11 second-box" *ngIf="!hasValueSelectItems">
+    <md-input-container class="input-container">
+      <input md-input placeholder="Filter Value..." type="text" [disabled]="!selectedField" [(ngModel)]="filterText">
+    </md-input-container>
+  </div>
+  <div class="add-filter container-right col-xs-2">
+    <button md-mini-fab color="primary" (click)="onAddFilterClicked()" class="pull-right" [disabled]="!readyForAdd">
+      <i class="fa fa-icon fa-plus"></i>
+    </button>
+  </div>
+</div>

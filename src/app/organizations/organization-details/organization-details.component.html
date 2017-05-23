@@ -1,0 +1,72 @@
+<div class="row">
+  <div class="col-xs-24 col-sm-16">
+    <h2>Summary</h2>
+    <ws-detail-list [detailItems]="organizationDetails"></ws-detail-list>
+  </div>
+  <div class="col-xs-24 col-sm-8">
+    <h2>Actions</h2>
+    <button class="btn-block" color="primary" (click)="onSelectOrganizationClicked()" md-raised-button>
+      Select <i class="fa fa-caret-square-o-up"></i>
+    </button>
+    <button class="btn-block btn-success" (click)="onScanOrganizationClicked()" [disabled]="!organization || !organization.ready_for_scan" md-raised-button>
+      Scan <i class="fa fa-wifi"></i>
+    </button>
+    <button class="btn-block" color="warn" (click)="onDeleteOrganizationClicked()" md-raised-button>
+      Delete <i class="fa fa-trash"></i>
+    </button>
+    <button class="btn-block" color="primary" (click)="onManageUsersClicked()" [disabled]="!permissions?.can_admin" md-raised-button>
+      Manage Users
+    </button>
+  </div>
+</div>
+<div class="row">
+  <h2>Network Ranges</h2>
+</div>
+
+<div class="row">
+  <div class="col-sm-21 col-xs-24">
+    <ws-network-form [(formGroup)]="networkForm" (enterPressed)="onNetworkEnterPressed()" [formErrors]="networkFormErrors"></ws-network-form>
+  </div>
+  <div class="col-sm-3 col-xs-24">
+    <div class="pull-right">
+      <button md-tooltip="Add Network" [disabled]="!networkForm || !networkForm.valid" (click)="onNewNetworkClicked()" md-mini-fab>
+        <i class="fa fa-plus"></i>
+      </button>
+      <button md-tooltip="Upload" (click)="onUploadNetworkClicked()" md-mini-fab>
+        <i class="fa fa-upload"></i>
+      </button>
+    </div>
+
+    <!-- Extra white space for mobile -->
+    <br class="visible-xs" />
+    <br class="visible-xs" />
+    <br class="visible-xs" />
+  </div>
+</div>
+
+<div class="row">
+  <ws-organization-networks [networksApiResponse]="networksApiResponse" (deleteClicked)="onDeleteNetworkClicked($event)" (includeToggled)="onIncludeNetworkToggled($event)" (pageChanged)="onNetworkPageChanged($event)"></ws-organization-networks>
+</div>
+
+<div class="row">
+  <h2>Domain Names</h2>
+</div>
+<div class="row">
+  <div class="col-xs-21">
+    <ws-domain-name-form [(formGroup)]="domainForm" (enterPressed)="onDomainEnterPressed()" [formErrors]="domainFormErrors"></ws-domain-name-form>
+  </div>
+  <div class="col-xs-3">
+    <div class="pull-right">
+      <button md-tooltip="Add Domain Name" [disabled]="!domainForm || !domainForm.valid" (click)="onNewDomainClicked()" md-mini-fab>
+        <i class="fa fa-plus"></i>
+      </button>
+      <button md-tooltip="Upload" (click)="onUploadDomainClicked()" md-mini-fab>
+        <i class="fa fa-upload"></i>
+      </button>
+    </div>
+    Um what
+  </div>
+</div>
+<div class="row">
+  <ws-organization-domain-names [domainsApiResponse]="domainsApiResponse" (deleteClicked)="onDeleteDomainClicked($event)" (includeToggled)="onIncludeDomainToggled($event)" (pageChanged)="onDomainPageChanged($event)"></ws-organization-domain-names>
+</div>

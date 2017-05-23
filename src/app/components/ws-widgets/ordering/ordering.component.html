@@ -1,0 +1,8 @@
+<div class="ordering-container">
+  <div class="ordering-field">
+    <ws-select [inputSelectedIndex]="selectedIndex" [selectItems]="orderingItems" (itemSelected)="onOrderSelected($event)" placeholder="Sort By..."></ws-select>
+  </div>
+  <div class="ordering-direction">
+    <ws-button [width]="buttonWidth" [text]="sortText" [disabled]="!queryOrdering" (buttonClicked)="onSortDirectionClicked()"></ws-button>
+  </div>
+</div>

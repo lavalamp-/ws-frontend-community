@@ -1,0 +1,13 @@
+<md-card class="chart-card">
+  <md-card-title>
+    Issuing Organization
+  </md-card-title>
+  <md-card-content>
+    <div *ngIf="!pieDataset" class="chart-loading">
+      Loading...
+    </div>
+    <div *ngIf="pieDataset" class="chart-loaded">
+      <ws-donut-chart (dataClicked)="onDataClicked($event)" [pieDataset]="pieDataset"></ws-donut-chart>
+    </div>
+  </md-card-content>
+</md-card>

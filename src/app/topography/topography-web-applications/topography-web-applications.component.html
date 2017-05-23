@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-md-16">
+    <h2>Technologies</h2>
+    <div class="column-container">
+      <ws-web-application-filters-tabs [webServiceAnalytics]="webServiceAnalytics" [filters]="techPanelQueryFilters" (filtersChange)="onTechPanelFiltersChanged($event)"></ws-web-application-filters-tabs>
+    </div>
+  </div>
+  <div class="col-md-8">
+    <h2>Filters</h2>
+    <div class="filters-container column-container">
+      <p *ngIf="allQueryFilters.length == 0">
+        <i>You have not selected any filters to apply. Once you have, they will be listed here.</i>
+      </p>
+      <ws-query-filter-badge *ngFor="let queryFilter of techPanelQueryFilters; let i = index" [queryFilter]="queryFilter" (badgeClicked)="onPanelFilterBadgeClicked(i)"></ws-query-filter-badge>
+      <ws-query-filter-badge *ngFor="let queryFilter of chartQueryFilters" [queryFilter]="queryFilter" (badgeClicked)="onChartFilterBadgeClicked(queryFilter)"></ws-query-filter-badge>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <h2>Endpoints</h2>
+</div>
+<div class="row">
+  <div class="col-md-8 column-container">
+    <ws-web-service-ports-donut [webServiceAnalytics]="webServiceAnalytics" (portClicked)="onPortClicked($event)"></ws-web-service-ports-donut>
+  </div>
+  <div class="col-md-8 column-container">
+    <ws-web-service-networks-donut [webServiceAnalytics]="webServiceAnalytics" (networkClicked)="onNetworkClicked($event)"></ws-web-service-networks-donut>
+  </div>
+  <div class="col-md-8 column-container">
+    <ws-web-service-ssl-support-donut [webServiceAnalytics]="webServiceAnalytics" (sslSupportClicked)="onSslSupportClicked($event)"></ws-web-service-ssl-support-donut>
+  </div>
+</div>
+<div class="row">
+  <h2>Web Applications</h2>
+</div>
+<div class="row column-container">
+  <ws-web-applications-list [webAppsApiResponse]="webServicesApiResponse" (pageChanged)="onServicesPageClicked($event)" (viewClicked)="onViewWebAppClicked($event)"></ws-web-applications-list>
+</div>
+<div class="row">
+  <h2>Screenshots</h2>
+</div>
+<ws-screenshot-list [screenshotsApiResponse]="webScreenshotsApiResponse" (screenshotPageChanged)="onScreenshotPageChanged($event)" (viewClicked)="onViewWebAppClicked($event)"></ws-screenshot-list>

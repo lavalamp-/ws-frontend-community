@@ -1,0 +1,24 @@
+<div *ngIf="showScreenshotPagination" class="row">
+  <div class="col-md-24">
+    <div class="pull-right column-container">
+      <ws-pagination [currentPage]="screenshotsApiResponse.current_page" [lastPage]="screenshotsApiResponse.last_page" (pageChanged)="onScreenshotPageChanged($event)" [count]="screenshotsApiResponse.count" [pageSize]="screenshotsApiResponse.page_size"></ws-pagination>
+    </div>
+  </div>
+</div>
+<div class="row" *ngIf="screenshotsApiResponse && screenshotsApiResponse.results.length > 0">
+  <div class="col-md-6 column-container" *ngFor="let screenshot of screenshotsApiResponse.results">
+    <ws-image-card [showButton]="showButtons" (buttonClicked)="onViewClicked(screenshot.web_service_uuid)" [imageUrl]="screenshot.image_url"></ws-image-card>
+  </div>
+</div>
+<div class="row column-container" *ngIf="!screenshotsApiResponse || screenshotsApiResponse.results.length == 0">
+  <md-card class="announcement-card">
+    <i>No screenshots found.</i>
+  </md-card>
+</div>
+<div *ngIf="showScreenshotPagination" class="row">
+  <div class="col-md-24">
+    <div class="pull-right column-container">
+      <ws-pagination [currentPage]="screenshotsApiResponse.current_page" [lastPage]="screenshotsApiResponse.last_page" (pageChanged)="onScreenshotPageChanged($event)" [count]="screenshotsApiResponse.count" [pageSize]="screenshotsApiResponse.page_size"></ws-pagination>
+    </div>
+  </div>
+</div>

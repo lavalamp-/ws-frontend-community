@@ -1,0 +1,11 @@
+<md-card class="requirements-card">
+  <md-card-content>
+    <ul class="list-unstyled" *ngIf="requirements && requirements.length > 0">
+      <li *ngFor="let requirement of requirements">
+        <ws-check [width]="30" [size]="fa" [enabled]="requirement.met"></ws-check>
+        <span [class.text-danger]="!requirement.met" [class.text-success]="requirement.met">{{requirement.description}}</span>
+      </li>
+    </ul>
+    <i *ngIf="requirements.length == 0">No requirements found...</i>
+  </md-card-content>
+</md-card>

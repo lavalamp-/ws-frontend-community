@@ -1,0 +1,146 @@
+<div class="row">
+  <div class="col-md-18 col-lg-19 org-detail-tabs">
+    <md-tab-group [(selectedIndex)]="tabIndex">
+      <md-tab label="Endpoints">
+        <div class="tab-container endpoints-container">
+          <div *ngIf="canUserWrite">
+            <div class="row">
+              <h2>Add New Network</h2>
+            </div>
+            <div class="row">
+              <div class="form-row">
+                <div class="form-container">
+                  <ws-network-form [(formGroup)]="networkForm" (enterPressed)="onAddNetworkEnterPressed()" [formErrors]="networkFormErrors"></ws-network-form>
+                </div>
+                <div class="form-button">
+                  <button md-mini-fab [disabled]="!networkForm || !networkForm.valid" (click)="onNewNetworkClicked()">
+                    <i class="fa fa-icon fa-plus"></i>
+                  </button>
+                </div>
+                <div class="form-button">
+                  <button md-mini-fab (click)="onUploadNetworkClicked()">
+                    <i class="fa fa-icon fa-upload"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <h2>Networks</h2>
+          </div>
+          <ws-networks-list [apiResponse]="networks" [searchTerm]="networksSearchTerm" [queryOrdering]="networksQueryOrdering" (exportClicked)="onExportNetworks()" (pageChanged)="onNetworksPageChanged($event)" (searchChanged)="onNetworksSearchChanged($event)" (filterCreated)="onNetworksFilterCreated($event)" (orderingChanged)="onNetworksOrderingChanged($event)" (networkIncludeToggled)="onNetworkIncludeToggled($event)" (deleteNetworkClicked)="onDeleteNetworkClicked($event)" [canUserWrite]="canUserWrite"></ws-networks-list>
+        </div>
+      </md-tab>
+      <md-tab label="Domain Names">
+        <div class="tab-container domains-container">
+          <div *ngIf="canUserWrite">
+            <div class="row">
+              <h2>Add New Domain Name</h2>
+            </div>
+            <div class="row">
+              <div class="form-row">
+                <div class="form-container">
+                  <ws-domain-name-form [(formGroup)]="domainNameForm" (enterPressed)="onAddDomainEnterPressed()" [formErrors]="domainFormErrors"></ws-domain-name-form>
+                </div>
+                <div class="form-button">
+                  <button md-mini-fab [disabled]="!domainNameForm || !domainNameForm.valid" (click)="onNewDomainClicked()">
+                    <i class="fa fa-icon fa-plus"></i>
+                  </button>
+                </div>
+                <div class="form-button">
+                  <button md-mini-fab (click)="onUploadDomainClicked()">
+                    <i class="fa fa-icon fa-upload"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <h2>Domain Names</h2>
+          </div>
+          <div class="row">
+            <ws-domain-name-list [apiResponse]="domains" [searchTerm]="domainsSearchTerm" [queryOrdering]="domainsQueryOrdering" (exportClicked)="onExportDomains()" (pageChanged)="onDomainsPageChanged($event)" (searchChanged)="onDomainsSearchChanged($event)" (filterCreated)="onDomainsFilterCreated($event)" (orderingChanged)="onDomainsOrderingChanged($event)" (domainIncludeToggled)="onDomainIncludeToggled($event)" (deleteDomainClicked)="onDeleteDomainClicked($event)" [canUserWrite]="canUserWrite"></ws-domain-name-list>
+          </div>
+        </div>
+      </md-tab>
+      <md-tab *ngIf="canUserAdmin" label="User Management">
+        <div class="tab-container user-management-container">
+          <ws-user-permissions [userPermissions]="permissions" (userRemoved)="onUserRemoved($event)" (permissionsChanged)="onPermissionsChanged($event)" (userAdded)="onUserAdded($event)"></ws-user-permissions>
+        </div>
+      </md-tab>
+      <!--<md-tab label="Scan History">-->
+
+      <!--</md-tab>-->
+    </md-tab-group>
+  </div>
+  <div class="col-md-6 col-lg-5 column-container">
+    <div class="topics-container">
+      <div class="summary-container">
+        <h2 class="first-header">Summary</h2>
+        <ul class="list-group org-contents-list-group">
+          <li class="list-group-item">
+            <span class="badge">{{organization?.timeSinceScan}}</span>
+            Last Scanned
+          </li>
+          <li class="list-group-item">
+            <span class="badge">{{organization?.networks_count | number}} ({{organization?.networks_size | number}} endpoints)</span>
+            Networks
+          </li>
+          <li class="list-group-item">
+            <span class="badge">{{organization?.domains_count | number}}</span>
+            Domain Names
+          </li>
+        </ul>
+      </div>
+      <div class="actions-container">
+        <h2>Actions</h2>
+        <div class="actions-buttons">
+          <ws-button [text]="'View Collected Data'" (buttonClicked)="onViewOrganizationClicked()"></ws-button>
+          <ws-button [text]="'Delete Organization'" [color]="'warn'" (buttonClicked)="onDeleteOrganizationClicked()"></ws-button>
+        </div>
+      </div>
+      <div class="scan-targets-container" *ngIf="canUserScan">
+        <h2>Scan</h2>
+        <ul class="list-group scan-targets-list-group">
+          <li class="list-group-item">
+            <span class="badge">{{organization?.monitored_networks_count}} ({{organization?.monitored_networks_size | number}} endpoints)</span>
+            Networks
+          </li>
+          <li class="list-group-item">
+            <span class="badge">{{organization?.monitored_domains_count | number}}</span>
+            Domain Names
+          </li>
+        </ul>
+        <div class="payment-method-container">
+          <div class="payment-select-container" *ngIf="paymentTokens?.results.length > 0">
+            <md-select [style.width]="'100%'" [disabled]="!paymentRequired" [placeholder]="paymentRequired ? 'Choose Payment Method...' : 'No Payment Required'" [(ngModel)]="selectedToken">
+              <md-option *ngFor="let paymentToken of paymentTokens?.results" [value]="paymentToken">{{paymentToken.description}}</md-option>
+            </md-select>
+          </div>
+          <div class="add-payment-container" *ngIf="!paymentTokens || paymentTokens.results.length == 0">
+            <ws-button [text]="'Add Payment Method'" (buttonClicked)="onAddPaymentClicked()" [asBlock]="true"></ws-button>
+          </div>
+        </div>
+        <div class="single-action-container">
+          <ws-button [disabled]="!scanButtonEnabled" [text]="'Check Out'" (buttonClicked)="onCheckOutClicked()"></ws-button>
+          <div class="action-description">
+            <div class="scan-price">
+              <div class="price" *ngIf="organization?.current_order_tier_name == 'micro' || userIsEnterprise">
+                FREE
+              </div>
+              <div class="price" *ngIf="organization?.current_order_tier_name != 'micro' && (organization?.current_order_tier_name != 'enterprise' && !userIsEnterprise)">
+                {{organization?.current_order_price / 100 | currency:'USD':true}}
+              </div>
+              <div class="price" *ngIf="organization?.current_order_tier_name == 'enterprise' && !userIsEnterprise">
+                ENTERPRISE
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="payment-reminder" *ngIf="paymentRequired">
+          <i>Your card will not be charged yet</i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

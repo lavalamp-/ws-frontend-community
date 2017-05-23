@@ -1,0 +1,29 @@
+<form [formGroup]="formGroup" (keydown)="onKeyDown($event)">
+  <table>
+    <tr>
+      <td>
+        <md-input-container>
+          <input md-input formControlName="name" type="text" placeholder="Name" maxlength="32" #nameLengthHint required>
+          <md-hint align="end">{{nameLengthHint.value.length}} / 32</md-hint>
+        </md-input-container>
+      </td>
+      <td>
+        <md-input-container>
+          <input md-input formControlName="description" type="text" placeholder="Description" maxlength="256" #descriptionLengthHint required>
+          <md-hint align="end">{{descriptionLengthHint.value.length}} / 256</md-hint>
+        </md-input-container>
+      </td>
+    </tr>
+    <tr *ngIf="formErrors">
+      <td>
+        <ws-input-hint [messages]="formErrors['error_fields']['name']"></ws-input-hint>
+      </td>
+      <td>
+        <ws-input-hint [messages]="formErrors['error_fields']['description']"></ws-input-hint>
+      </td>
+    </tr>
+  </table>
+  <div *ngIf="formErrors && formErrors['error_fields']['non_field_errors']">
+    <ws-input-hint [messages]="formErrors['error_fields']['non_field_errors']"></ws-input-hint>
+  </div>
+</form>

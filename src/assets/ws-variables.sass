@@ -1,0 +1,136 @@
+@import "custom-variables"
+
+// Typography
+
+$font-default-color: $gray-base
+
+// Fixed Position Indices
+
+$filter-panel-z-index: 9998
+$modal-z-index: 9999
+
+// Generics
+
+$default-padding: 24px
+$gutter-width: 30px
+$highlight-inset-shadow: inset 0 0 5px $brand-primary
+$default-box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12)
+
+// Widgets
+
+$filter-panel-min-height: 150px
+$pagination-dimension: 35px
+
+$badge-default-padding: 10px
+$badge-default-border-radius: 10px
+
+$chip-default-padding: 7px
+$chip-default-border-radius: 10px
+
+$button-default-border-radius: 10px
+
+// Custom Web Sight tables
+
+$table-padding-amount: 12px
+$table-row-height: 56px
+
+$table-footer-multiplier: 0.4
+$table-header-multiplier: 0.4
+
+// Cards
+
+$card-default-padding: 12px
+
+.announcement-card
+  color: $text-color
+  padding: $card-default-padding
+
+.display-card
+  color: $text-color
+  padding: 0
+
+// Buttons
+
+$mini-fab-shadow-size: 10px
+
+// Modals
+
+$modal-default-padding: $default-padding
+
+// Uploads
+
+.ws-file-drop
+  display: flex
+  align-items: center
+  justify-content: center
+  border: dotted 3px $text-color
+
+.ws-file-drop.file-drop-over
+  border: dotted 3px $brand-primary
+
+// Dialogs
+
+$dialog-default-padding: $default-padding
+
+// Pages
+
+.page-swap
+  padding-bottom: $default-padding
+
+.filters-showing
+  padding-bottom: $filter-panel-min-height
+
+// Miscellaneous Globals
+
+$payment-card-height: 160px
+
+.btn-default
+
+  .md-button-wrapper
+    color: $gray-base
+
+.rowable:nth-child(odd)>*
+  background-color: $brand-background
+
+  .detail-list-panel
+
+    .panel-heading
+      background-color: $brand-background
+
+    .panel-body
+      background-color: white
+
+.rowable:nth-child(even)>*
+
+  .detail-list-panel
+
+    .panel-heading
+      background-color: white
+
+    .panel-body
+      background-color: $brand-background
+
+.md-select-value
+  color: $font-default-color !important
+
+.form-row
+  display: flex
+  align-items: center
+
+  .form-container
+    flex: 1 0 auto
+    margin-right: $default-padding * 0.5
+
+  .form-button
+    flex: 0 1 auto
+    margin-left: $default-padding * 0.5
+
+label
+  margin-bottom: 0
+
+.cdk-overlay-container
+  z-index: $modal-z-index
+
+.md-tab-body-content
+  padding-left: 2px
+  padding-right: 2px

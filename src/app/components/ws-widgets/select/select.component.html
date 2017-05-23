@@ -1,0 +1,3 @@
+<md-select [disabled]="isDisabled" class="ws-select" placeholder="{{placeholder}}" [(ngModel)]="selectedIndex">
+  <md-option *ngFor="let selectItem of selectItems; let i = index" [value]="i">{{selectItem.label}}</md-option>
+</md-select>

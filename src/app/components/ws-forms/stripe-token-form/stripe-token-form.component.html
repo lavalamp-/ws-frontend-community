@@ -1,0 +1,80 @@
+<div class="stripe-form-container">
+  <form novalidate [formGroup]="formGroup" (keydown)="onKeyDown($event)">
+    <div class="row form-row">
+      <div class="col-xs-24">
+        <md-input-container>
+          <input md-input type="text" placeholder="Name For Payment Method" maxlength="32" formControlName="paymentName">
+        </md-input-container>
+      </div>
+    </div>
+    <div class="row form-row cc-row">
+      <div class="col-xs-16">
+        <div class="cc-container" [class.ws-invalid]="(!formGroup.controls.cardNumber?.pristine && formGroup.controls.cardNumber?.errors) || ccError">
+          <md-input-container>
+            <input md-input type="text" placeholder="Credit Card #" formControlName="cardNumber" creditCard required>
+          </md-input-container>
+          <div *ngIf="(formGroup.controls.cardNumber?.errors && !formGroup.controls.cardNumber?.pristine) || ccError">
+            <div class="text-danger input-hint">
+              <ul class="list-unstyled">
+                <li *ngIf="formGroup.controls.cardNumber.errors?.creditCard">Not a valid credit card number</li>
+                <li *ngIf="formGroup.controls.cardNumber.errors?.required">This value is required</li>
+                <li *ngIf="ccError">{{ccError}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-8">
+        <div class="cvc-container" [class.ws-invalid]="(!formGroup.controls.cvc?.pristine && formGroup.controls.cvc?.errors) || cvcError">
+          <md-input-container>
+            <input md-input type="text" placeholder="CVC" formControlName="cvc" maxlength="4" [range]="[100, 9999]" digits required>
+          </md-input-container>
+          <div *ngIf="(formGroup.controls.cvc?.errors && !formGroup.controls.cvc?.pristine) || cvcError">
+            <div class="text-danger input-hint">
+              <ul class="list-unstyled">
+                <li *ngIf="formGroup.controls.cvc.errors?.digits">Must only contain digits</li>
+                <li *ngIf="formGroup.controls.cvc.errors?.range">Invalid CVC code</li>
+                <li *ngIf="cvcError">{{cvcError}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row form-row selects-row">
+      <div class="col-xs-12">
+        <div class="month-select-container">
+          <md-select [style.width]="'100%'" class="month-select" placeholder="Expiry Month" formControlName="expiryMonth" required>
+            <md-option *ngFor="let month of months" [value]="month['number']">{{month['label']}}</md-option>
+          </md-select>
+          <div *ngIf="monthError">
+            <div class="text-danger input-hint select-hint">
+              <ul class="list-unstyled">
+                <li *ngIf="monthError">{{monthError}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12">
+        <div class="year-select-container">
+          <md-select placeholder="Expiry Year" formControlName="expiryYear" required>
+            <md-option *ngFor="let year of years" [value]="year">{{year}}</md-option>
+          </md-select>
+          <div *ngIf="yearError">
+            <div class="text-danger input-hint select-hint">
+              <ul class="list-unstyled">
+                <li *ngIf="yearError">{{yearError}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row error-row text-danger input-hint" *ngIf="genericError">
+      <ul class="list-unstyled">
+        <li>{{genericError}}</li>
+      </ul>
+    </div>
+  </form>
+</div>

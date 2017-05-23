@@ -1,0 +1,49 @@
+<div class="modal-container">
+  <div class="modal-top">
+    <h2>{{title}}</h2>
+  </div>
+  <div class="modal-middle">
+    <div class="upload-pick-file" *ngIf="uploader.queue.length == 0">
+      <div class="upload-modal-left">
+        <div ng2FileDrop (fileOver)="onFileOver($event)" [uploader]="uploader" [class.file-drop-over]="fileOver" class="well ws-file-drop">Drag and drop your {{fileDescription}} file here</div>
+        <input type="file" ng2FileSelect [uploader]="uploader"/>
+      </div>
+      <div class="upload-modal-right">
+        <p>{{description}}</p>
+        <p *ngIf="sampleFiles?.length > 0">
+          Not sure what sort of files we accept? Take a look at these sample files:
+        </p>
+        <ul *ngIf="sampleFiles?.length > 0">
+          <li *ngFor="let sampleFile of sampleFiles; let i = index">
+            <a href="{{sampleFile}}" target="_blank">Sample File {{i + 1}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="upload-upload-file" *ngIf="uploader.queue.length > 0">
+      <h3>{{uploader.queue[0].file.name}} <small>({{uploader.queue[0].file.size/1024 | number: '.2'}} KB)</small></h3>
+      <div class="alert alert-danger" *ngIf="error">
+        {{errorMessage}}
+      </div>
+      <md-progress-bar [color]="primary" [value]="uploader.progress" class="upload-progress"></md-progress-bar>
+    </div>
+    <div class="upload-file-uploaded">
+
+    </div>
+  </div>
+  <div class="modal-bottom">
+    <div class="pull-left">
+      <button md-tooltip="Pick Different File" md-fab color="primary" (click)="onPickNewFileClicked()" [disabled]="!backButtonEnabled">
+        <i class="fa fa-reply fa-2x"></i>
+      </button>
+      <button md-tooltip="Upload File" md-fab color="primary" (click)="onUploadClicked()" [disabled]="!uploadButtonEnabled">
+        <i class="fa fa-upload fa-2x"></i>
+      </button>
+    </div>
+    <div class="pull-right">
+      <button md-tooltip="Cancel" color="warn" md-dialog-close md-fab>
+        <i class="fa fa-ban fa-2x"></i>
+      </button>
+    </div>
+  </div>
+</div>

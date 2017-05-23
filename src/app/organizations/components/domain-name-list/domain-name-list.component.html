@@ -1,0 +1,8 @@
+<ws-table-header [apiResponse]="apiResponse" (pageChanged)="onPageChanged($event)" (searchChanged)="onSearchChanged($event)" (exportClicked)="onExportClicked()" (filterCreated)="onFilterCreated($event)" (orderingChanged)="onOrderingChanged($event)" [searchTerm]="searchTerm" [queryOrdering]="queryOrdering"></ws-table-header>
+<md-card class="display-card" [style.margin-left]="marginString" [style.margin-right]="marginString">
+  <div class="no-results" *ngIf="!apiResponse || apiResponse.count == 0">
+    You have not defined any domain names yet.
+  </div>
+  <ws-domain-name-summary-row *ngFor="let domainName of apiResponse?.results" [domainName]="domainName" class="rowable" (deleteClicked)="onDeleteDomainClicked($event)" (domainToggled)="onDomainIncludeToggled($event)" [canUserWrite]="canUserWrite"></ws-domain-name-summary-row>
+</md-card>
+<ws-table-footer [apiResponse]="apiResponse" (pageChanged)="onPageChanged($event)"></ws-table-footer>

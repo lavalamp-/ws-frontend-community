@@ -1,0 +1,35 @@
+<div class="modal-container">
+  <div class="modal-top">
+    <h2>{{title}}</h2>
+  </div>
+  <div class="modal-middle">
+    <div class="strong-confirm-description">
+      {{description}}
+    </div>
+    <div class="strong-confirm-confirmation">
+      To proceed, enter the following text into the box below to confirm that you're deleting the intended item:
+    </div>
+    <div class="strong-confirm-confirm-string">
+      {{confirmString}}
+    </div>
+    <div class="strong-confirm-input">
+      <form>
+        <md-input-container style="width: 100%;">
+          <input type="text" name="confirm" [(ngModel)]="confirmContents" (keydown)="onConfirmKeyDown($event)" placeholder="Confirmation" autocomplete="off" md-input>
+        </md-input-container>
+      </form>
+    </div>
+  </div>
+  <div class="modal-bottom">
+    <div class="pull-left">
+      <button md-tooltip="Confirm" [disabled]="!submitEnabled" (click)="onConfirmClicked()" md-fab>
+        <i class="fa fa-check fa-2x"></i>
+      </button>
+    </div>
+    <div class="pull-right">
+      <button md-tooltip="Cancel" color="warn" md-dialog-close md-fab>
+        <i class="fa fa-ban fa-2x"></i>
+      </button>
+    </div>
+  </div>
+</div>

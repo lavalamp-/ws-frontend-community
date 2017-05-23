@@ -1,0 +1,21 @@
+<div class="row domain-summary-row column-container">
+  <div class="name-container item-container">
+    {{domainName.name}}
+  </div>
+  <div class="added-container item-container">
+    <i>{{domainName.createdDescription}}</i>
+  </div>
+  <div class="scan-description item-container">
+    <i>{{domainName.scanDescription}}</i>
+  </div>
+  <div class="toggle-container item-container" *ngIf="canUserWrite">
+    <md-slide-toggle [checked]="domainName.scanning_enabled" (change)="onIncludeToggled()">
+      {{domainName.scanning_enabled ? 'Included' : 'Excluded'}}
+    </md-slide-toggle>
+  </div>
+  <div class="delete-container item-container" *ngIf="canUserWrite">
+    <button md-mini-fab color="warn" (click)="onDeleteClicked()">
+      <i class="fa fa-icon fa-trash"></i>
+    </button>
+  </div>
+</div>

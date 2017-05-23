@@ -1,0 +1,41 @@
+<div>
+  <h2>Manage Users</h2>
+
+  <div class="row">
+    <table class="table table-striped">
+      <tr>
+        <th>Email</th>
+        <th>Email Verified</th>
+        <th>Account Enabled</th>
+        <th>Actions</th>
+      </tr>
+      <tr *ngFor="let user_data of users">
+        <td>{{user_data.email}}</td>
+
+        <td *ngIf="user_data.email_verified"><i class="fa fa-2x fa-check" style="color:green"></i></td>
+        <td *ngIf="!user_data.email_verified"><i class="fa fa-2x fa-remove" style="color:darkred;"></i></td>
+
+        <td *ngIf="user_data.enabled"><i class="fa fa-2x fa-check" style="color:green"></i></td>
+        <td *ngIf="!user_data.enabled"><i class="fa fa-2x fa-remove" style="color:darkred"></i></td>
+
+        <td>
+          <button *ngIf="!user_data.enabled" md-tooltip="Enable User" tooltip-position="above" (click)="onClickEnableUser(user_data)" class="btn btn-lg btn-success"><i class="fa fa-check"></i></button>
+          <button *ngIf="user_data.enabled" md-tooltip="Disable User" tooltip-position="above" (click)="onClickDisableUser(user_data)" class="btn btn-lg btn-warning"><i class="fa fa-times-circle"></i></button>
+          <button md-tooltip="Delete User" tooltip-position="above" (click)="onClickDeleteUser(user_data)" class="btn btn-lg btn-danger"><i class="fa fa-trash"></i></button>
+          <button md-tooltip="Resend Verification Email" tooltip-position="above" (click)="onClickResendVerificationEmail(user_data)" class="btn btn-lg btn-default"><i class="fa fa-inbox"></i></button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <h2>Experiments</h2>
+</div>
+<div class="row">
+  <button md-fab (click)="onOpenPaymentsDialogClicked()">
+    <i class="fa fa-icon fa-opencart"></i>
+  </button>
+  <button md-fab (click)="onExportDataClicked()">
+    <i class="fa fa-icon fa-folder-open"></i>
+  </button>
+</div>

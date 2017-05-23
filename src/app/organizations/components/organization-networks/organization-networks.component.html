@@ -1,0 +1,118 @@
+<div *ngIf="showPagination" class="ws-datatable-header">
+  <div class="pull-right">
+    <ws-pagination (pageChanged)="onPageClicked($event)" [apiResponse]="networksApiResponse"></ws-pagination>
+  </div>
+</div>
+
+<!-- Regular Table -->
+<div class="visible-sm visible-md visible-lg">
+  <md-card class="networks-list-card">
+    <md-card-content>
+      <div class="networks-list-container" *ngIf="networksApiResponse && networksApiResponse.results.length > 0">
+        <div class="networks-row-header row">
+          <div class="networks-row-name col-xs-4">
+            Name
+          </div>
+          <div class="networks-row-range col-xs-12">
+            Network Range
+          </div>
+          <div class="networks-row-enabled col-xs-4">
+            In Scope?
+          </div>
+          <div class="networks-row-actions col-xs-4">
+            Actions
+          </div>
+        </div>
+        <div class="networks-row row" *ngFor="let row of networksTableConfiguration.dataTableRows">
+          <div class="networks-row-name col-xs-4">
+            <span *ngIf="row.name">{{row.name}}</span>
+            <i *ngIf="!row.name">No name supplied...</i>
+          </div>
+          <div class="networks-row-range col-xs-12">
+            {{row.network}} ({{row.network_size | number}} total endpoints)
+          </div>
+          <div class="networks-row-enabled col-xs-4">
+            <md-slide-toggle [checked]="row.scanning_enabled" (change)="onIncludeToggled(row.uuid, $event)">
+              {{row.scanning_enabled ? 'Included' : 'Excluded'}}
+            </md-slide-toggle>
+          </div>
+          <div class="networks-row-actions col-xs-4">
+            <button md-tooltip="Delete Network" (click)="onDeleteClicked(row.uuid)" color="warn" md-mini-fab>
+              <i class="fa fa-trash"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="networks-list-message" *ngIf="!networksApiResponse || networksApiResponse.results.length == 0">
+        <i>You have not defined any networks. Once you do, they will be listed here.</i>
+      </div>
+    </md-card-content>
+  </md-card>
+</div>
+
+<!-- Mobile Table -->
+<div class="visible-xs" *ngIf="networksApiResponse && networksApiResponse.results.length > 0">
+
+  <md-card class="networks-list-card-mobile"  *ngFor="let row of networksTableConfiguration.dataTableRows">
+    <md-card-content>
+      <div class="networks-list-container">
+        <div class="networks-row-header networks-row-header-mobile text-center row">
+          <div class="networks-row-name col-xs-24">
+            Name
+          </div>
+        </div>
+      </div>
+
+      <div class="networks-row networks-row-mobile text-center row">
+        <div class="networks-row-name col-xs-24">
+          <span *ngIf="row.name">{{row.name}}</span>
+          <i *ngIf="!row.name">No name supplied...</i>
+        </div>
+      </div>
+
+      <div class="networks-list-container">
+        <div class="networks-row-header networks-row-header-mobile text-center row">
+          <div class="networks-row-range col-xs-24">
+            Network Range
+          </div>
+        </div>
+      </div>
+
+      <div class="networks-row networks-row-mobile text-center row">
+        <div class="networks-row-name col-xs-24">
+          {{row.network}} ({{row.network_size | number}} total endpoints)
+        </div>
+      </div>
+
+      <div class="networks-list-container">
+        <div class="networks-row-header networks-row-header-mobile text-center row">
+          <div class="networks-row-enabled col-xs-12">
+            In Scope?
+          </div>
+          <div class="networks-row-enabled col-xs-12">
+            Actions
+          </div>
+        </div>
+      </div>
+
+      <div class="networks-row networks-row-mobile text-center row">
+        <div class="networks-row-enabled col-xs-12">
+          <md-slide-toggle [checked]="row.scanning_enabled" (change)="onIncludeToggled(row.uuid, $event)">
+            {{row.scanning_enabled ? 'Included' : 'Excluded'}}
+          </md-slide-toggle>
+        </div>
+        <div class="networks-row-actions col-xs-12">
+          <button md-tooltip="Delete Network" (click)="onDeleteClicked(row.uuid)" color="warn" md-mini-fab>
+            <i class="fa fa-trash"></i>
+          </button>
+        </div>
+      </div>
+    </md-card-content>
+  </md-card>
+</div>
+
+<div *ngIf="showPagination" class="ws-datatable-footer">
+  <div class="pull-right">
+    <ws-pagination (pageChanged)="onPageClicked($event)" [apiResponse]="networksApiResponse"></ws-pagination>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<div class="ws-chart-container">
+  <div class="ws-chart-container-loader" *ngIf="!isReady()">
+    Loading...
+  </div>
+  <div *ngIf="isReady()" class="ws-chart-inner-container" style="display: block;">
+    <canvas baseChart [chartType]="chartType" [datasets]="chartData" [options]="chartOptions" [labels]="chartLabels" (chartHover)="onHover($event)" (chartClick)="onClick($event)"></canvas>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="form-container form-center greeting-form">
+  <div class="alert" [hidden]="!formSubmitted" [class.alert-success]="formSubmitted && success" [class.alert-danger]="formSubmitted && !success">
+    {{response}}
+  </div>
+  <ws-sign-up-form [showLabels]="false" (signUpFormChange)="onSignUpFormChanged($event)" (enterPressed)="onEnterPressed()"></ws-sign-up-form>
+  <div class="row">
+    <div class="col-md-12 column-container">
+      <ws-password-complexity-card [minLength]="8" [minUpperCase]="1" [minSpecial]="1" [password]="signUpForm.value.password" [passwordRepeated]="signUpForm.value.passwordRepeat"></ws-password-complexity-card>
+    </div>
+    <div class="col-md-12 column-container">
+      <re-captcha (captchaResponse)="handleCorrectCaptcha($event)" site_key="6LfneCYTAAAAAGGc_9MGNQmZuMTm9rILlStC05yS"></re-captcha>
+    </div>
+  </div>
+  <button class="btn btn-primary btn-block" [disabled]="!signUpForm.valid || !recaptchaValidated" (click)="onSignUpClicked()">Sign Up</button>
+</div>
+<ws-greeting-navigation></ws-greeting-navigation>

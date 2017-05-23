@@ -1,0 +1,28 @@
+<md-tab-group [(selectedIndex)]="tabIndex">
+  <md-tab label="Summary">
+
+  </md-tab>
+  <md-tab label="Resources">
+    <div class="pad-list">
+      <div class="row">
+        <div class="col-md-6 column-container">
+          <ws-donut-chart-card [dataPoints]="resourceAnalytics?.content_type" (dataClicked)="onResourceContentTypeClicked($event)" [title]="'Content Types'"></ws-donut-chart-card>
+        </div>
+        <div class="col-md-6 column-container">
+          <ws-donut-chart-card [dataPoints]="resourceAnalytics?.has_login_form" (dataClicked)="onResourceHasLoginFormClicked($event)" [title]="'Has Login Form?'"></ws-donut-chart-card>
+        </div>
+        <div class="col-md-6 column-container">
+          <ws-donut-chart-card [dataPoints]="resourceAnalytics?.request_method" (dataClicked)="onResourceRequestMethodClicked($event)" [title]="'Request Methods'"></ws-donut-chart-card>
+        </div>
+        <div class="col-md-6 column-container">
+          <ws-donut-chart-card [dataPoints]="resourceAnalytics?.response_status" (dataClicked)="onResourceStatusClicked($event)" [title]="'Response Status Codes'"></ws-donut-chart-card>
+        </div>
+      </div>
+      <div class="list-container">
+        <ws-any-list [apiResponse]="resources" (searchChanged)="onResourcesSearchChanged($event)" (pageChanged)="onResourcesPageChanged($event)" (exportClicked)="onResourcesExportClicked()" (filterCreated)="onResourcesFilterCreated($event)" (orderingChanged)="onResourcesOrderingChanged($event)" [queryOrdering]="resourcesQueryOrdering" [searchTerm]="resourcesSearchTerm"></ws-any-list>
+      </div>
+      <div [class.filters-showing]="resourcesQueryFilters.length > 0"></div>
+    </div>
+  </md-tab>
+</md-tab-group>
+<ws-filter-panel *ngIf="visibleQueryFilters.length > 0" [queryFilters]="visibleQueryFilters" (queryFiltersChanged)="onQueryFiltersChanged($event)"></ws-filter-panel>

@@ -1,0 +1,6 @@
+<div class="panel panel-default detail-list-panel">
+  <div class="panel-heading">{{title}}</div>
+  <div class="panel-body">
+    <ws-detail-list [horizontal]="horizontal" [detailItems]="detailItems" (filterCreated)="onFilterCreated($event)" [showFilters]="showFilters" [wordBreak]="wordBreak"></ws-detail-list>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+@import "../../../../assets/ws-variables"
+
+$border-radius: $badge-default-border-radius
+$button-padding: $badge-default-padding * 0.5 $badge-default-padding $badge-default-padding * 0.5 $badge-default-padding
+
+.query-filter-badge
+  border-radius: $badge-default-border-radius
+
+  .badge-text
+    border-radius: $border-radius 0 0 $border-radius
+    padding: $button-padding
+    cursor: default
+    background-color: $brand-primary
+
+  .badge-inclusion
+    padding: $button-padding
+    border-left: 1px solid darken($brand-primary, 25%)
+
+  .badge-remove
+    padding: $button-padding
+    border-left: 1px solid darken($brand-primary, 25%)
+    border-radius: 0 $border-radius $border-radius 0
+

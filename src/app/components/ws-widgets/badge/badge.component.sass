@@ -1,0 +1,49 @@
+@import "../../../../assets/custom-variables"
+
+$border-radius: 10px
+$items-margin: 5px
+
+.ws-badge
+  border-radius: $border-radius
+
+  &.unclickable
+    box-shadow: none
+
+.badge-content
+  display: flex
+  flex-flow: row
+  width: 100%
+  color: white
+
+  .badge-left-icon, .badge-left-text
+    flex: 0 1 auto
+    margin-right: $items-margin
+
+  .badge-center
+    flex: 1 0 auto
+
+  .badge-right-icon, .badge-right-text
+    flex: 0 1 auto
+    margin-left: $items-margin
+
+.ws-badge.badge-inactive
+  box-shadow: none
+
+  .badge-content
+    color: $brand-primary
+
+.ws-badge.badge-success.badge-active
+  background-color: $brand-success !important
+
+.ws-badge.badge-warning.badge-active
+  background-color: $brand-warning !important
+
+.ws-badge.badge-danger.badge-active
+  background-color: $brand-danger !important
+
+.ws-badge.ws-badge-small
+  height: 26px
+  line-height: 26px
+
+.ws-badge.badge-active
+  background-color: $brand-primary

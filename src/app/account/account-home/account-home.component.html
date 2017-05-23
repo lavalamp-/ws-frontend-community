@@ -1,0 +1,8 @@
+<md-tab-group [(selectedIndex)]="tabIndex">
+  <md-tab label="Change Account Settings">
+    <ws-account-settings></ws-account-settings>
+  </md-tab>
+  <md-tab label="Manage Payment Options">
+    <ws-payment-methods-list [(paymentsPage)]="currentManagePaymentsPage"></ws-payment-methods-list>
+  </md-tab>
+</md-tab-group>

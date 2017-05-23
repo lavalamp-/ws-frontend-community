@@ -1,0 +1,12 @@
+<div class="row table-footer-row">
+  <div class="footer-row-left search-box">
+  </div>
+  <div class="footer-row-middle">
+  </div>
+  <div class="footer-row-right">
+    <ws-many-response-summary [apiResponse]="apiResponse"></ws-many-response-summary>
+  </div>
+  <div class="footer-row-right" *ngIf="showPagination">
+    <ws-paginator [apiResponse]="apiResponse" (pageChanged)="onPageChanged($event)"></ws-paginator>
+  </div>
+</div>

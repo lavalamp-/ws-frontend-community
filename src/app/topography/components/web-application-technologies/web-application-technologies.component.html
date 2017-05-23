@@ -1,0 +1,6 @@
+<div class="tech-badge-container" *ngIf="webService && !noTechFound">
+  <ws-usage-badge *ngFor="let badge of usedBadges" [isUsed]="true" [term]="badge.label"></ws-usage-badge>
+</div>
+<div class="tech-badge-loader" *ngIf="!webService || noTechFound">
+  <i>Web Sight did not recognize any technologies used by this web application.</i>
+</div>

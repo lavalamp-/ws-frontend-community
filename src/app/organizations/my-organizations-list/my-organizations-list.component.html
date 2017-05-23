@@ -1,0 +1,21 @@
+<div class="row">
+  <h2>Create New Organization</h2>
+</div>
+<div class="row">
+  <div class="form-row">
+    <div class="form-container">
+      <ws-new-organization-form [(formGroup)]="formGroup" (enterPressed)="onAddOrgEnterPressed()" [formErrors]="orgFormErrors"></ws-new-organization-form>
+    </div>
+    <div class="form-button">
+      <button md-mini-fab [disabled]="!formGroup || !formGroup.valid" (click)="onAddOrgClicked()">
+        <i class="fa fa-icon fa-plus"></i>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <h2>My Organizations</h2>
+</div>
+<ws-organization-list [apiResponse]="organizations" [queryOrdering]="queryOrdering" [searchTerm]="searchTerm" (filterCreated)="onFilterCreated($event)" (pageChanged)="onPageChanged($event)" (deleteOrganizationClicked)="onDeleteOrgClicked($event)" (exportClicked)="onExportClicked()" (orderingChanged)="onOrderingChanged($event)" (searchChanged)="onSearchTermChanged($event)"></ws-organization-list>
+<ws-filter-panel *ngIf="queryFilters.length > 0" [queryFilters]="queryFilters" (queryFiltersChanged)="onQueryFiltersChanged($event)"></ws-filter-panel>
+<div [class.filters-showing]="queryFilters.length > 0"></div>

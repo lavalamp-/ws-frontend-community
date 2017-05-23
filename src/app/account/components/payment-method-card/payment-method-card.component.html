@@ -1,0 +1,21 @@
+<md-card class="payment-token-card">
+  <md-card-title>
+    {{paymentToken.nameDescription}}
+  </md-card-title>
+  <md-card-content>
+    <div class="row">
+      <div class="col-xs-18">
+        {{paymentToken.description}}
+        <br>
+        {{paymentToken.createdDescription}}
+      </div>
+      <div class="col-xs-6">
+        <div class="delete-container">
+          <button md-fab color="warn" (click)="onDeleteClicked()">
+            <i class="fa fa-icon fa-remove fa-2x"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </md-card-content>
+</md-card>

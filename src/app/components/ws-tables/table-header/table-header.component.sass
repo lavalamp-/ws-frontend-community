@@ -1,0 +1,28 @@
+@import "../../../../assets/ws-variables"
+
+$margin-distance: $default-padding * $table-header-multiplier
+
+.table-header-row
+  display: flex
+  align-items: center
+  margin-bottom: $margin-distance
+
+  .header-row-left
+    flex: 0 0 auto
+    margin-right: $pagination-dimension * 0.5
+
+  .search-box
+    width: 40%
+
+  .filter-box
+    width: 40%
+
+  .header-row-middle
+    flex: 1 0 auto
+
+  .header-row-right
+    flex: 0 0 auto
+    margin-left: $pagination-dimension * 0.5
+
+  .ordering-container
+    width: 20%

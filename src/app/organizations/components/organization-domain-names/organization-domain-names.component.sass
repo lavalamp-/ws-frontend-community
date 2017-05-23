@@ -1,0 +1,32 @@
+@import "../../../../assets/ws-variables"
+
+$padding-amount: 12px
+
+.domains-list-card
+  padding-left: 0
+  padding-right: 0
+  padding-top: $padding-amount
+  padding-bottom: 0
+  color: $gray-base
+  margin-bottom: $padding-amount
+
+  .row
+    padding-left: $padding-amount
+    padding-right: $padding-amount
+
+  .domains-row-header
+    font-weight: bold
+    padding-bottom: 10px
+    border-bottom: 1px solid $gray-light
+
+  .domains-row
+    display: flex
+    align-items: center
+
+  .domains-row:nth-child(even)
+    background-color: $brand-background
+
+  .domains-list-message
+    margin-left: $padding-amount
+    margin-right: $padding-amount
+    padding-bottom: $padding-amount

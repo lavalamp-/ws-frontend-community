@@ -1,0 +1,12 @@
+<div class="modal-container">
+  <div class="modal-middle">
+    <md-dialog-content><img [src]="imageUrl" src-fallback="{{ getPlaceholderUrl() }}" style="width: 100%;"></md-dialog-content>
+  </div>
+  <div class="modal-bottom">
+    <div class="pull-right">
+      <button md-tooltip="Close" color="warn" md-dialog-close md-fab>
+        <i class="fa fa-ban fa-2x"></i>
+      </button>
+    </div>
+  </div>
+</div>

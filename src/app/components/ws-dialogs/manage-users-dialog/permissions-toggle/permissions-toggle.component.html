@@ -1,0 +1,4 @@
+<button md-raised-button [class.btn-primary]="userPermission.can_read" [class.btn-default]="!userPermission.can_read" (click)="onChange('read')">Read</button>
+<button md-raised-button [class.btn-primary]="userPermission.can_write" [class.btn-default]="!userPermission.can_write" (click)="onChange('write')">Write</button>
+<button md-raised-button [class.btn-primary]="userPermission.can_scan" [class.btn-default]="!userPermission.can_scan" (click)="onChange('scan')">Scan</button>
+<button md-raised-button [class.btn-primary]="userPermission.can_admin" [class.btn-default]="!userPermission.can_admin" (click)="onChange('admin')">Admin</button>

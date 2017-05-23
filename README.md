@@ -32,6 +32,31 @@ This repository contains the code the Web Sight front-end single page applicatio
 
 ## Installation
 
+**Web Sight has been tested and works with both OSX and Ubuntu. The steps here should work on other Linux distributions, but YMMV.**
+
+To build the front-end code, we require the Angular2 CLI project, which in turn relies upon NodeJS. If you haven't used the Angular2 CLI before, it's a bit of a pain in the ass to install and keep updated (to put things mildly). As such, we're going to install a specific version of Angular2 CLI for the time being.
+
+First thing's first is to install [Node Version Manager](https://github.com/creationix/nvm). Once `nvm` is installed, install NodeJS version 6.10.3 and set it as the default NodeJS version using the following commands:
+
+```
+nvm install 6.10.3
+nvm alias default 6.10.3
+nvm use default
+```
+
+Next, (globally) install the Angular2 CLI using the following command:
+
+```
+npm install -g "angular-cli@1.0.0-beta.24"
+```
+
+With the proper version of Angular2 CLI installed, we can now pull down the front-end code. Use the following commands to clone the front-end repository and `cd` into the cloned directory:
+
+```
+git clone https://github.com/lavalamp-/ws-frontend-community.git
+cd ws-frontend-community
+```
+
 ## Configuration & Setup
 
 ## Testing

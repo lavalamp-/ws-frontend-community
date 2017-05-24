@@ -57,13 +57,60 @@ git clone https://github.com/lavalamp-/ws-frontend-community.git
 cd ws-frontend-community
 ```
 
+Once the code is retrieved and you're sitting in the front-end code directory, install the necessary dependencies with the following command:
+
+```
+npm install
+```
+
+Now that the front-end code is pulled down, the proper version of Angular2 CLI is installed, and the application dependencies are installed as well, we can move on to configuring the front-end code for building.
+
 ## Configuration & Setup
+
+Configuring the front-end application for building is fairly simple - the first step is to copy over the example configuration file to the expected configuration file path:
+
+```
+cp src/app/app.config.ts.example src/app/app.config.ts
+```
+
+We will now need to update the contents of the `app.config.ts` file with two values as identified by the `[[REPLACE]]` blocks in the configuration file. Web Sight currently supports the processing of transactions via the [Stripe API](https://stripe.com/docs/api), and if you would like to process payments with your deployment as well then you will need a Stripe account:
+
+```
+apiUrl - This is the URL where the Web Sight back-end API that your front-end application will be communicating with resides (ex: http://127.0.0.1:9999/)
+stripePublishableKey - This is the public key used by the Stripe payments API (note that you don't need to populate this value, but if you don't and you try to run any purchases through the Stripe API they will fail and the front-end will break)
+```
+
+Once you've updated the configuration file, you're ready to build the front-end application.
 
 ## Testing
 
+The Web Sight front-end makes use of the default Angular2 CLI testing harness, which at the time of writing fails the majority of tests (I'm pretty sure this is a bug in the version of Angular2 CLI and how it generates code). If you'd like to see all of the failures in action, run the following command from the root directory of the project:
+
+```
+ng test
+```
+
 ## Running the Development Server
 
+We can use the Angular2 CLI to serve up the front-end application using the following command:
+
+```
+ng serve
+```
+
+This command will likely issue some warnings about `fallbackLoader` and `loader` being deprecated, but the code builds nonetheless. Once the code is finished building, you shouldbe able to navigate a browser to http://127.0.0.1:4200/ to view the application. Note that the Angular2 CLI development server will automatically re-compile code as you edit it.
+
 ## Deploying Front-end Code
+
+To build the front-end application for production deployment, run the following command:
+
+```
+ng build --prod
+```
+
+Once the code is built, a new directory entitled `dist` will be populated within the project root containing all of the compiled code to deploy to your production server. To deploy the code, simply copy the contents of the `dist` directory and all its subdirectories to the web root of a web server (Nginx, Apache, etc). You should then be able to browser to the `index.html` file on the web server and see the application.
+
+ Note that when you're configuring the web server where the code is deployed, you should add a rule that serves up the `index.html` file for all requests to files that don't exist. This enables users to browse to application URLs and still have the application serve up the intended functionality.
 
 ## Documentation
 

@@ -17,7 +17,6 @@ import { DomainNameFormComponent } from './domain-name-form/domain-name-form.com
 import { DomainNameUploadFormComponent } from './domain-name-upload-form/domain-name-upload-form.component';
 import { InputHintComponent } from './input-hint/input-hint.component';
 import { SetupAccountFormComponent } from './setup-account-form/setup-account-form.component';
-import { StripeTokenFormComponent } from './stripe-token-form/stripe-token-form.component';
 import {CustomFormsModule} from "ng2-validation";
 
 @NgModule({
@@ -43,7 +42,6 @@ import {CustomFormsModule} from "ng2-validation";
     DomainNameUploadFormComponent,
     InputHintComponent,
     SetupAccountFormComponent,
-    StripeTokenFormComponent
   ],
   exports: [
     LoginFormComponent,
@@ -57,7 +55,6 @@ import {CustomFormsModule} from "ng2-validation";
     DomainNameFormComponent,
     DomainNameUploadFormComponent,
     SetupAccountFormComponent,
-    StripeTokenFormComponent,
   ]
 })
 export class WsFormsModule { }

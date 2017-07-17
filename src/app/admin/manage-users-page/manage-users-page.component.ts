@@ -51,10 +51,6 @@ export class ManageUsersPageComponent implements OnInit {
   }
 
   private onOpenPaymentsDialogClicked(): void {
-    this.dialogService.showPaymentMethodsDialog()
-      .subscribe(_ => {
-        console.log(_);
-      });
   }
 
   onClickEnableUser(user: UserData) {

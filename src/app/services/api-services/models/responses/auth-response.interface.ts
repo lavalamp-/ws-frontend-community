@@ -5,5 +5,4 @@ export interface AuthResponse {
   is_authenticated: boolean,
   groups: any[],
   user_uuid: string,
-  is_enterprise_user: boolean,
 }

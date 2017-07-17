@@ -13,11 +13,9 @@ export class AuthService {
   private _isAuthenticated: boolean = false;
   private _isAdmin: boolean = false;
   private _userUuid: string = null;
-  private _isEnterpriseUser: boolean = false;
   public isAuthenticated: BehaviorSubject<boolean> = new BehaviorSubject(false);
   public isAdmin: BehaviorSubject<boolean> = new BehaviorSubject(false);
   public userUuid: BehaviorSubject<string> = new BehaviorSubject(null);
-  public isEnterpriseUser: BehaviorSubject<boolean> = new BehaviorSubject(false);
   public authStateChange: BehaviorSubject<AuthState> = new BehaviorSubject(this.authState);
 
   authUrl: string;
@@ -72,8 +70,6 @@ export class AuthService {
     this.isAdmin.next(authResponse.is_admin);
     this._userUuid = authResponse.user_uuid;
     this.userUuid.next(authResponse.user_uuid);
-    this._isEnterpriseUser = authResponse.is_enterprise_user;
-    this.isEnterpriseUser.next(authResponse.is_enterprise_user);
     this.broadcastAuthState();
     return this.isAuthenticated.getValue();
   }
@@ -230,7 +226,6 @@ export class AuthService {
     return new AuthState(
       this._isAuthenticated,
       this._isAdmin,
-      this._isEnterpriseUser,
       this._userUuid
     );
   }

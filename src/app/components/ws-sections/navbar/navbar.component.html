@@ -35,8 +35,6 @@
 
       <ul class="nav navbar-nav navbar-right" >
 
-        <li class="chip-container" *ngIf="authState?.isEnterprise"><ws-chip [text]="'Enterprise User'"></ws-chip></li>
-
         <!-- Settings Navigation !-->
 
         <li *ngIf="authState?.isAuthenticated"><a routerLink="/account/home">Settings</a></li>

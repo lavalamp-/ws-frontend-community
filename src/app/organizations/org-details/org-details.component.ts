@@ -58,7 +58,6 @@ export class OrgDetailsComponent implements OnInit, OnDestroy {
   private _permissions: OrganizationPermission[];
   private userIsAdmin: boolean;
   private userUuid: string;
-  private userIsEnterprise: boolean;
   private networkPresentation: PresentationResponse;
   private domainPresentation: PresentationResponse;
 
@@ -87,7 +86,6 @@ export class OrgDetailsComponent implements OnInit, OnDestroy {
     this.subscriptions.push(this.route.params.subscribe(params => this.orgUuid = params['orgId']));
     this.subscriptions.push(this.authService.userUuid.subscribe(uuid => this.userUuid = uuid));
     this.subscriptions.push(this.authService.isAdmin.subscribe(isAdmin => this.userIsAdmin = isAdmin));
-    this.subscriptions.push(this.authService.isEnterpriseUser.subscribe(isEnterprise => this.userIsEnterprise = isEnterprise));
   }
 
   private addDomainsQueryFilter(queryFilter: QueryFilter): void {

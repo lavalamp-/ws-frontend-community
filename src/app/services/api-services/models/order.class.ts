@@ -22,7 +22,6 @@ export class Order extends BaseModel {
   public payment_last_four: string;
   public payment_exp_month: number;
   public payment_exp_year: number;
-  public is_enterprise_order: boolean;
 
   public static fromObject(toParse: any): any {
     return new Order(toParse);
@@ -34,15 +33,6 @@ export class Order extends BaseModel {
       toReturn.push(Order.fromObject(curParse));
     }
     return toReturn;
-  }
-
-  get paymentDescription(): string {
-    if (!this.is_enterprise_order) {
-      return '****-****-****-' + this.payment_last_four + ' (expires ' + this.payment_exp_month + '/' + this.payment_exp_year + ')';
-    } else {
-      return 'No Payment Required (Enterprise)';
-    }
-
   }
 
 }

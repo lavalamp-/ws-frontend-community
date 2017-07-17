@@ -124,7 +124,7 @@ export class OrganizationService {
   }
 
   public exportSslSupport(uuid: string, queryFilters: QueryFilter[] = [], exportType: string, searchTerm: string = null, queryOrdering: QueryOrdering = null): void {
-    let requestUrl = this.baseUrl + uuid + '/ssl-support/';
+    let requestUrl = this.baseUrl + uuid + '/es/ssl-support/';
     let queryString = this.queryService.getExportQueryString(exportType, queryFilters, searchTerm, queryOrdering);
     requestUrl = requestUrl + '?' + queryString;
     this.wsHttp.get(requestUrl, {responseType: ResponseContentType.Blob})
@@ -132,7 +132,7 @@ export class OrganizationService {
   }
 
   public exportWebApps(uuid: string, queryFilters: QueryFilter[] = [], exportType: string, searchTerm: string = null, queryOrdering: QueryOrdering = null): void {
-    let requestUrl = this.baseUrl + uuid + '/web-services/';
+    let requestUrl = this.baseUrl + uuid + '/es/web-services/';
     let queryString = this.queryService.getExportQueryString(exportType, queryFilters, searchTerm, queryOrdering);
     requestUrl = requestUrl + '?' + queryString;
     this.wsHttp.get(requestUrl, {responseType: ResponseContentType.Blob})
@@ -232,7 +232,7 @@ export class OrganizationService {
   }
 
   public getSslSupport(uuid: string, pageNumber: number = 1, queryFilters: QueryFilter[] = [], searchTerm: string = null, queryOrdering: QueryOrdering = null): Observable<ManyApiResponse<SslSupport[]>> {
-    let requestUrl = this.baseUrl + uuid + '/ssl-support/';
+    let requestUrl = this.baseUrl + uuid + '/es/ssl-support/';
     let queryString = this.queryService.getQueryStringNew(pageNumber, queryFilters, queryOrdering, searchTerm);
     requestUrl = requestUrl + '?' + queryString;
     return this.wsHttp.get(requestUrl)
@@ -244,7 +244,7 @@ export class OrganizationService {
   }
 
   public getSslSupportAnalytics(uuid: string, queryFilters: QueryFilter[] = [], searchTerm: string = null): Observable<SslSupportAnalytics> {
-    let requestUrl = this.baseUrl + uuid + '/ssl-support/analytics/';
+    let requestUrl = this.baseUrl + uuid + '/es/ssl-support/analytics/';
     let queryString = this.queryService.getQueryStringFromFiltersAndSearch(queryFilters, searchTerm);
     requestUrl = requestUrl + '?' + queryString;
     return this.wsHttp.get(requestUrl)
@@ -255,7 +255,7 @@ export class OrganizationService {
   }
 
   public getSslSupportExportUrl(orgUuid: string): string {
-    return this.baseUrl + orgUuid + '/ssl-support/';
+    return this.baseUrl + orgUuid + '/es/ssl-support/';
   }
 
   public getUserPermissions(uuid: string): Observable<OrganizationPermission[]> {
@@ -264,7 +264,7 @@ export class OrganizationService {
   }
 
   public getWebServices(uuid: string, pageNumber: number = 1, queryFilters: QueryFilter[] = [], orderField: string = null, orderDirection: string = null): Observable<ManyApiResponse<WebService[]>> {
-    let requestUrl = this.baseUrl + uuid + '/web-services/';
+    let requestUrl = this.baseUrl + uuid + '/es/web-services/';
     let queryString = this.queryService.getQueryString(pageNumber, queryFilters, orderField, orderDirection);
     requestUrl = requestUrl + '?' + queryString;
     return this.wsHttp.get(requestUrl)
@@ -276,7 +276,7 @@ export class OrganizationService {
   }
 
   public getWebServicesNew(uuid: string, pageNumber: number = 1, queryFilters: QueryFilter[] = [], searchTerm: string = null, queryOrdering: QueryOrdering = null): Observable<ManyApiResponse<WebService[]>> {
-    let requestUrl = this.baseUrl + uuid + '/web-services/';
+    let requestUrl = this.baseUrl + uuid + '/es/web-services/';
     let queryString = this.queryService.getQueryStringNew(pageNumber, queryFilters, queryOrdering, searchTerm);
     requestUrl = requestUrl + '?' + queryString;
     return this.wsHttp.get(requestUrl)
@@ -288,11 +288,11 @@ export class OrganizationService {
   }
 
   public getWebServicesExportUrl(orgUuid: string): string {
-    return this.baseUrl + orgUuid + '/web-services/';
+    return this.baseUrl + orgUuid + '/es/web-services/';
   }
 
   public getWebServiceAnalytics(uuid: string, queryFilters: QueryFilter[] = [], searchTerm: string = null): Observable<WebServiceAnalytics> {
-    let requestUrl = this.baseUrl + uuid + '/web-services/analytics/';
+    let requestUrl = this.baseUrl + uuid + '/es/web-services/analytics/';
     let queryString = this.queryService.getQueryStringFromFiltersAndSearch(queryFilters, searchTerm);
     requestUrl = requestUrl + '?' + queryString;
     return this.wsHttp.get(requestUrl)
@@ -300,7 +300,7 @@ export class OrganizationService {
   }
 
   public getWebServiceAnalyticsNew(uuid: string, queryFilters: QueryFilter[] = [], searchTerm: string = null): Observable<WebServiceAnalytics> {
-    let requestUrl = this.baseUrl + uuid + '/web-services/analytics/';
+    let requestUrl = this.baseUrl + uuid + '/es/web-services/analytics/';
     let queryString = this.queryService.getQueryStringFromFiltersAndSearch(queryFilters, searchTerm);
     requestUrl = requestUrl + '?' + queryString;
     return this.wsHttp.get(requestUrl)
@@ -311,7 +311,7 @@ export class OrganizationService {
   }
 
   public getWebServiceScreenshots(uuid: string, pageNumber = 1, queryFilters: QueryFilter[] = []): Observable<ManyApiResponse<HttpScreenshot[]>> {
-    let requestUrl = this.baseUrl + uuid + '/web-screenshots/';
+    let requestUrl = this.baseUrl + uuid + '/es/web-screenshots/';
     let queryString = this.queryService.getQueryString(pageNumber, queryFilters);
     requestUrl = requestUrl + '?' + queryString;
     return this.wsHttp.get(requestUrl)
@@ -319,7 +319,7 @@ export class OrganizationService {
   }
 
   public getWebTechReportAnalytics(uuid: string, queryFilters: QueryFilter[] = []): Observable<WebTechReport> {
-    let requestUrl = this.baseUrl + uuid + '/web-tech-reports/analytics/';
+    let requestUrl = this.baseUrl + uuid + '/es/web-tech-reports/analytics/';
     let queryString = this.queryService.getQueryStringFromFilters(queryFilters);
     requestUrl = requestUrl + '?' + queryString;
     return this.wsHttp.get(requestUrl)
@@ -327,7 +327,7 @@ export class OrganizationService {
   }
 
   public getWebTransactionAnalytics(uuid: string, queryFilters: QueryFilter[] = []): Observable<HttpTransactionAnalytics> {
-    let requestUrl = this.baseUrl + uuid + '/web-transactions/analytics/';
+    let requestUrl = this.baseUrl + uuid + '/es/web-transactions/analytics/';
     let queryString = this.queryService.getQueryStringFromFilters(queryFilters);
     requestUrl = requestUrl + '?' + queryString;
     return this.wsHttp.get(requestUrl)

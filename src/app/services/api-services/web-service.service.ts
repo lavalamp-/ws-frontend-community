@@ -31,12 +31,12 @@ export class WebServiceService {
   }
 
   public getPresentation(orgUuid: string): Observable<PresentationResponse> {
-    let requestUrl = this.config.apiUrl + 'organizations/' + orgUuid + '/web-services/';
+    let requestUrl = this.config.apiUrl + 'organizations/' + orgUuid + '/es/web-services/';
     return this.presentationService.getPresentationByUrl('webApp', requestUrl);
   }
 
   public getResourceAnalytics(networkServiceUuid: string, queryFilters: QueryFilter[] = [], searchTerm: string = null): Observable<WebResourceAnalytics> {
-    let requestUrl = this.baseUrl + networkServiceUuid + '/resources/analytics/';
+    let requestUrl = this.baseUrl + networkServiceUuid + '/es/resources/analytics/';
     let queryString = this.queryService.getQueryStringFromFiltersAndSearch(queryFilters, searchTerm);
     requestUrl = requestUrl + '?' + queryString;
     return this.wsHttp.get(requestUrl)
@@ -44,7 +44,7 @@ export class WebServiceService {
   }
 
   public getResources(webServiceUuid: string, pageNumber: number = 1, queryFilters: QueryFilter[] = [], queryOrdering: QueryOrdering = null, searchTerm: string = null): Observable<ManyApiResponse<any[]>> {
-    let requestUrl = this.baseUrl + webServiceUuid + '/resources/';
+    let requestUrl = this.baseUrl + webServiceUuid + '/es/resources/';
     let queryString = this.queryService.getQueryStringNew(pageNumber, queryFilters, queryOrdering, searchTerm);
     requestUrl = requestUrl + '?' + queryString;
     return this.wsHttp.get(requestUrl)
@@ -56,12 +56,12 @@ export class WebServiceService {
   }
 
   public getResourcePresentation(networkServiceUuid: string): Observable<PresentationResponse> {
-    let requestUrl = this.baseUrl + networkServiceUuid + '/resources/';
+    let requestUrl = this.baseUrl + networkServiceUuid + '/es/resources/';
     return this.presentationService.getPresentationByUrl('webResource', requestUrl);
   }
 
   public getResourceUrl(networkServiceUuid: string): string {
-    return this.baseUrl + networkServiceUuid + '/resources/';
+    return this.baseUrl + networkServiceUuid + '/es/resources/';
   }
 
   public getWebService(uuid: string): Observable<WebService> {
@@ -75,7 +75,7 @@ export class WebServiceService {
   }
 
   public getWebServiceScreenshots(uuid: string, pageNumber: number = 1, queryFilters: QueryFilter[] = [], orderField: string = null, orderDirection: string = null): Observable<ManyApiResponse<HttpScreenshot[]>> {
-    let requestUrl = this.baseUrl + uuid + '/http-screenshots/';
+    let requestUrl = this.baseUrl + uuid + '/es/http-screenshots/';
     let queryString = this.queryService.getQueryString(pageNumber, queryFilters, orderField, orderDirection);
     requestUrl = requestUrl + '?' + queryString;
     return this.wsHttp.get(requestUrl)
@@ -83,7 +83,7 @@ export class WebServiceService {
   }
 
   public getWebServiceTransactionAnalytics(uuid: string, queryFilters: QueryFilter[] = []): Observable<HttpTransactionAnalytics> {
-    let requestUrl = this.baseUrl + uuid + '/http-transactions/analytics/';
+    let requestUrl = this.baseUrl + uuid + '/es/http-transactions/analytics/';
     let queryString = this.queryService.getQueryStringFromFilters(queryFilters);
     requestUrl = requestUrl + '?' + queryString;
     return this.wsHttp.get(requestUrl)
@@ -91,7 +91,7 @@ export class WebServiceService {
   }
 
   public getWebServiceTransactions(uuid: string, pageNumber: number = 1, queryFilters: QueryFilter[] = [], orderField: string = null, orderDirection: string = null): Observable<ManyApiResponse<HttpTransaction[]>> {
-    let requestUrl = this.baseUrl + uuid + '/http-transactions/';
+    let requestUrl = this.baseUrl + uuid + '/es/http-transactions/';
     let queryString = this.queryService.getQueryString(pageNumber, queryFilters, orderField, orderDirection);
     requestUrl = requestUrl + '?' + queryString;
     return this.wsHttp.get(requestUrl)

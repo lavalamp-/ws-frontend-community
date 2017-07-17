@@ -38,7 +38,7 @@ export class WsSslSupportService {
   }
 
   public getPresentation(orgUuid: string): Observable<PresentationResponse> {
-    let requestUrl = this.config.apiUrl + 'organizations/' + orgUuid + '/ssl-support/';
+    let requestUrl = this.config.apiUrl + 'organizations/' + orgUuid + '/es/ssl-support/';
     return this.presentationService.getPresentationByUrl('sslSupport', requestUrl);
   }
 

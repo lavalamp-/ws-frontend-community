@@ -21,8 +21,6 @@ import {WsDomainNameService} from "../../services/api-services/ws-domain-name.se
 import {OrganizationPermission} from "../../services/api-services/models/organization-permission.class";
 import {AuthService} from "../../services/api-services/auth.service";
 import {NotificationsService} from "angular2-notifications";
-import {PaymentToken} from "../../services/api-services/models/payment-token.class";
-import {WsPaymentTokenService} from "../../services/api-services/ws-payment-token.service";
 import {PresentationResponse} from "../../services/api-services/models/responses/presentation-response.interface";
 
 @Component({
@@ -60,8 +58,6 @@ export class OrgDetailsComponent implements OnInit, OnDestroy {
   private _permissions: OrganizationPermission[];
   private userIsAdmin: boolean;
   private userUuid: string;
-  private _paymentTokens: ManyApiResponse<PaymentToken[]>;
-  private _selectedToken: PaymentToken;
   private userIsEnterprise: boolean;
   private networkPresentation: PresentationResponse;
   private domainPresentation: PresentationResponse;
@@ -78,7 +74,6 @@ export class OrgDetailsComponent implements OnInit, OnDestroy {
     private domainsService: WsDomainNameService,
     private authService: AuthService,
     private notifyService: NotificationsService,
-    private paymentTokenService: WsPaymentTokenService,
   ) { }
 
   ngOnDestroy() {
@@ -125,7 +120,6 @@ export class OrgDetailsComponent implements OnInit, OnDestroy {
     this.fetchNetworks();
     this.fetchDomains();
     this.fetchPermissions();
-    this.fetchPaymentTokens();
     this.fetchNetworkPresentation();
     this.fetchDomainPresentation();
   }
@@ -174,11 +168,6 @@ export class OrgDetailsComponent implements OnInit, OnDestroy {
       .subscribe(networks => this.networks = networks);
   }
 
-  private fetchPaymentTokens(): void {
-    this.paymentTokenService.getChargeablePaymentTokens()
-      .subscribe(tokens => this.paymentTokens = tokens);
-  }
-
   private fetchPermissions(): void {
     this.orgService.getUserPermissions(this.orgUuid)
       .subscribe(
@@ -214,23 +203,8 @@ export class OrgDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
-  private onAddPaymentClicked(): void {
-    this.dialogService.showPaymentMethodsDialog()
-      .subscribe(response => {
-        if (response) {
-          this.fetchPaymentTokens();
-        }
-      })
-  }
-
   private onCheckOutClicked(): void {
-    let selectedUuid;
-    if (this.userIsEnterprise) {
-      selectedUuid = null;
-    } else {
-      selectedUuid = this.selectedToken.uuid;
-    }
-    this.orgService.createOrderForOrganization(this.orgUuid, selectedUuid)
+    this.orgService.createOrderForOrganization(this.orgUuid)
       .subscribe(order => {
         this.router.navigate(['/organizations/' + this.orgUuid + '/check-out/' + order.uuid]);
       });
@@ -569,28 +543,6 @@ export class OrgDetailsComponent implements OnInit, OnDestroy {
     this.fetchAll();
   }
 
-  get paymentRequired(): boolean {
-    if (!this.paymentTokens) {
-      return true;
-    } else if (!this.organization) {
-      return true;
-    } else if (this.userIsEnterprise) {
-      return false;
-    } else {
-      return this.organization.current_order_tier_name != 'micro';
-    }
-  }
-
-  get paymentTokens(): ManyApiResponse<PaymentToken[]> {
-    return this._paymentTokens;
-  }
-
-  set paymentTokens(tokens: ManyApiResponse<PaymentToken[]>) {
-    this._paymentTokens = tokens;
-    console.log('got tokens');
-    console.log(tokens);
-  }
-
   get permissions(): OrganizationPermission[] {
     return this._permissions;
   }
@@ -607,26 +559,8 @@ export class OrgDetailsComponent implements OnInit, OnDestroy {
     } else if (!this.organization.ready_for_scan) {
       return false;
     } else {
-      if (this.paymentRequired && !this.selectedToken) {
-        return false;
-      } else if (this.paymentRequired && !this.selectedToken.can_be_charged) {
-        return false;
-      } else if (this.organization.current_order_tier_name == 'enterprise' && !this.userIsEnterprise) {
-        return false;
-      } else {
-        return true;
-      }
+      return true;
     }
-  }
-
-  get selectedToken(): PaymentToken {
-    return this._selectedToken;
-  }
-
-  set selectedToken(token: PaymentToken) {
-    this._selectedToken = token;
-    console.log('Token selected');
-    console.log(token);
   }
 
   get tabIndex(): number {

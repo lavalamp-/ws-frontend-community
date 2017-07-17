@@ -111,34 +111,8 @@
             Domain Names
           </li>
         </ul>
-        <div class="payment-method-container">
-          <div class="payment-select-container" *ngIf="paymentTokens?.results.length > 0">
-            <md-select [style.width]="'100%'" [disabled]="!paymentRequired" [placeholder]="paymentRequired ? 'Choose Payment Method...' : 'No Payment Required'" [(ngModel)]="selectedToken">
-              <md-option *ngFor="let paymentToken of paymentTokens?.results" [value]="paymentToken">{{paymentToken.description}}</md-option>
-            </md-select>
-          </div>
-          <div class="add-payment-container" *ngIf="!paymentTokens || paymentTokens.results.length == 0">
-            <ws-button [text]="'Add Payment Method'" (buttonClicked)="onAddPaymentClicked()" [asBlock]="true"></ws-button>
-          </div>
-        </div>
-        <div class="single-action-container">
-          <ws-button [disabled]="!scanButtonEnabled" [text]="'Check Out'" (buttonClicked)="onCheckOutClicked()"></ws-button>
-          <div class="action-description">
-            <div class="scan-price">
-              <div class="price" *ngIf="organization?.current_order_tier_name == 'micro' || userIsEnterprise">
-                FREE
-              </div>
-              <div class="price" *ngIf="organization?.current_order_tier_name != 'micro' && (organization?.current_order_tier_name != 'enterprise' && !userIsEnterprise)">
-                {{organization?.current_order_price / 100 | currency:'USD':true}}
-              </div>
-              <div class="price" *ngIf="organization?.current_order_tier_name == 'enterprise' && !userIsEnterprise">
-                ENTERPRISE
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="payment-reminder" *ngIf="paymentRequired">
-          <i>Your card will not be charged yet</i>
+        <div class="single-action-container last-container">
+          <ws-button [disabled]="!scanButtonEnabled" [text]="'Scan This Organization'" (buttonClicked)="onCheckOutClicked()" [asBlock]="true"></ws-button>
         </div>
       </div>
     </div>

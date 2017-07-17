@@ -12,7 +12,6 @@ import {FileUploadModule} from "ng2-file-upload";
 import { ManageUsersDialogComponent } from './manage-users-dialog/manage-users-dialog.component';
 import { UserPermissionsComponent } from './manage-users-dialog/user-permissions/user-permissions.component';
 import { PermissionsToggleComponent } from './manage-users-dialog/permissions-toggle/permissions-toggle.component';
-import { PaymentMethodDialogComponent } from './payment-method-dialog/payment-method-dialog.component';
 import {WsFormsModule} from "../ws-forms/ws-forms.module";
 import { ExportDataDialogComponent } from './export-data-dialog/export-data-dialog.component';
 import {WsWidgetsModule} from "../ws-widgets/ws-widgets.module";
@@ -28,7 +27,7 @@ import {WsWidgetsModule} from "../ws-widgets/ws-widgets.module";
     WsFormsModule,
     WsWidgetsModule,
   ],
-  declarations: [ConfirmDialogComponent, LightboxDialogComponent, StrongConfirmDialogComponent, UploadDialogComponent, ManageUsersDialogComponent, UserPermissionsComponent, PermissionsToggleComponent, PaymentMethodDialogComponent, ExportDataDialogComponent],
+  declarations: [ConfirmDialogComponent, LightboxDialogComponent, StrongConfirmDialogComponent, UploadDialogComponent, ManageUsersDialogComponent, UserPermissionsComponent, PermissionsToggleComponent, ExportDataDialogComponent],
   exports: [
     ConfirmDialogComponent,
     LightboxDialogComponent,
@@ -36,7 +35,6 @@ import {WsWidgetsModule} from "../ws-widgets/ws-widgets.module";
     UploadDialogComponent,
     ManageUsersDialogComponent,
     UserPermissionsComponent,
-    PaymentMethodDialogComponent,
     ExportDataDialogComponent,
   ],
   entryComponents: [
@@ -45,7 +43,6 @@ import {WsWidgetsModule} from "../ws-widgets/ws-widgets.module";
     StrongConfirmDialogComponent,
     UploadDialogComponent,
     ManageUsersDialogComponent,
-    PaymentMethodDialogComponent,
     ExportDataDialogComponent,
   ],
   providers: [

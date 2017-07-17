@@ -7,9 +7,6 @@ import { WsFormsModule } from "../components/ws-forms/ws-forms.module";
 import {WsWidgetsModule} from "../components/ws-widgets/ws-widgets.module";
 import { AccountHomeComponent } from './account-home/account-home.component';
 import {MaterialModule} from "@angular/material";
-import { AddNewPaymentMethodComponent } from './components/add-new-payment-method/add-new-payment-method.component';
-import { PaymentMethodCardComponent } from './components/payment-method-card/payment-method-card.component';
-import { PaymentMethodsListComponent } from './components/payment-methods-list/payment-methods-list.component';
 import { AccountSettingsComponent } from './components/account-settings/account-settings.component';
 
 @NgModule({
@@ -24,9 +21,6 @@ import { AccountSettingsComponent } from './components/account-settings/account-
     AccountComponent,
     SettingsPageComponent,
     AccountHomeComponent,
-    AddNewPaymentMethodComponent,
-    PaymentMethodCardComponent,
-    PaymentMethodsListComponent,
     AccountSettingsComponent
   ]
 })

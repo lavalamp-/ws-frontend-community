@@ -20,25 +20,6 @@
           </li>
         </ul>
       </div>
-      <h2>Scan Cost</h2>
-      <div class="scan-cost">
-        <ul class="list-group">
-          <li class="list-group-item">
-            <span class="badge">{{order?.order_tier_name}}</span>
-            Pricing Tier
-          </li>
-          <li class="list-group-item">
-            <span class="badge">{{order?.order_tier_price / 100 | currency:'USD':true}}</span>
-            Price
-          </li>
-        </ul>
-      </div>
-      <h2>Payment Method</h2>
-      <div class="payment-method">
-        <ul class="list-group">
-          <li class="list-group-item payment-list-item">{{order?.paymentDescription}}</li>
-        </ul>
-      </div>
       <div class="place-order">
         <div class="place-comment">
           <i>Everything look good? If so, click the button below to start your scan!</i>

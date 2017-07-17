@@ -11,7 +11,6 @@ import {NetworksUploadResponse} from "../../services/api-services/models/respons
 import {NotificationsService} from "angular2-notifications";
 import {ManageUsersDialogComponent} from "./manage-users-dialog/manage-users-dialog.component";
 import {DomainsUploadResponse} from "../../services/api-services/models/responses/domains-upload-response.interface";
-import {PaymentMethodDialogComponent} from "./payment-method-dialog/payment-method-dialog.component";
 import {QueryFilter} from "../../services/api-services/models/requests/query-filter.class";
 import {QueryOrdering} from "../../services/api-services/models/requests/query-ordering.class";
 import {ExportDataDialogComponent} from "./export-data-dialog/export-data-dialog.component";
@@ -109,14 +108,6 @@ export class WsDialogService {
     dialogConfig['width'] = '1000px';
     let dialogRef = this.dialog.open(ManageUsersDialogComponent, dialogConfig);
     dialogRef.componentInstance.organization = org;
-    this.dialogRefs.push(dialogRef);
-    return dialogRef.afterClosed();
-  }
-
-  public showPaymentMethodsDialog(): Observable<any> {
-    let dialogConfig = this.getConfiguration();
-    dialogConfig['width'] = '500px';
-    let dialogRef = this.dialog.open(PaymentMethodDialogComponent, dialogConfig);
     this.dialogRefs.push(dialogRef);
     return dialogRef.afterClosed();
   }

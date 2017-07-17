@@ -20,7 +20,6 @@ import {MyAccountViewstate} from "../../services/ui-services/models/viewstates/m
 export class AccountHomeComponent implements OnInit {
 
   private _tabIndex: number = 0;
-  private _currentManagePaymentsPage: number = 1;
 
   constructor(
     private titleService: WsTitleService,
@@ -38,25 +37,11 @@ export class AccountHomeComponent implements OnInit {
     let viewstate = this.viewstateService.getViewstate();
     if (viewstate) {
       this._tabIndex = viewstate.tabIndex;
-      this._currentManagePaymentsPage = viewstate.managePaymentsPage;
     }
   }
 
   private setViewstate(): void {
     this.viewstateService.setViewstate(this.viewstate);
-  }
-
-  get currentManagePaymentsPage(): number {
-    return this._currentManagePaymentsPage;
-  }
-
-  set currentManagePaymentsPage(page: number) {
-    if (page != this._currentManagePaymentsPage) {
-      this._currentManagePaymentsPage = page;
-      console.log('manage payments page changed');
-      console.log(page);
-      this.setViewstate();
-    }
   }
 
   get tabIndex(): number {
@@ -72,7 +57,7 @@ export class AccountHomeComponent implements OnInit {
 
   get viewstate(): MyAccountViewstate {
     return new MyAccountViewstate(
-      this.currentManagePaymentsPage,
+      0,
       this.tabIndex
     );
   }

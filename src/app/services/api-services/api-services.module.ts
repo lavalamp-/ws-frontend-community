@@ -16,7 +16,6 @@ import {WsDomainNameService} from "./ws-domain-name.service";
 import {WsNetworkServiceService} from "./ws-network-service.service";
 import {WsSslSupportService} from "./ws-ssl-support.service";
 import {WsConversionService} from "./ws-conversion.service";
-import {WsPaymentTokenService} from "./ws-payment-token.service";
 import {WsOrderService} from "./ws-order.service";
 import {WsExportService} from "./ws-export.service";
 import {WsPresentationService} from "./ws-presentation.service";
@@ -43,7 +42,6 @@ import {WsPresentationService} from "./ws-presentation.service";
     WsNetworkServiceService,
     WsSslSupportService,
     WsConversionService,
-    WsPaymentTokenService,
     WsOrderService,
     WsExportService,
     WsPresentationService,

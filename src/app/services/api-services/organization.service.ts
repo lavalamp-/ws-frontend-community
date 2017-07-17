@@ -80,10 +80,9 @@ export class OrganizationService {
       .map(response => response.json() as Network);
   }
 
-  public createOrderForOrganization(orgUuid: string, tokenUuid: string): Observable<Order> {
-    let toSend = {payment_token: tokenUuid};
+  public createOrderForOrganization(orgUuid: string): Observable<Order> {
     let requestUrl = this.baseUrl + orgUuid + '/orders/';
-    return this.wsHttp.post(requestUrl, toSend)
+    return this.wsHttp.post(requestUrl, {})
       .map(response => Order.fromObject(response.json()));
   }
 

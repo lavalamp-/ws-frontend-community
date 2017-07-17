@@ -42,12 +42,6 @@ export class DetailListService {
 
   public getOrganizationDetails(organization: Organization): DetailItem[] {
     let toReturn = [];
-    let creditsDescription = '';
-    if (organization.available_scan_credits_count > 0) {
-      creditsDescription = organization.available_scan_credits_count.toString();
-    } else {
-      creditsDescription = '0 (next credit available at ' + organization.next_credit_available_time + ')';
-    }
     let scanTimeDescription = '';
     if (organization.last_scan_time) {
       scanTimeDescription = organization.last_scan_time;
@@ -59,7 +53,6 @@ export class DetailListService {
     toReturn.push({title: 'Unmonitored Services', description: organization.unmonitored_service_count});
     toReturn.push({title: 'In-scope Networks', description: organization.monitored_networks_count});
     toReturn.push({title: 'Total Scoped Size', description: organization.monitored_networks_size});
-    toReturn.push({title: 'Scanning Credits', description: creditsDescription});
     toReturn.push({title: 'Ready For Scan?', description: organization.ready_for_scan});
     toReturn.push({title: 'Last Scanned At', description: scanTimeDescription});
     return toReturn;

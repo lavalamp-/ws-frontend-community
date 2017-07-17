@@ -12,8 +12,6 @@ export class Organization extends BaseModel {
   public monitored_networks_count: number;
   public monitored_networks_size: number;
   public ready_for_scan: boolean;
-  public available_scan_credits_count: number;
-  public next_credit_available_time: any;
   public last_scan_time: any;
   public networks_count: number;
   public networks_size: number;

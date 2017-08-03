@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { SslSupportIssuerOrgDonutComponent } from './ssl-support-issuer-org-donut.component';
+import { DomainNameCardComponent } from './domain-name-card.component';
 
-describe('SslSupportIssuerOrgDonutComponent', () => {
-  let component: SslSupportIssuerOrgDonutComponent;
-  let fixture: ComponentFixture<SslSupportIssuerOrgDonutComponent>;
+describe('DomainNameCardComponent', () => {
+  let component: DomainNameCardComponent;
+  let fixture: ComponentFixture<DomainNameCardComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SslSupportIssuerOrgDonutComponent ]
+      declarations: [ DomainNameCardComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SslSupportIssuerOrgDonutComponent);
+    fixture = TestBed.createComponent(DomainNameCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

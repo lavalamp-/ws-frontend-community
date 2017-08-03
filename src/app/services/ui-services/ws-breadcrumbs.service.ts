@@ -26,6 +26,13 @@ export class WsBreadcrumbsService {
     };
   }
 
+  private getBreadcrumbForDomainReportsList(orgUuid: string): Breadcrumb {
+    return {
+      url: '/topography/' + orgUuid + '/domain-names/',
+      label: 'Domain Names',
+    };
+  }
+
   private getBreadcrumbForManageUsers(): Breadcrumb {
     return {
       url: '/admin/manage-users',
@@ -112,6 +119,13 @@ export class WsBreadcrumbsService {
 
   public setBreadcrumbsForAccountSettings(): void {
     this.currentBreadcrumbs = [this.getBreadcrumbForAccountSettings()];
+  }
+
+  public setBreadcrumbsForDomainReportsList(orgUuid: string): void {
+    this.currentBreadcrumbs = [
+      this.getBreadcrumbForTopographyHome(orgUuid),
+      this.getBreadcrumbForDomainReportsList(orgUuid),
+    ]
   }
 
   public setBreadcrumbsForManageUsers(): void {

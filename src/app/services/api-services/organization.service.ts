@@ -26,6 +26,8 @@ import {QueryOrdering} from "./models/requests/query-ordering.class";
 import {Order} from "./models/order.class";
 import {PresentationResponse} from "./models/responses/presentation-response.interface";
 import {WsPresentationService} from "./ws-presentation.service";
+import {DomainNameReport} from "./models/domain-name-report.class";
+import {DomainNameReportAnalytics} from "./models/analytics/domain-name-report-analytics.class";
 
 @Injectable()
 export class OrganizationService {
@@ -137,6 +139,29 @@ export class OrganizationService {
     requestUrl = requestUrl + '?' + queryString;
     this.wsHttp.get(requestUrl, {responseType: ResponseContentType.Blob})
       .subscribe(response => this.downloadHelper.downloadFileFromResponse(response));
+  }
+
+  public getDomainNameReportAnalytics(uuid: string, queryFilters: QueryFilter[] = [], searchTerm: string = null): Observable<DomainNameReportAnalytics> {
+    let requestUrl = this.baseUrl + uuid + '/es/domain-names/analytics/';
+    let queryString = this.queryService.getQueryStringFromFiltersAndSearch(queryFilters, searchTerm);
+    requestUrl = requestUrl + '?' + queryString;
+    return this.wsHttp.get(requestUrl)
+      .map(response => {
+        let data = response.json();
+        return DomainNameReportAnalytics.fromObject(data);
+      });
+  }
+
+  public getDomainNameReports(uuid: string, pageNumber: number = 1, queryFilters: QueryFilter[] = [], searchTerm: string = null, queryOrdering: QueryOrdering = null): Observable<ManyApiResponse<DomainNameReport[]>> {
+    let requestUrl = this.baseUrl + uuid + '/es/domain-names/';
+    let queryString = this.queryService.getQueryStringNew(pageNumber, queryFilters, queryOrdering, searchTerm);
+    requestUrl = requestUrl + '?' + queryString;
+    return this.wsHttp.get(requestUrl)
+      .map(response => {
+        let toReturn = response.json() as ManyApiResponse<DomainNameReport[]>;
+        toReturn.results = DomainNameReport.fromObjects(toReturn.results);
+        return toReturn;
+      });
   }
 
   public getDomains(uuid: string, pageNumber: number = 1, queryFilters: QueryFilter[] = [], orderField: string = null, orderDirection: string = null): Observable<ManyApiResponse<DomainName[]>> {

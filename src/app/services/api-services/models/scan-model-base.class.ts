@@ -3,6 +3,7 @@ import {BaseModel} from "./model-base.class";
 export class BaseScanModel extends BaseModel {
 
   public scan_completed_at: string;
+  public is_latest_scan: boolean;
 
   get scanCompletedDate(): Date {
     if (this.scan_completed_at) {

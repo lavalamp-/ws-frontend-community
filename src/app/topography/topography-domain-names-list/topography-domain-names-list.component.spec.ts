@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { SslSupportCidrDonutComponent } from './ssl-support-cidr-donut.component';
+import { TopographyDomainNamesListComponent } from './topography-domain-names-list.component';
 
-describe('SslSupportCidrDonutComponent', () => {
-  let component: SslSupportCidrDonutComponent;
-  let fixture: ComponentFixture<SslSupportCidrDonutComponent>;
+describe('TopographyDomainNamesListComponent', () => {
+  let component: TopographyDomainNamesListComponent;
+  let fixture: ComponentFixture<TopographyDomainNamesListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SslSupportCidrDonutComponent ]
+      declarations: [ TopographyDomainNamesListComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SslSupportCidrDonutComponent);
+    fixture = TestBed.createComponent(TopographyDomainNamesListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

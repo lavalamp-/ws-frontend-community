@@ -9,6 +9,7 @@ import {TopographyWebAppsListComponent} from "./topography-web-apps-list/topogra
 import {TopographySslSupportListComponent} from "./topography-ssl-support-list/topography-ssl-support-list.component";
 import {TopographySslSupportDetailsComponent} from "./topography-ssl-support-details/topography-ssl-support-details.component";
 import {TopographyWebAppDetailsComponent} from "./topography-web-app-details/topography-web-app-details.component";
+import {TopographyDomainNamesListComponent} from "./topography-domain-names-list/topography-domain-names-list.component";
 
 const topographyRoutes: Routes = [
   {
@@ -22,6 +23,10 @@ const topographyRoutes: Routes = [
         path: '',
         redirectTo: '/organizations/mine',
         pathMatch: 'full',
+      },
+      {
+        path: ':orgId/domain-names',
+        component: TopographyDomainNamesListComponent,
       },
       {
         path: ':orgId/web-applications',

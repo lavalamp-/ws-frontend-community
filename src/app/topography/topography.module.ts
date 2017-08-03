@@ -25,10 +25,8 @@ import { SslSupportCardComponent } from './components/ssl-support-card/ssl-suppo
 import { TopographySslSupportListComponent } from './topography-ssl-support-list/topography-ssl-support-list.component';
 import { SslSupportSummaryRowComponent } from './components/ssl-support-summary-row/ssl-support-summary-row.component';
 import { SslSupportListComponent } from './components/ssl-support-list/ssl-support-list.component';
-import { SslSupportIssuerOrgDonutComponent } from './components/ssl-support-issuer-org-donut/ssl-support-issuer-org-donut.component';
 import { SslSupportSubjectOrgDonutComponent } from './components/ssl-support-subject-org-donut/ssl-support-subject-org-donut.component';
 import { SslSupportNetworkPortDonutComponent } from './components/ssl-support-network-port-donut/ssl-support-network-port-donut.component';
-import { SslSupportCidrDonutComponent } from './components/ssl-support-cidr-donut/ssl-support-cidr-donut.component';
 import { TopographyWebAppsListComponent } from './topography-web-apps-list/topography-web-apps-list.component';
 import { WebAppListComponent } from './components/web-app-list/web-app-list.component';
 import { WebAppSummaryRowComponent } from './components/web-app-summary-row/web-app-summary-row.component';
@@ -39,6 +37,8 @@ import { AnyListComponent } from './components/any-list/any-list.component';
 import { TopographyWebAppDetailsComponent } from './topography-web-app-details/topography-web-app-details.component';
 import { HtmlWebResourceSummaryRowComponent } from './components/html-web-resource-summary-row/html-web-resource-summary-row.component';
 import { GenericWebResourceSummaryRowComponent } from './components/generic-web-resource-summary-row/generic-web-resource-summary-row.component';
+import { TopographyDomainNamesListComponent } from './topography-domain-names-list/topography-domain-names-list.component';
+import { DomainNameCardComponent } from './components/domain-name-card/domain-name-card.component';
 
 
 @NgModule({
@@ -72,10 +72,8 @@ import { GenericWebResourceSummaryRowComponent } from './components/generic-web-
     TopographySslSupportListComponent,
     SslSupportSummaryRowComponent,
     SslSupportListComponent,
-    SslSupportIssuerOrgDonutComponent,
     SslSupportSubjectOrgDonutComponent,
     SslSupportNetworkPortDonutComponent,
-    SslSupportCidrDonutComponent,
     TopographyWebAppsListComponent,
     WebAppListComponent,
     WebAppSummaryRowComponent,
@@ -85,6 +83,8 @@ import { GenericWebResourceSummaryRowComponent } from './components/generic-web-
     TopographyWebAppDetailsComponent,
     HtmlWebResourceSummaryRowComponent,
     GenericWebResourceSummaryRowComponent,
+    TopographyDomainNamesListComponent,
+    DomainNameCardComponent,
   ]
 })
 export class TopographyModule { }

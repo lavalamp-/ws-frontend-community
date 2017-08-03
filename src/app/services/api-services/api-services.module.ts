@@ -19,6 +19,7 @@ import {WsConversionService} from "./ws-conversion.service";
 import {WsOrderService} from "./ws-order.service";
 import {WsExportService} from "./ws-export.service";
 import {WsPresentationService} from "./ws-presentation.service";
+import {WsDomainNameReportService} from "./ws-domain-name-report.service";
 
 @NgModule({
   imports: [
@@ -45,6 +46,7 @@ import {WsPresentationService} from "./ws-presentation.service";
     WsOrderService,
     WsExportService,
     WsPresentationService,
+    WsDomainNameReportService,
   ]
 })
 export class ApiServicesModule { }

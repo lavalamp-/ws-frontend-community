@@ -310,30 +310,6 @@ export class OrganizationService {
       });
   }
 
-  public getWebServiceScreenshots(uuid: string, pageNumber = 1, queryFilters: QueryFilter[] = []): Observable<ManyApiResponse<HttpScreenshot[]>> {
-    let requestUrl = this.baseUrl + uuid + '/es/web-screenshots/';
-    let queryString = this.queryService.getQueryString(pageNumber, queryFilters);
-    requestUrl = requestUrl + '?' + queryString;
-    return this.wsHttp.get(requestUrl)
-      .map(response => response.json() as ManyApiResponse<HttpScreenshot[]>)
-  }
-
-  public getWebTechReportAnalytics(uuid: string, queryFilters: QueryFilter[] = []): Observable<WebTechReport> {
-    let requestUrl = this.baseUrl + uuid + '/es/web-tech-reports/analytics/';
-    let queryString = this.queryService.getQueryStringFromFilters(queryFilters);
-    requestUrl = requestUrl + '?' + queryString;
-    return this.wsHttp.get(requestUrl)
-      .map(response => response.json() as WebTechReport);
-  }
-
-  public getWebTransactionAnalytics(uuid: string, queryFilters: QueryFilter[] = []): Observable<HttpTransactionAnalytics> {
-    let requestUrl = this.baseUrl + uuid + '/es/web-transactions/analytics/';
-    let queryString = this.queryService.getQueryStringFromFilters(queryFilters);
-    requestUrl = requestUrl + '?' + queryString;
-    return this.wsHttp.get(requestUrl)
-      .map(response => response.json() as HttpTransactionAnalytics);
-  }
-
   public removeUser(orgUuid: string, userUuid: string): Observable<OrganizationPermission[]> {
     let toSend = {
       operation: 'remove_user',

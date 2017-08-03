@@ -82,22 +82,6 @@ export class WebServiceService {
       .map(response => response.json() as ManyApiResponse<HttpScreenshot[]>);
   }
 
-  public getWebServiceTransactionAnalytics(uuid: string, queryFilters: QueryFilter[] = []): Observable<HttpTransactionAnalytics> {
-    let requestUrl = this.baseUrl + uuid + '/es/http-transactions/analytics/';
-    let queryString = this.queryService.getQueryStringFromFilters(queryFilters);
-    requestUrl = requestUrl + '?' + queryString;
-    return this.wsHttp.get(requestUrl)
-      .map(response => response.json() as HttpTransactionAnalytics);
-  }
-
-  public getWebServiceTransactions(uuid: string, pageNumber: number = 1, queryFilters: QueryFilter[] = [], orderField: string = null, orderDirection: string = null): Observable<ManyApiResponse<HttpTransaction[]>> {
-    let requestUrl = this.baseUrl + uuid + '/es/http-transactions/';
-    let queryString = this.queryService.getQueryString(pageNumber, queryFilters, orderField, orderDirection);
-    requestUrl = requestUrl + '?' + queryString;
-    return this.wsHttp.get(requestUrl)
-      .map(response => response.json() as ManyApiResponse<HttpTransaction[]>);
-  }
-
   get baseUrl(): string {
     return this._baseUrl;
   }

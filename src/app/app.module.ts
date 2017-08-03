@@ -19,7 +19,6 @@ import { ModalModule } from "angular2-modal";
 import { WsDialogsModule } from "./components/ws-dialogs/ws-dialogs.module";
 import { WsWidgetsModule } from "./components/ws-widgets/ws-widgets.module";
 import {Logger} from "angular2-logger/core";
-import { ReCaptchaModule } from 'angular2-recaptcha';
 import {AdminModule} from "./admin/admin.module";
 import {TopographyModule} from "./topography/topography.module";
 import {WsChartsModule} from "./components/ws-charts/ws-charts.module";
@@ -54,7 +53,6 @@ import {CustomFormsModule} from "ng2-validation";
     BootstrapModalModule,
     WsDialogsModule,
     WsWidgetsModule,
-    ReCaptchaModule,
     AccountModule,
     AdminModule,
     TopographyModule,

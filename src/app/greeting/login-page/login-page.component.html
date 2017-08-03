@@ -3,9 +3,6 @@
     {{response}}
   </div>
   <ws-login-form [showLabels]="false" (loginFormChange)="onLoginFormChanged($event)" (enterPressed)="onEnterPressed()"></ws-login-form>
-  <div [hidden]="!requireRecaptcha">
-    <re-captcha (captchaResponse)="handleCorrectCaptcha($event)" site_key="6Ld44w8UAAAAAMykO0IKo0-4v-SLAsvAVUw2UNcU"></re-captcha>
-  </div>
 
   <button class="btn btn-primary btn-block" [disabled]="!loginForm.valid" (click)="onLoginClicked()">Log In</button>
 </div>

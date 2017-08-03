@@ -6,7 +6,6 @@ import { WsFormsModule } from "../components/ws-forms/ws-forms.module";
 import { LoginPageComponent } from './login-page/login-page.component';
 import { ForgotPasswordPageComponent } from './forgot-password-page/forgot-password-page.component';
 import { SignUpPageComponent } from './sign-up-page/sign-up-page.component';
-import { ReCaptchaModule } from 'angular2-recaptcha';
 import { VerifyEmailPageComponent } from './verify-email-page/verify-email-page.component';
 import { ForgotPasswordSentPageComponent } from './forgot-password-sent-page/forgot-password-sent-page.component';
 import { VerifyForgotPasswordPageComponent } from './verify-forgot-password-page/verify-forgot-password-page.component';
@@ -20,7 +19,6 @@ import { GreetingNavigationComponent } from './components/greeting-navigation/gr
     CommonModule,
     GreetingRoutingModule,
     WsFormsModule,
-    ReCaptchaModule,
     WsWidgetsModule,
   ],
   declarations: [

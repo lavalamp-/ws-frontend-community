@@ -92,7 +92,6 @@ export class TopographyWebApplicationsComponent implements OnInit, OnDestroy {
   private fetchAll(): void {
     this.fetchOrganization();
     this.fetchWebServices();
-    this.fetchScreenshots();
     this.fetchWebServiceAnalytics();
   }
 
@@ -106,27 +105,6 @@ export class TopographyWebApplicationsComponent implements OnInit, OnDestroy {
           }
         }
       )
-  }
-
-  private fetchScreenshots(pageNumber = 1): void {
-    this.orgService.getWebServiceScreenshots(
-      this.orgUuid,
-      pageNumber,
-      this.allQueryFilters
-    ).subscribe(response => {
-      this.webScreenshotsApiResponse = response;
-      this.webScreenshots = response.results;
-    });
-  }
-
-  private fetchTransactionAnalytics(): void {
-    this.orgService.getWebTransactionAnalytics(this.orgUuid, this.allQueryFilters)
-      .subscribe(analytics => this.webTransactionAnalytics = analytics);
-  }
-
-  private fetchWebTechReport(): void {
-    this.orgService.getWebTechReportAnalytics(this.orgUuid, this.allQueryFilters)
-      .subscribe(techReport => this.webTechReport = techReport);
   }
 
   private fetchWebServices(pageNumber = 1): void {
@@ -176,7 +154,6 @@ export class TopographyWebApplicationsComponent implements OnInit, OnDestroy {
   }
 
   private onScreenshotPageChanged(pageNumber: number): void {
-    this.fetchScreenshots(pageNumber);
   }
 
   private onServicesPageClicked(pageNumber: number): void {

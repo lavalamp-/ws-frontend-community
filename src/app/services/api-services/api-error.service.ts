@@ -14,14 +14,6 @@ export class ApiErrorService {
     }
   }
 
-  requiresRecaptcha(responseJson: Object) {
-    let recaptcha = responseJson['recaptcha'];
-    if (recaptcha) {
-      return true;
-    }
-    return false;
-  }
-
   getFieldErrors(responseJson: Object, field: string) {
     let errors = responseJson['errors'];
     let results = [];

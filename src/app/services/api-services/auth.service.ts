@@ -158,13 +158,12 @@ export class AuthService {
     localStorage.setItem('authToken', authToken);
   }
 
-  public signUp(firstName: string, lastName: string, email: string, password: string, recaptchaResponse: string): Observable<any> {
+  public signUp(firstName: string, lastName: string, email: string, password: string): Observable<any> {
     let toSend = {
       first_name: firstName,
       last_name: lastName,
       username: email,
-      password: password,
-      recaptcha_response: recaptchaResponse
+      password: password
     };
     return this.wsHttp.post(this.signUpUrl, toSend)
       .map(response => {
@@ -177,12 +176,11 @@ export class AuthService {
       // .catch(this.apiResponseService.extractApiError);
   }
 
-  public setupAccount(firstName: string, lastName: string, password: string, recaptchaResponse: string, emailToken: string, userUuid: string): Observable<any> {
+  public setupAccount(firstName: string, lastName: string, password: string, emailToken: string, userUuid: string): Observable<any> {
     let toSend = {
       first_name: firstName,
       last_name: lastName,
       password: password,
-      recaptcha_response: recaptchaResponse,
       email_token: emailToken,
       user_uuid: userUuid
     };

@@ -3,7 +3,6 @@ import {FormGroup} from "@angular/forms";
 import {AuthService} from "../../services/api-services/auth.service";
 import {Router} from "@angular/router";
 import {flyInOut} from "../../animations";
-import {ReCaptchaComponent} from 'angular2-recaptcha/lib/captcha.component';
 import {ApiErrorService} from "../../services/api-services/api-error.service";
 import {WsTitleService} from "../../services/ui-services/ws-title.service";
 import {ErrorApiResponse} from "../../services/api-services/models/responses/error-api-response.interface";
@@ -27,10 +26,7 @@ export class LoginPageComponent implements OnInit {
   private loginSubmitted: boolean;
   private success: boolean;
   private response: string;
-  private requireRecaptcha: boolean;
-  private recaptchaValidated: boolean;
 
-  @ViewChild(ReCaptchaComponent) captcha:ReCaptchaComponent;
 
   constructor(
     private authService: AuthService,
@@ -41,8 +37,6 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit() {
     this.loginSubmitted = false;
-    this.requireRecaptcha = false;
-    this.recaptchaValidated = false;
     this.success = true;
     this.response = '';
     this.titleService.currentTitle = 'Log In';
@@ -55,17 +49,7 @@ export class LoginPageComponent implements OnInit {
   }
 
   private onLoginClicked(): void {
-    if (this.requireRecaptcha) {
-      if (this.recaptchaValidated) {
-        this.submitLoginForm();
-      } else {
-        this.loginSubmitted = true;
-        this.success = false;
-        this.response = 'Re-Captcha is required to login.'
-      }
-    } else {
-      this.submitLoginForm();
-    }
+    this.submitLoginForm();
   }
 
   private submitLoginForm(): void {
@@ -84,12 +68,9 @@ export class LoginPageComponent implements OnInit {
 
   private onLoginFailure(response: ErrorApiResponse): void {
     debugger;
-    this.requireRecaptcha = this.errorService.requiresRecaptcha(response);
     this.success = false;
     this.loginSubmitted = true;
-    this.recaptchaValidated = false;
     this.response = response.detail;
-    this.captcha.reset();
     this.loginForm.controls['password'].reset();
   }
 
@@ -102,10 +83,6 @@ export class LoginPageComponent implements OnInit {
     } else {
       this.router.navigate(['/organizations']);
     }
-  }
-
-  private handleCorrectCaptcha(event: Object): void {
-    this.recaptchaValidated = true;
   }
 
 }

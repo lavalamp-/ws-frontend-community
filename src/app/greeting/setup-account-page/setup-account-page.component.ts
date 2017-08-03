@@ -4,7 +4,6 @@ import {ApiErrorService} from "../../services/api-services/api-error.service";
 import {AuthService} from "../../services/api-services/auth.service";
 import {WsTitleService} from "../../services/ui-services/ws-title.service";
 import {FormGroup} from "@angular/forms";
-import {ReCaptchaComponent} from 'angular2-recaptcha/lib/captcha.component';
 import {ErrorApiResponse} from "../../services/api-services/models/responses/error-api-response.interface";
 import {Router} from "@angular/router";
 import {NotificationsService} from "angular2-notifications";
@@ -20,9 +19,6 @@ export class SetupAccountPageComponent implements OnInit {
   private emailToken: string;
   private userUuid: string;
   private setupAccountForm: FormGroup;
-  private recaptchaValidated: boolean;
-  private recaptchaResponse: string;
-  @ViewChild(ReCaptchaComponent) captcha:ReCaptchaComponent;
   private formSubmitted: boolean;
   private success: boolean;
   private response: string;
@@ -41,8 +37,6 @@ export class SetupAccountPageComponent implements OnInit {
     this.formSubmitted = false;
     this.success = true;
     this.response = '';
-    this.recaptchaResponse = '';
-    this.recaptchaValidated = false;
 
     this.sub = this.route.params.subscribe(params => {
       this.emailToken = params['emailToken']; // (+) converts string 'id' to a number
@@ -57,11 +51,7 @@ export class SetupAccountPageComponent implements OnInit {
   }
 
   private onSetupAccountClicked(): void {
-    if (this.recaptchaValidated) {
-      this.submitAccountSetup();
-    } else {
-      this.response = 'Re-Captcha is required to login.'
-    }
+    this.submitAccountSetup();
   }
 
   private submitAccountSetup(): void {
@@ -69,7 +59,6 @@ export class SetupAccountPageComponent implements OnInit {
       this.setupAccountForm.value.firstName,
       this.setupAccountForm.value.lastName,
       this.setupAccountForm.value.password,
-      this.recaptchaResponse,
       this.emailToken,
       this.userUuid
     ).subscribe(
@@ -87,16 +76,10 @@ export class SetupAccountPageComponent implements OnInit {
     this.success = false;
     this.formSubmitted = true;
     this.response = response.detail;
-    this.recaptchaValidated = false;
-    this.captcha.reset();
   }
 
   private onSetupAccountFormChanged(setupAccountForm: FormGroup): void {
     this.setupAccountForm = setupAccountForm;
   }
 
-  private handleCorrectCaptcha(event: string): void {
-    this.recaptchaResponse = event;
-    this.recaptchaValidated = true;
-  }
 }

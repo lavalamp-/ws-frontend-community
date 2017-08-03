@@ -5,7 +5,6 @@ import {AuthService} from "../../services/api-services/auth.service";
 import {ApiErrorService} from "../../services/api-services/api-error.service";
 import {NotificationsService} from "angular2-notifications";
 import {Router} from "@angular/router";
-import {ReCaptchaComponent} from 'angular2-recaptcha/lib/captcha.component';
 import {WsTitleService} from "../../services/ui-services/ws-title.service";
 import {ErrorApiResponse} from "../../services/api-services/models/responses/error-api-response.interface";
 
@@ -27,9 +26,6 @@ export class SignUpPageComponent implements OnInit {
   private formSubmitted: boolean;
   private success: boolean;
   private response: string;
-  private recaptchaValidated: boolean;
-  private recaptchaResponse: string;
-  @ViewChild(ReCaptchaComponent) captcha:ReCaptchaComponent;
 
   constructor(
     private authService: AuthService,
@@ -43,8 +39,6 @@ export class SignUpPageComponent implements OnInit {
     this.formSubmitted = false;
     this.success = true;
     this.response = '';
-    this.recaptchaResponse = '';
-    this.recaptchaValidated = false;
     this.titleService.currentTitle = 'Sign Up';
   }
 
@@ -55,11 +49,7 @@ export class SignUpPageComponent implements OnInit {
   }
 
   private onSignUpClicked(): void {
-    if (this.recaptchaValidated) {
-      this.submitSignUp();
-    } else {
-      this.response = 'Re-Captcha is required to login.'
-    }
+    this.submitSignUp();
   }
 
   private submitSignUp(): void {
@@ -68,7 +58,6 @@ export class SignUpPageComponent implements OnInit {
       this.signUpForm.value.lastName,
       this.signUpForm.value.email,
       this.signUpForm.value.password,
-      this.recaptchaResponse
     ).subscribe(
       (data) => this.onSignUpSuccess(data),
       (err) => this.onSignUpFailure(err)
@@ -84,16 +73,10 @@ export class SignUpPageComponent implements OnInit {
     this.success = false;
     this.formSubmitted = true;
     this.response = response.detail;
-    this.recaptchaValidated = false;
-    this.captcha.reset();
   }
 
   private onSignUpFormChanged(signUpForm: FormGroup): void {
     this.signUpForm = signUpForm;
   }
 
-  private handleCorrectCaptcha(event: string): void {
-    this.recaptchaResponse = event;
-    this.recaptchaValidated = true;
-  }
 }

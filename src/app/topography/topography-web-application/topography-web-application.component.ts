@@ -65,21 +65,9 @@ export class TopographyWebApplicationComponent implements OnInit, OnDestroy {
   }
 
   private fetchHttpTransactionAnalytics(): void {
-    this.webserviceService.getWebServiceTransactionAnalytics(this.webAppUuid)
-      .subscribe(analytics => {
-        console.log('Got analytics');
-        console.log(analytics);
-        this.transactionAnalytics = analytics;
-      });
   }
 
   private fetchHttpTransactions(pageNumber: number = 1): void {
-    this.webserviceService.getWebServiceTransactions(this.webAppUuid, pageNumber)
-      .subscribe(transactions => {
-        console.log('Got transactions');
-        console.log(transactions);
-        this.transactionsApiResponse = transactions;
-      })
   }
 
   private fetchOrganization(): void {

@@ -7,7 +7,6 @@ import { SignUpFormComponent } from './sign-up-form/sign-up-form.component';
 import { NewOrganizationFormComponent } from './new-organization-form/new-organization-form.component';
 import { NetworkFormComponent } from './network-form/network-form.component';
 import { MaterialModule } from "@angular/material";
-import { ReCaptchaModule } from 'angular2-recaptcha';
 import { EqualValidator } from './equal-validator.directive';
 import { ChangePasswordFormComponent } from './change-password-form/change-password-form.component';
 import { ResetPasswordFormComponent } from './reset-password-form/reset-password-form.component';
@@ -24,7 +23,6 @@ import {CustomFormsModule} from "ng2-validation";
     CommonModule,
     ReactiveFormsModule,
     MaterialModule.forRoot(),
-    ReCaptchaModule,
     FileUploadModule,
     CustomFormsModule,
   ],

@@ -4,11 +4,60 @@ import {DetailItem} from "./models/detail-item.interface";
 import {WebService} from "../../services/api-services/models/web-service.interface";
 import {SslSupport} from "../../services/api-services/models/ssl-support.class";
 import {HtmlWebResource} from "../../services/api-services/models/html-web-resources.class";
+import {DomainNameReport} from "../../services/api-services/models/domain-name-report.class";
 
 @Injectable()
 export class DetailListService {
 
   constructor() { }
+
+  public getDomainIpDetails(domainNameReport: DomainNameReport): DetailItem[] {
+    let toReturn = [];
+    if (domainNameReport.related_ips.length > 0) {
+      for (let i=0; i<domainNameReport.related_ips.length; i++) {
+        if (i == 0) {
+          toReturn.push({
+            title: 'Related IP Addresses',
+            description: domainNameReport.related_ips[i].ip_address,
+          });
+        } else {
+          toReturn.push({
+            description: domainNameReport.related_ips[i].ip_address,
+          });
+        }
+      }
+    } else {
+      toReturn.push({
+        title: 'There were no IP addresses related to this domain.',
+      });
+    }
+    return toReturn;
+  }
+
+  public getDomainResolutionDetails(domainNameReport: DomainNameReport): DetailItem[] {
+    let toReturn = [];
+    if (domainNameReport.resolutions.length > 0) {
+      for (let resolution of domainNameReport.resolutions) {
+        for (let i=0; i<resolution.record_contents.length; i++) {
+          if (i == 0) {
+            toReturn.push({
+              title: resolution.record_type,
+              description: resolution.record_contents[i],
+            });
+          } else {
+            toReturn.push({
+              description: resolution.record_contents[i],
+            });
+          }
+        }
+      }
+    } else {
+      toReturn.push({
+        title: 'This domain had no resolutions.',
+      });
+    }
+    return toReturn;
+  }
 
   public getHtmlDetails(resource: HtmlWebResource): DetailItem[] {
     let toReturn = [];

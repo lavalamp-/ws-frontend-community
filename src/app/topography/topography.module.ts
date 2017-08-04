@@ -39,6 +39,8 @@ import { HtmlWebResourceSummaryRowComponent } from './components/html-web-resour
 import { GenericWebResourceSummaryRowComponent } from './components/generic-web-resource-summary-row/generic-web-resource-summary-row.component';
 import { TopographyDomainNamesListComponent } from './topography-domain-names-list/topography-domain-names-list.component';
 import { DomainNameCardComponent } from './components/domain-name-card/domain-name-card.component';
+import { DomainNameSummaryRowComponent } from './components/domain-name-summary-row/domain-name-summary-row.component';
+import { DomainNameListComponent } from './components/domain-name-list/domain-name-list.component';
 
 
 @NgModule({
@@ -85,6 +87,8 @@ import { DomainNameCardComponent } from './components/domain-name-card/domain-na
     GenericWebResourceSummaryRowComponent,
     TopographyDomainNamesListComponent,
     DomainNameCardComponent,
+    DomainNameSummaryRowComponent,
+    DomainNameListComponent,
   ]
 })
 export class TopographyModule { }

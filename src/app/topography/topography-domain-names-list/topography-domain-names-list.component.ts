@@ -15,6 +15,7 @@ import {WsViewstateService} from "../../services/ui-services/ws-viewstate.servic
 import {WsDomainNameReportService} from "../../services/api-services/ws-domain-name-report.service";
 import {WsDialogService} from "../../components/ws-dialogs/ws-dialog.service";
 import {DomainNameReportAnalytics} from "../../services/api-services/models/analytics/domain-name-report-analytics.class";
+import {DomainReportsListViewstate} from "../../services/ui-services/models/viewstates/domain-reports-list-viewstate.class";
 
 @Component({
   selector: 'ws-topography-domain-names-list',
@@ -62,6 +63,19 @@ export class TopographyDomainNamesListComponent implements OnInit, OnDestroy {
     this.titleService.currentTitle = 'Domain Names';
     this.loadViewstate();
     this.subscriptions.push(this.route.params.subscribe(params => this.orgUuid = params['orgId']));
+  }
+
+  private addQueryFilter(filter: QueryFilter): void {
+    let currentFilters = this.queryFilters.slice(0);
+    currentFilters.push(filter);
+    this.queryFilters = currentFilters;
+  }
+
+  private createQueryFilter(key: string, value: string, label: string): void {
+    let newFilter = new QueryFilter(key, value, label);
+    let currentFilters = this.queryFilters.slice(0);
+    currentFilters.push(newFilter);
+    this.queryFilters = currentFilters;
   }
 
   private fetchAll(): void {
@@ -116,31 +130,74 @@ export class TopographyDomainNamesListComponent implements OnInit, OnDestroy {
   }
 
   private loadViewstate(): void {
-
+    let viewstate = this.viewstateService.getViewstate();
+    console.log('Viewstate is ');
+    console.log(viewstate);
+    if (viewstate) {
+      this._queryOrdering = viewstate.queryOrdering;
+      this._searchTerm = viewstate.searchTerm;
+      this._currentPage = viewstate.page;
+      this._queryFilters = viewstate.queryFilters;
+    }
   }
 
-  public onAddedByClicked(data: any): void {
-    console.log('Added by clicked');
-    console.log(data);
+  public onAddedByClicked(value: any): void {
+    this.createQueryFilter('domain_added_by', value, 'Domain added by ' + value);
   }
 
-  public onHasResolutionsClicked(data: any): void {
-    console.log('Has resolutions clicked');
-    console.log(data);
+  private onExportClicked(): void {
+    this.dialogService.showExportDataDialog(
+      this.orgService.getDomainReportsExportUrl(this.orgUuid),
+      this.queryFilters,
+      this.queryOrdering,
+      this.searchTerm,
+      this.domainReportPresentation.fields,
+    );
   }
 
-  public onRelatedIpsClicked(data: any): void {
-    console.log('Related IPs clicked');
-    console.log(data);
+  private onFilterCreated(filter: QueryFilter): void {
+    this.addQueryFilter(filter);
   }
 
-  public onResolutionTypeClicked(data: any): void {
-    console.log('Resolution type clicked');
-    console.log(data);
+  public onHasResolutionsClicked(value: any): void {
+    let title = '';
+    if (value) {
+      title = 'Domain Has Resolutions';
+    } else {
+      title = 'Domain Does Not Have Resolutions';
+    }
+    this.createQueryFilter('has_resolutions', value, title);
+  }
+
+  private onPageChanged(page: number): void {
+    this.currentPage = page;
+    this.fetchDomainReports();
+  }
+
+  private onQueryFiltersChanged(queryFilters: QueryFilter[]): void {
+    this.queryFilters = queryFilters;
+  }
+
+  private onQueryOrderingChanged(ordering: QueryOrdering): void {
+    this.queryOrdering = ordering;
+  }
+
+  public onRelatedIpsClicked(value: any): void {
+    let title = 'Domain resolves to ' + value;
+    this.createQueryFilter('related_ips.ip_address', value, title);
+  }
+
+  public onResolutionTypeClicked(value: any): void {
+    let title = 'Domain has at least one resolution of ' + value + ' type';
+    this.createQueryFilter('resolutions.record_type', value, title);
+  }
+
+  private onSearchTermChanged(term: string): void {
+    this.searchTerm = term;
   }
 
   private setViewstate(): void {
-
+    this.viewstateService.setViewstate(this.viewstate);
   }
 
   get currentPage(): number {
@@ -202,6 +259,15 @@ export class TopographyDomainNamesListComponent implements OnInit, OnDestroy {
     }
     this.setViewstate();
     this.fetchAllDomainReports();
+  }
+
+  get viewstate(): DomainReportsListViewstate {
+    return new DomainReportsListViewstate(
+      this.currentPage,
+      this.queryFilters,
+      this.queryOrdering,
+      this.searchTerm,
+    );
   }
 
 }

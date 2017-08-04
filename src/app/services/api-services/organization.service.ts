@@ -164,6 +164,10 @@ export class OrganizationService {
       });
   }
 
+  public getDomainReportsExportUrl(orgUuid: string): string {
+    return this.baseUrl + orgUuid + '/es/domain-names/';
+  }
+
   public getDomains(uuid: string, pageNumber: number = 1, queryFilters: QueryFilter[] = [], orderField: string = null, orderDirection: string = null): Observable<ManyApiResponse<DomainName[]>> {
     let requestUrl = this.baseUrl + uuid + '/domain-names/';
     let queryString = this.queryService.getQueryString(pageNumber, queryFilters, orderField, orderDirection);

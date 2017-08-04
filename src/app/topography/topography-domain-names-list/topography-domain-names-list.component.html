@@ -15,3 +15,9 @@
     <ws-donut-chart-card [dataPoints]="domainReportAnalytics?.domain_added_by" (dataClicked)="onAddedByClicked($event)" [title]="'Domain Added By'"></ws-donut-chart-card>
   </div>
 </div>
+<div class="row">
+  <h2>Details</h2>
+</div>
+<ws-domain-name-list [apiResponse]="domainReportsResponse" (searchChanged)="onSearchTermChanged($event)" (pageChanged)="onPageChanged($event)" (exportClicked)="onExportClicked($event)" [domainReportAnalytics]="domainReportAnalytics" (filterCreated)="onFilterCreated($event)" (orderingChanged)="onQueryOrderingChanged($event)" [searchTerm]="searchTerm" [queryOrdering]="queryOrdering"></ws-domain-name-list>
+<ws-filter-panel *ngIf="queryFilters.length > 0" [queryFilters]="queryFilters" (queryFiltersChanged)="onQueryFiltersChanged($event)"></ws-filter-panel>
+<div [class.filters-showing]="queryFilters.length"></div>

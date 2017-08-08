@@ -26,7 +26,7 @@ export class SslSupportAnalytics extends BaseModel {
   public network_service_port: DataPoint[];
   public network_cidr_range: DataPoint[];
   public is_vulnerable: DataPoint[];
-  public filterable_fields: string[];
+  public filter_fields: string[];
 
   public static fromObject(toParse: any): any {
     return new SslSupportAnalytics(toParse);

@@ -13,7 +13,7 @@
     <ws-debounce-input [value]="searchTerm" [placeholder]="'Search...'" (valueChanges)="onSearchChanged($event)"></ws-debounce-input>
   </div>
   <div class="header-row-left filter-box" *ngIf="showFilters">
-    <ws-filter-select (filterCreated)="onFilterCreated($event)" [apiResponse]="analytics"></ws-filter-select>
+    <ws-filter-select (filterCreated)="onFilterCreated($event)" [apiResponse]="apiResponse"></ws-filter-select>
   </div>
   <div class="header-row-middle">
   </div>

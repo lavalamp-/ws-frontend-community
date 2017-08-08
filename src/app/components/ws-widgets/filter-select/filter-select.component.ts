@@ -28,6 +28,8 @@ export class FilterSelectComponent implements OnInit, OnChanges {
   ) { }
 
   ngOnChanges() {
+    console.log('On changes fired');
+    console.log(this.apiResponse);
     this.setFilterFields();
   }
 

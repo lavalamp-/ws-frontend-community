@@ -5,5 +5,5 @@ export interface FilterableManyApiResponse<T> {
   last_page: number,
   current_page: number,
   page_size: number,
-  filterable_fields: string[],
+  filter_fields: string[],
 }

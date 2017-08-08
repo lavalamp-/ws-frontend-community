@@ -52,6 +52,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
       .subscribe(organizations => this.organizations = organizations);
   }
 
+  public onHomeClicked(): void {
+    if (this.authState.isAuthenticated) {
+      this.router.navigate(['/organizations/mine']);
+    } else {
+      this.router.navigate(['/greeting/log-in']);
+    }
+  }
+
   private onLogOutClicked(): void {
     this.authService.logOut()
       .subscribe(resp => this.router.navigate(['/greeting']));

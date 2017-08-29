@@ -17,6 +17,7 @@ import { DomainNameUploadFormComponent } from './domain-name-upload-form/domain-
 import { InputHintComponent } from './input-hint/input-hint.component';
 import { SetupAccountFormComponent } from './setup-account-form/setup-account-form.component';
 import {CustomFormsModule} from "ng2-validation";
+import { ScanConfigFormComponent } from './scan-config-form/scan-config-form.component';
 
 @NgModule({
   imports: [
@@ -40,6 +41,7 @@ import {CustomFormsModule} from "ng2-validation";
     DomainNameUploadFormComponent,
     InputHintComponent,
     SetupAccountFormComponent,
+    ScanConfigFormComponent,
   ],
   exports: [
     LoginFormComponent,
@@ -53,6 +55,7 @@ import {CustomFormsModule} from "ng2-validation";
     DomainNameFormComponent,
     DomainNameUploadFormComponent,
     SetupAccountFormComponent,
+    ScanConfigFormComponent,
   ]
 })
 export class WsFormsModule { }

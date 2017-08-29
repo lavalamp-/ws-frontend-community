@@ -1,0 +1,216 @@
+<form [formGroup]="formGroup" (keydown)="onKeyDown($event)">
+  <div class="row">
+    <div class="col-xs-24">
+      <h3>Scanning Methods</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-24">
+      <md-checkbox formControlName="scan_domain_names">Scan Domain Names</md-checkbox>
+      <div *ngIf="formErrors">
+        <ws-input-hint [messages]="formErrors['error_fields']['scan_domain_names']"></ws-input-hint>
+      </div>
+    </div>
+    <div class="col-xs-24">
+      <md-checkbox formControlName="scan_network_ranges">Scan Network Ranges</md-checkbox>
+      <div *ngIf="formErrors">
+        <ws-input-hint [messages]="formErrors['error_fields']['scan_network_ranges']"></ws-input-hint>
+      </div>
+    </div>
+    <div class="col-xs-24">
+      <md-checkbox formControlName="scan_ip_addresses">Scan IP Addresses</md-checkbox>
+      <div *ngIf="formErrors">
+        <ws-input-hint [messages]="formErrors['error_fields']['scan_ip_addresses']"></ws-input-hint>
+      </div>
+    </div>
+    <div class="col-xs-24">
+      <md-checkbox formControlName="scan_network_services">Scan Network Services</md-checkbox>
+      <div *ngIf="formErrors">
+        <ws-input-hint [messages]="formErrors['error_fields']['scan_network_services']"></ws-input-hint>
+      </div>
+    </div>
+    <div class="col-xs-24">
+      <md-checkbox formControlName="scan_ssl_support">Scan SSL Support</md-checkbox>
+      <div *ngIf="formErrors">
+        <ws-input-hint [messages]="formErrors['error_fields']['scan_ssl_support']"></ws-input-hint>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-24">
+      <h3>DNS Scanning Options</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-24">
+      <md-checkbox [disabled]="!formGroup.value.scan_domain_names" formControlName="dns_enumerate_subdomains">Enumerate Subdomains</md-checkbox>
+      <div *ngIf="formErrors">
+        <ws-input-hint [messages]="formErrors['error_fields']['dns_enumerate_subdomains']"></ws-input-hint>
+      </div>
+    </div>
+    <div class="col-xs-24">
+      <md-checkbox [disabled]="!formGroup.value.scan_domain_names" formControlName="dns_scan_resolutions">Scan Resolved IP Addresses</md-checkbox>
+      <div *ngIf="formErrors">
+        <ws-input-hint [messages]="formErrors['error_fields']['dns_scan_resolutions']"></ws-input-hint>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-24">
+      <h3>Network Scanning Options</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-24">
+      <md-input-container>
+        <input [disabled]="!formGroup.value.scan_network_ranges" md-input type="text" placeholder="Network Scan Bandwidth" formControlName="network_scan_bandwidth">
+      </md-input-container>
+      <div *ngIf="formErrors">
+        <ws-input-hint [messages]="formErrors['error_fields']['network_scan_bandwidth']"></ws-input-hint>
+      </div>
+    </div>
+    <div class="col-xs-24">
+      <md-checkbox [disabled]="!formGroup.value.scan_network_ranges" formControlName="network_inspect_live_hosts">Inspect Live Hosts</md-checkbox>
+      <div *ngIf="formErrors">
+        <ws-input-hint [messages]="formErrors['error_fields']['network_inspect_live_hosts']"></ws-input-hint>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-24">
+      <h3>IP Address Scanning Options</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-24">
+      <md-checkbox [disabled]="!formGroup.value.scan_ip_addresses" formControlName="ip_address_geolocate">Geolocate IP Addresses</md-checkbox>
+      <div *ngIf="formErrors">
+        <ws-input-hint [messages]="formErrors['error_fields']['ip_address_geolocate']"></ws-input-hint>
+      </div>
+    </div>
+    <div class="col-xs-24">
+      <md-checkbox [disabled]="!formGroup.value.scan_ip_addresses" formControlName="ip_address_reverse_hostname">Gather Reverse Hostname</md-checkbox>
+      <div *ngIf="formErrors">
+        <ws-input-hint [messages]="formErrors['error_fields']['ip_address_reverse_hostname']"></ws-input-hint>
+      </div>
+    </div>
+    <div class="col-xs-24">
+      <md-checkbox [disabled]="!formGroup.value.scan_ip_addresses" formControlName="ip_address_historic_dns">Gather Historic DNS Data</md-checkbox>
+      <div *ngIf="formErrors">
+        <ws-input-hint [messages]="formErrors['error_fields']['ip_address_historic_dns']"></ws-input-hint>
+      </div>
+    </div>
+    <div class="col-xs-24">
+      <md-checkbox [disabled]="!formGroup.value.scan_ip_addresses" formControlName="ip_address_as_data">Gather Autonomous System Data</md-checkbox>
+      <div *ngIf="formErrors">
+        <ws-input-hint [messages]="formErrors['error_fields']['ip_address_as_data']"></ws-input-hint>
+      </div>
+    </div>
+    <div class="col-xs-24">
+      <md-checkbox [disabled]="!formGroup.value.scan_ip_addresses" formControlName="ip_address_whois_data">Gather WHOIS Data</md-checkbox>
+      <div *ngIf="formErrors">
+        <ws-input-hint [messages]="formErrors['error_fields']['ip_address_whois_data']"></ws-input-hint>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-24">
+      <h3>Network Service Scanning Options</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-24">
+      <md-checkbox [disabled]="!formGroup.value.scan_network_services" formControlName="network_service_check_liveness">Check for Service Liveness</md-checkbox>
+      <div *ngIf="formErrors">
+        <ws-input-hint [messages]="formErrors['error_fields']['network_service_check_liveness']"></ws-input-hint>
+      </div>
+    </div>
+    <div class="col-xs-24">
+      <md-checkbox [disabled]="!formGroup.value.scan_network_services" formControlName="network_service_fingerprint">Fingerprint Service Applications</md-checkbox>
+      <div *ngIf="formErrors">
+        <ws-input-hint [messages]="formErrors['error_fields']['network_service_fingerprint']"></ws-input-hint>
+      </div>
+    </div>
+    <div class="col-xs-24">
+      <md-checkbox [disabled]="!formGroup.value.scan_network_services" formControlName="network_service_inspect_app">Inspect Service Applications</md-checkbox>
+      <div *ngIf="formErrors">
+        <ws-input-hint [messages]="formErrors['error_fields']['network_service_inspect_app']"></ws-input-hint>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-24">
+      <h3>SSL/TLS Scanning Options</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-24">
+      <md-checkbox [disabled]="!formGroup.value.scan_ssl_support" formControlName="ssl_enumerate_vulns">Enumerate SSL Vulnerabilities</md-checkbox>
+      <div *ngIf="formErrors">
+        <ws-input-hint [messages]="formErrors['error_fields']['ssl_enumerate_vulns']"></ws-input-hint>
+      </div>
+    </div>
+    <div class="col-xs-24">
+      <md-checkbox [disabled]="!formGroup.value.scan_ssl_support" formControlName="ssl_enumerate_cipher_suites">Enumerate SSL Cipher Suites</md-checkbox>
+      <div *ngIf="formErrors">
+        <ws-input-hint [messages]="formErrors['error_fields']['ssl_enumerate_cipher_suites']"></ws-input-hint>
+      </div>
+    </div>
+    <div class="col-xs-24">
+      <md-checkbox [disabled]="!formGroup.value.scan_ssl_support" formControlName="ssl_retrieve_cert">Retrieve SSL Certificate</md-checkbox>
+      <div *ngIf="formErrors">
+        <ws-input-hint [messages]="formErrors['error_fields']['ssl_retrieve_cert']"></ws-input-hint>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-24">
+      <h3>Application-layer Inspection Options</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-24">
+      <md-checkbox [disabled]="!formGroup.value.network_service_inspect_app" formControlName="app_inspect_web_app">Web Applications</md-checkbox>
+      <div *ngIf="formErrors">
+        <ws-input-hint [messages]="formErrors['error_fields']['app_inspect_web_app']"></ws-input-hint>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-24">
+      <h3>Web Application Scanning Options</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-24">
+      <md-checkbox [disabled]="!formGroup.value.app_inspect_web_app" formControlName="web_app_include_http_on_https">Check for HTTP Services on HTTPS Servers</md-checkbox>
+      <div *ngIf="formErrors">
+        <ws-input-hint [messages]="formErrors['error_fields']['web_app_include_http_on_https']"></ws-input-hint>
+      </div>
+    </div>
+    <div class="col-xs-24">
+      <md-checkbox [disabled]="!formGroup.value.app_inspect_web_app" formControlName="web_app_enum_vhosts">Enumerate Virtual Hosts</md-checkbox>
+      <div *ngIf="formErrors">
+        <ws-input-hint [messages]="formErrors['error_fields']['web_app_enum_vhosts']"></ws-input-hint>
+      </div>
+    </div>
+    <div class="col-xs-24">
+      <md-checkbox [disabled]="!formGroup.value.app_inspect_web_app" formControlName="web_app_take_screenshot">Take Screenshots</md-checkbox>
+      <div *ngIf="formErrors">
+        <ws-input-hint [messages]="formErrors['error_fields']['web_app_take_screenshot']"></ws-input-hint>
+      </div>
+    </div>
+    <div class="col-xs-24">
+      <md-checkbox [disabled]="!formGroup.value.app_inspect_web_app" formControlName="web_app_do_crawling">Crawling</md-checkbox>
+      <div *ngIf="formErrors">
+        <ws-input-hint [messages]="formErrors['error_fields']['web_app_do_crawling']"></ws-input-hint>
+      </div>
+    </div>
+    <div class="col-xs-24">
+      <md-checkbox [disabled]="!formGroup.value.app_inspect_web_app" formControlName="web_app_enum_user_agents">Enumerate User Agent Support</md-checkbox>
+      <div *ngIf="formErrors">
+        <ws-input-hint [messages]="formErrors['error_fields']['web_app_enum_user_agents']"></ws-input-hint>
+      </div>
+    </div>
+  </div>
+</form>

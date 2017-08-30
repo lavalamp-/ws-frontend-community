@@ -6,6 +6,7 @@ import { AuthGuardService } from "../services/guard-services/auth-guard.service"
 import {OrgDetailsComponent} from "./org-details/org-details.component";
 import {OrgOrderCheckoutComponent} from "./org-order-checkout/org-order-checkout.component";
 import {MyOrganizationsListComponent} from "./my-organizations-list/my-organizations-list.component";
+import {OrgScanConfigComponent} from "./org-scan-config/org-scan-config.component";
 
 const organizationsRoutes: Routes = [
   {
@@ -21,6 +22,10 @@ const organizationsRoutes: Routes = [
       {
         path: 'mine',
         component: MyOrganizationsListComponent,
+      },
+      {
+        path: ':orgId/configure-scan/:orderId',
+        component: OrgScanConfigComponent,
       },
       {
         path: ':orgId/check-out/:orderId',

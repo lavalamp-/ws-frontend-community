@@ -18,6 +18,8 @@ import { InputHintComponent } from './input-hint/input-hint.component';
 import { SetupAccountFormComponent } from './setup-account-form/setup-account-form.component';
 import {CustomFormsModule} from "ng2-validation";
 import { ScanConfigFormComponent } from './scan-config-form/scan-config-form.component';
+import { ScanPortFormComponent } from './scan-port-form/scan-port-form.component';
+import { DnsRecordTypeFormComponent } from './dns-record-type-form/dns-record-type-form.component';
 
 @NgModule({
   imports: [
@@ -42,6 +44,8 @@ import { ScanConfigFormComponent } from './scan-config-form/scan-config-form.com
     InputHintComponent,
     SetupAccountFormComponent,
     ScanConfigFormComponent,
+    ScanPortFormComponent,
+    DnsRecordTypeFormComponent,
   ],
   exports: [
     LoginFormComponent,
@@ -56,6 +60,9 @@ import { ScanConfigFormComponent } from './scan-config-form/scan-config-form.com
     DomainNameUploadFormComponent,
     SetupAccountFormComponent,
     ScanConfigFormComponent,
+    ScanPortFormComponent,
+    DnsRecordTypeFormComponent,
+    InputHintComponent,
   ]
 })
 export class WsFormsModule { }

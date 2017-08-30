@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OrganizationsComponent } from './organizations.component';
 import { OrganizationsRoutingModule } from "./organizations-routing.module";
-import { OrganizationDetailsComponent } from './organization-details/organization-details.component';
 import {WsFormsModule} from "../components/ws-forms/ws-forms.module";
 import { MyOrganizationsComponent } from './my-organizations/my-organizations.component';
 import {WsDialogsModule} from "../components/ws-dialogs/ws-dialogs.module";
@@ -21,6 +20,7 @@ import {ReactiveFormsModule, FormsModule} from "@angular/forms";
 import { OrgOrderCheckoutComponent } from './org-order-checkout/org-order-checkout.component';
 import { OrganizationSummaryRowComponent } from './components/organization-summary-row/organization-summary-row.component';
 import { MyOrganizationsListComponent } from './my-organizations-list/my-organizations-list.component';
+import { OrgScanConfigComponent } from './org-scan-config/org-scan-config.component';
 
 @NgModule({
   imports: [
@@ -36,7 +36,6 @@ import { MyOrganizationsListComponent } from './my-organizations-list/my-organiz
   ],
   declarations: [
     OrganizationsComponent,
-    OrganizationDetailsComponent,
     OrganizationNetworksComponent,
     MyOrganizationsComponent,
     OrganizationNetworksComponent,
@@ -50,6 +49,7 @@ import { MyOrganizationsListComponent } from './my-organizations-list/my-organiz
     OrgOrderCheckoutComponent,
     OrganizationSummaryRowComponent,
     MyOrganizationsListComponent,
+    OrgScanConfigComponent,
 
   ]
 })

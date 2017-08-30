@@ -204,7 +204,9 @@ export class OrgDetailsComponent implements OnInit, OnDestroy {
   private onCheckOutClicked(): void {
     this.orgService.createOrderForOrganization(this.orgUuid)
       .subscribe(order => {
-        this.router.navigate(['/organizations/' + this.orgUuid + '/check-out/' + order.uuid]);
+        console.log('Got order');
+        console.log(order);
+        this.router.navigate(['/organizations/' + this.orgUuid + '/configure-scan/' + order.uuid]);
       });
   }
 

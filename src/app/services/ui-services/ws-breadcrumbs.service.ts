@@ -61,6 +61,13 @@ export class WsBreadcrumbsService {
     };
   }
 
+  private getBreadcrumbForOrderScanConfig(organizationUuid: string, orderUuid: string): Breadcrumb {
+    return {
+      url: '/organizations/' + organizationUuid + '/configure-scan/' + orderUuid,
+      label: 'Configure Scan',
+    };
+  }
+
   private getBreadcrumbForOrganizationDetails(organization: Organization): Breadcrumb {
     return {
       url: '/organizations/' + organization.uuid,
@@ -153,6 +160,14 @@ export class WsBreadcrumbsService {
       this.getBreadcrumbForMyOrganizations(),
       this.getBreadcrumbForOrganizationDetails(organization),
     ];
+  }
+
+  public setBreadcrumbsForScanConfig(organization: Organization, orderUuid: string): void {
+    this.currentBreadcrumbs = [
+      this.getBreadcrumbForMyOrganizations(),
+      this.getBreadcrumbForOrganizationDetails(organization),
+      this.getBreadcrumbForOrderScanConfig(organization.uuid, orderUuid),
+    ]
   }
 
   public setBreadcrumbsForSslSupportList(orgUuid: string): void {

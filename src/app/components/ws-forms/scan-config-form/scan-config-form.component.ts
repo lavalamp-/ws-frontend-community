@@ -1,23 +1,29 @@
-import {Component, OnInit, Input, Output, EventEmitter, OnDestroy} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter, OnDestroy, OnChanges} from '@angular/core';
 import {FormGroup, FormBuilder} from "@angular/forms";
 import {Subscription} from "rxjs";
+import {ScanConfig} from "../../../services/api-services/models/scan-config.class";
 
 @Component({
   selector: 'ws-scan-config-form',
   templateUrl: './scan-config-form.component.html',
   styleUrls: ['./scan-config-form.component.sass']
 })
-export class ScanConfigFormComponent implements OnInit, OnDestroy {
+export class ScanConfigFormComponent implements OnInit, OnDestroy, OnChanges {
 
   private subscriptions: Subscription[] = [];
   private _formGroup: FormGroup;
   @Input() formErrors: any;
+  @Input() scanConfig: ScanConfig;
   @Output() formGroupChange = new EventEmitter;
   @Output() enterPressed = new EventEmitter;
 
   constructor(
     private formBuilder: FormBuilder,
   ) { }
+
+  ngOnChanges() {
+    this.updateFormGroup();
+  }
 
   ngOnDestroy() {
     for (let subscription of this.subscriptions) {
@@ -54,8 +60,7 @@ export class ScanConfigFormComponent implements OnInit, OnDestroy {
       web_app_do_crawling: [true],
       web_app_enum_user_agents: [true],
     });
-    // this.subscriptions.push(this.formGroup.valueChanges.subscribe(formGroup => this.formGroup = formGroup));
-    console.log(this.formGroup)
+    this.subscriptions.push(this.formGroup.valueChanges.subscribe(formValues => this.formGroupChange.emit(formValues)));
   }
 
   private onKeyDown(keyEvent: any): void {
@@ -64,10 +69,17 @@ export class ScanConfigFormComponent implements OnInit, OnDestroy {
     }
   }
 
+  private updateFormGroup(): void {
+    if (this.scanConfig) {
+      this.formGroup.patchValue(this.scanConfig);
+    }
+  }
+
   @Input()
   get formGroup(): FormGroup {
     return this._formGroup;
   }
+
 
   set formGroup(newValue: FormGroup) {
     console.log('Form group changed!');

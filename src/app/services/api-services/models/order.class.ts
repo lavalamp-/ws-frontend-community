@@ -12,6 +12,7 @@ export class Order extends BaseModel {
   public has_been_charged: boolean;
   public networks: string[];
   public domain_names: string[];
+  public scan_config: string;
 
   public static fromObject(toParse: any): any {
     return new Order(toParse);

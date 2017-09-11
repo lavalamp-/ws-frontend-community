@@ -1,0 +1,19 @@
+<form [formGroup]="formGroup" (keydown)="onKeyDown($event)">
+  <div class="row">
+    <div class="col-xs-24">
+      <md-select placeholder="Record Type" formControlName="record_type">
+        <md-option *ngFor="let typeChoice of typeChoices" [value]="typeChoice">{{typeChoice}}</md-option>
+      </md-select>
+      <div *ngIf="formErrors">
+        <ws-input-hint [messages]="formErrors['error_fields']['record_type']"></ws-input-hint>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="formErrors &&
+      formErrors['message'] &&
+      formErrors['error_fields'] &&
+      formErrors['error_fields']['non_field_errors'] &&
+      formErrors['error_fields']['non_field_errors'].length > 0">
+    <ws-input-hint [messages]="formErrors['error_fields']['non_field_errors']"></ws-input-hint>
+  </div>
+</form>

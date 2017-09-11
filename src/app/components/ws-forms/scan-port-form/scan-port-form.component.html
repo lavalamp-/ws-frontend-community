@@ -1,0 +1,24 @@
+<form [formGroup]="formGroup" (keydown)="onKeyDown($event)">
+  <div class="row">
+    <div class="col-xs-8">
+      <md-select placeholder="Protocol" formControlName="protocol">
+        <md-option *ngFor="let protocolChoice of protocolChoices" [value]="protocolChoice">{{protocolChoice}}</md-option>
+      </md-select>
+    </div>
+    <div class="col-xs-16">
+      <md-input-container>
+        <input md-input type="text" placeholder="Port Number" formControlName="port_number" required>
+      </md-input-container>
+      <div *ngIf="formErrors">
+        <ws-input-hint [messages]="formErrors['error_fields']['port_number']"></ws-input-hint>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="formErrors &&
+      formErrors['message'] &&
+      formErrors['error_fields'] &&
+      formErrors['error_fields']['non_field_errors'] &&
+      formErrors['error_fields']['non_field_errors'].length > 0">
+    <ws-input-hint [messages]="formErrors['error_fields']['non_field_errors']"></ws-input-hint>
+  </div>
+</form>

@@ -6,6 +6,7 @@ interface Flag {
 
 export class BaseModel {
 
+  public uuid: string;
   public created: string;
   public flags: Flag[];
 

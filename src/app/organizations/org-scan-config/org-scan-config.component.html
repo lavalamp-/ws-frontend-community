@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-md-8 column-container">
+    <h2>Configure Scanning Activities</h2>
+    <ws-scan-config-form [formErrors]="scanConfigFormErrors" (formGroupChange)="onScanFormChanged($event)" [scanConfig]="scanConfig"></ws-scan-config-form>
+  </div>
+  <div class="col-md-8 column-container">
+    <h2>Scanned Ports</h2>
+    <div class="new-scan-port">
+      <div class="row">
+        <div class="col-xs-20">
+          <ws-scan-port-form [(formGroup)]="scanPortFormGroup" [formErrors]="scanPortFormErrors"></ws-scan-port-form>
+        </div>
+        <div class="col-xs-4">
+          <button md-mini-fab [disabled]="!scanPortFormGroup || !scanPortFormGroup.valid" (click)="onAddScanPortClicked()">
+            <i class="fa fa-icon fa-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="list-item-container">
+      <ws-badge *ngFor="let scanPort of scanPorts?.results" [badgeText]="scanPort.description" (clicked)="onDeleteScanPortClicked(scanPort)" [badgeIcon]="'fa-close'" [iconSide]="'right'" [active]="true"></ws-badge>
+      <ws-pagination [apiResponse]="scanPorts" (pageChanged)="onScanPortsPageChanged($event)"></ws-pagination>
+    </div>
+    <h2>Scanned DNS Record Types</h2>
+    <div class="new-dns-record-type">
+      <div class="row">
+        <div class="col-xs-20">
+          <ws-dns-record-type-form [(formGroup)]="dnsRecordTypeFormGroup" [formErrors]="dnsRecordTypeFormErrors"></ws-dns-record-type-form>
+        </div>
+        <div class="col-xs-4">
+          <button md-mini-fab [disabled]="!dnsRecordTypeFormGroup || !dnsRecordTypeFormGroup.valid" (click)="onAddDnsRecordTypeClicked()">
+            <i class="fa fa-icon fa-plus"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="list-item-container">
+      <ws-badge *ngFor="let dnsRecordType of dnsRecordTypes?.results" [badgeText]="dnsRecordType.record_type" (clicked)="onDeleteDnsRecordTypeClicked(dnsRecordType)" [badgeIcon]="'fa-close'" [iconSide]="'right'" [active]="true"></ws-badge>
+      <ws-pagination [apiResponse]="dnsRecordTypes" (pageChanged)="onDnsRecordTypesPageChanged($event)"></ws-pagination>
+    </div>
+  </div>
+  <div class="col-md-8 column-container">
+    <h2>Continue</h2>
+    <ws-button [text]="'Review Scan'" [disabled]="reviewButtonDisabled" [asBlock]="true" (buttonClicked)="onReviewClicked()"></ws-button>
+    <div class="errors-container">
+      <ws-input-hint *ngIf="scanConfigValidityErrors.length > 0" [messages]="scanConfigValidityErrors"></ws-input-hint>
+    </div>
+  </div>
+</div>

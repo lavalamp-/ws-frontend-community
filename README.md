@@ -34,7 +34,7 @@ This repository contains the code the Web Sight front-end single page applicatio
 
 ## Installation
 
-**Web Sight has been tested and works with both OSX and Ubuntu. The steps here should work on other Linux distributions, but YMMV.**
+**Web Sight has been tested and works with both OSX and Ubuntu. The steps here should work on other GNU/Linux distributions, but YMMV.**
 
 To build the front-end code, we require the Angular2 CLI project, which in turn relies upon NodeJS. If you haven't used the Angular2 CLI before, it's a bit of a pain in the ass to install and keep updated (to put things mildly). As such, we're going to install a specific version of Angular2 CLI for the time being.
 
